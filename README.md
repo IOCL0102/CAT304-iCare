@@ -14,7 +14,7 @@
 ## Coding Standard
   1. CamelCase for javascript
   - :heavy_check_mark: printValue()   :x: print_value()
-  2. Use small letter and hypfen (-) as connectors for variable naming
+  2. Use small letter and hypfen (-) as connectors for variable naming in HTML and CSS
   - :heavy_check_mark: update-value-button    :x: update-Value-button, updateValueButton
   3. Boolean variable should start with if, has, ... which is self-descriptive
   
