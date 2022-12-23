@@ -13,10 +13,11 @@
   
   
 ## Coding Standard
-  1. CamelCase for javascript
+  1. Use camelCase for Javascript
   - :heavy_check_mark: printValue()   :x: print_value()
   2. Use small letter and hypfen (-) as connectors for id/class naming in HTML and CSS
   - :heavy_check_mark: update-value-button    :x: update-Value-button, updateValueButton
-  3. Boolean variable should start with if, has, ... which is self-descriptive
+  3. Boolean variable should start with is, has, ... which is self-descriptive
+  - :heavy_check_mark: isCloseButtonClicked, isPlaying  :x: closeButton, played
   
     
