@@ -20,6 +20,4 @@
   3. Boolean variable should start with is, has, ... which is self-descriptive
   - :heavy_check_mark: isCloseButtonClicked, isPlaying  :x: closeButton, played
   
-## Images and Components
-  1. Place all images in the images folder
-  2. Place all components in the components folder    
+    
