@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+.ml-20 input, .ml-20 textarea .ml-20 select {
+  width: 100%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  border: 1px solid;
+  box-sizing: border-box;
+  display: block;
+}

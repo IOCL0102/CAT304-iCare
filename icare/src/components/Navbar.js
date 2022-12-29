@@ -5,6 +5,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LogoutIcon from '@mui/icons-material/Logout';
 import MedicationIcon from '@mui/icons-material/Medication';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 
 export default function Navbar(){
     return(
@@ -15,6 +16,7 @@ export default function Navbar(){
             <NavbarIcon icon={<CalendarMonthIcon />} text="Appointments"/>
             <NavbarIcon icon={<MedicationIcon />} text="Treatment"/>
             <NavbarIcon icon={<NotificationsIcon />} text="Notifications"/>
+            <NavbarIcon icon={<AssignmentIndIcon/>} text="Profile"/>
             <NavbarIcon icon={<LogoutIcon />} text="Logout"/>
         </div>
     );
