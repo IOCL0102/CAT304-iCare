@@ -8,9 +8,9 @@ import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 
 export default function DocNavbar(){
     return(
-        <div className='relative top-0 left-0 h-screen w-16 
+        <div className='relative top-0 left-0 min-h-full w-16 
                         m-0 flex flex-col text-white bg-primary
-                        shadow-lg'>
+                        shadow-lg '>
             <NavbarIcon icon={<DashboardIcon />} text="Dashboard"/>
             <NavbarIcon icon={<CalendarMonthIcon />} text="Appointments"/>
             <NavbarIcon icon={<PermContactCalendarIcon />} text="Patients"/>
