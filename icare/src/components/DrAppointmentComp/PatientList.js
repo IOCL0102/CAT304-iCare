@@ -28,7 +28,7 @@ export default function PatientList() {
             <div className="rounded-lg ml-10">
                 <h1 className="text-3xl font-semibold m-3">Consultation</h1>
 
-                <div className="shadow-md shadow-cyan-500/50 p-5" >
+                <div className="shadow-md rounded-3xl border-blue-400/50 border-2 p-5" >
                     <div className="flex flex-row items-center mb-10">
                         <div className="mask mask-circle inline h-11 w-11 m-3">
                             <img src="https://placeimg.com/160/160/arch" />
