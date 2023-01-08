@@ -5,15 +5,9 @@ import PatientList from '../components/PatientList';
 
 export default function DoctorAppointPage(){
     return(
-        <div className='flex bg-red-200'>
-            
-            <div>
-                <DocNavbar/>
-            </div>
-           
-            
-
-            <div className='grid grid-cols-3 grid-rows-2 bg-red-300' >
+        <div >
+            <DocNavbar/>
+            <div className='grid grid-cols-3 grid-rows-2 bg-red-300 ml-16' >
 
                 <div className='col-start-1 col-end-3'>
                     <div className='bg-white rounded-lg p-5 m-5'>
