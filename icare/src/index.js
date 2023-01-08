@@ -1,13 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import DocNavbar from './components/DoctorNavbar';
+import DoctorDashboardPage from './pages/DoctorDashboardPage';
+import DoctorAppointPage from './pages/DoctorAppointPage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+
+      <DocNavbar/>
+      <Routes>
+        <Route path="/" element={<DoctorDashboardPage />} />
+        <Route path="/Dashboard" element={<DoctorDashboardPage />} />
+        <Route path="/Appointments" element={<DoctorAppointPage />} />
+        
+        {/* ADD LOGOUT PAGE, PATIENT LIST, NOTIFICATION PAGE ... */}
+      </Routes>
+
+    </Router>
+
   </React.StrictMode>
 );
 

@@ -5,6 +5,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
+import { Link } from 'react-router-dom';
 
 export default function DocNavbar(){
     return(
@@ -20,11 +21,13 @@ export default function DocNavbar(){
     );
 };
 
-const NavbarIcon = ({icon, text}) => (
-    <div className='navbar--icon group'>
-        {icon}
-        <span className='navbar--text group-hover:scale-100 z-50'>
-            {text}
-        </span>
-    </div>
+const NavbarIcon = ({icon, text, filename}) => (
+    <Link to= {"/" + text}>
+        <div className='navbar--icon group'>
+                {icon}
+                <span className='navbar--text group-hover:scale-100 z-50'>
+                    {text}
+                </span>
+        </div>
+    </Link>
 );
