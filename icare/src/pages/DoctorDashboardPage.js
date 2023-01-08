@@ -1,4 +1,3 @@
-import DocNavbar from '../components/DoctorNavbar';
 import DoctorActivityGraph from '../components/DrDashboardGraph/DoctorActivityGraph'
 import PatientVisitByGender from '../components/DrDashboardGraph/PatientVisitGraph';
 import AvgPatientVisitGraph from '../components/DrDashboardGraph/AvgPatientVisitGraph';
@@ -94,30 +93,24 @@ export default function DoctorDashboardPage(){
                     <div className='m-10 grid grid-cols-4 grid-rows-2'>  
 
                         <div className='col-start-1 col-end-3 row-start-1 row-span-4 bg-white rounded-xl p-5 mx-5'>
-                            <div> 
-                                <div className='mb-5'>
-                                    <h1 className='font-bold text-3xl'>Activity Graph</h1>
-                                    <h2 className='font-light text-sm text-gray-400'>Schedule average taken by quarter</h2>
-                                </div>        
-                                <div className='h-96'>
-                                    <DoctorActivityGraph/>
-                                </div>
+                            <div className='mb-5'>
+                                <h1 className='font-bold text-3xl'>Activity Graph</h1>
+                                <h2 className='font-light text-sm text-gray-400'>Schedule average taken by quarter</h2>
+                            </div>        
+                            <div className='h-96'>
+                                <DoctorActivityGraph/>
                             </div>
                         </div>
 
                         <div className='col-start-3 col-end-5 row-span-2 bg-white rounded-xl p-5 m-2'>
-                            <div className='mb-5'>
-                                <h1 className='text-lg'>Patient Visit by Gender</h1>
-                            </div>  
+                            <h1 className='text-lg mb-5'>Patient Visit by Gender</h1>
                             <div>
                                 <PatientVisitByGender/>
                             </div>
                         </div>
 
                         <div className='col-start-3 col-end-5 row-span-2 bg-white rounded-xl p-5 m-2'>
-                            <div className=''>
-                                <h1 className='text-lg'>Average Patient Visit</h1>
-                            </div>  
+                            <h1 className='text-lg'>Average Patient Visit</h1> 
                             <div className='h-48'>
                                 <AvgPatientVisitGraph/>
                             </div>
@@ -126,42 +119,35 @@ export default function DoctorDashboardPage(){
                     </div>
                 </div>
 
-                {/*============================ CALENDER SECTION ============================ */}
-                <div className="col-start-3 col-end-4 row-start-2 row-end-7 bg-white m-5 p-2 rounded-xl">
-                    <div className='mb-72'>
-                        <h2 className='text-xl font-semibold m-5 px-2'>Calender</h2> 
+            {/*============================ CALENDER SECTION ============================ */}
+            <div className="col-start-3 col-end-4 row-start-2 row-end-7 bg-white m-5 p-2 rounded-xl">
+                <h2 className='text-xl font-semibold m-5 mb-72 px-2'>Calender</h2> 
+
+                <div className='flex flex-row m-5 p-2 gap-5'>
+                    <h2 className='text-xl font-semibold'>Upcoming</h2> 
+                    <div className='grow text-right pr-5'>
+                        <u className='text-base underline-offset-1 hover:cursor-pointer hover:text-blue-500'>view all</u>
                     </div>
-
-                    <div>
-                        <div className='flex flex-row m-5 p-2 gap-5'>
-                            <h2 className='text-xl font-semibold'>Upcoming</h2> 
-                            <div className='grow text-right pr-5'>
-                                <u className='text-base underline-offset-1 hover:cursor-pointer hover:text-blue-500'>view all</u>
-                            </div>
-                        </div>
-
-                        <div className='flex flex-col p-2 m-5 rounded-xl gap-3'>
-
-                            {upComingSchedules.map((schedule)=>(
-
-                                <div className='flex flex-row bg-sky-100 rounded-xl px-3 py-2'>
-                                    <div className="mask mask-circle h-11 w-11 ml-2 mr-5">
-                                        <img src={schedule.profilePic} className='object-fill' />
-                                    </div>
-                                
-                                    <div className='grow'>
-                                        <h1 className=''> Schedule with {schedule.name}</h1>
-                                        <h3 className='font-light text-sm text-gray-500'>{schedule.date} | {schedule.time} </h3>
-                                    </div>
-                                </div>
-                            ))}
-                  
-                        </div>
-                    </div>
-                
                 </div>
 
-                
+                <div className='flex flex-col p-2 m-5 rounded-xl gap-3'>
+
+                    {upComingSchedules.map((schedule)=>(
+
+                        <div className='flex flex-row bg-sky-100 rounded-xl px-3 py-2'>
+                            <div className="mask mask-circle h-11 w-11 ml-2 mr-5">
+                                <img src={schedule.profilePic} className='object-fill' />
+                            </div>
+                        
+                            <div className='grow'>
+                                <h1 className=''> Schedule with {schedule.name}</h1>
+                                <h3 className='font-light text-sm text-gray-500'>{schedule.date} | {schedule.time} </h3>
+                            </div>
+                        </div>
+                    ))}
+            
+                </div>
+            </div>    
         </div>
     );
 }
