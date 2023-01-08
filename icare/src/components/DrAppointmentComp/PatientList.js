@@ -30,7 +30,7 @@ export default function PatientList() {
 
                 <div className="shadow-md rounded-3xl border-blue-400/50 border-2 p-5" >
                     <div className="flex flex-row items-center mb-10">
-                        <div className="mask mask-circle inline h-11 w-11 m-3">
+                        <div className="mask mask-circle inline h-11 w-11 m-3 shrink-0">
                             <img src="https://placeimg.com/160/160/arch" />
                         </div>
 
@@ -40,13 +40,19 @@ export default function PatientList() {
                         </div>
                     </div>
 
-                    <div className="grid grid-rows-3 grid-cols-3 gap-5">
-                        <div className="col-span-1">Last Checked</div>
-                        <div className="col-span-2">Dr Everly on 21 April 2021 Prescription #2J983KT0 </div>
-                        <div className="col-span-1">Observation</div>
-                        <div className="col-span-2">High fever and cough at normal hemoglobin levels. </div>
-                        <div className="col-span-1 ">Prescription</div>
-                        <div className="col-span-2">Paracetmol - 2 times a day Dizopam - Day and Night before meal Wikoryl</div>
+                    <div className="flex flex-col gap-5">
+                        <div className="flex flex-row grow gap-5 font-base">
+                            <h3 className="basis-1/4 shrink-0">Last Checked</h3>
+                            <h3 className="font-light">Dr Everly on 21 April 2021 Prescription #2J983KT0 </h3>
+                        </div>
+                        <div className="flex flex-row grow gap-5">
+                            <h3 className="basis-1/4 shrink-0 font-base">Observation</h3>
+                            <h3 className="font-light">High fever and cough at normal hemoglobin levels. </h3>
+                        </div>
+                        <div className="flex flex-row grow gap-5">
+                            <h3 className="basis-1/4 shrink-0 font-base">Prescription</h3>
+                            <h3 className="font-light">Paracetmol - 2 times a day Dizopam - Day and Night before meal Wikoryl</h3>
+                        </div>
                     </div>
                 </div>
 
