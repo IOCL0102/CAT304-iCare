@@ -51,11 +51,8 @@ export default function DoctorDashboardPage(){
 
 
     return(
-        <div>
-            <DocNavbar/>
-
+        <div className="grid grid-rows-7 grid-cols-3 ml-16">
             {/*============================ WELCOME BACK ============================ */}
-            <div className="grid grid-rows-7 grid-cols-3 ml-16">
                 <div className="col-start-1 col-end-3 row-span-1">
                     <div className="mt-8 ml-5">
                     <h2 className="font-base text-4xl inline"> Welcome back </h2>
@@ -165,7 +162,6 @@ export default function DoctorDashboardPage(){
                 </div>
 
                 
-            </div>
         </div>
     );
 }
