@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 export default function TreatmentRec(){
-    var searchInput ;
     const treatmentInfoTable = [
         {
             facilityName: "Penang General Hospital",
@@ -11,16 +10,16 @@ export default function TreatmentRec(){
             estimatedFee: 180
         },
         {
-            facilityName: "Glugor General Hospital",
-            disease: "diabetes",
-            treatment: "Insulin injection",
+            facilityName: "heart attack General Hospital ( for validation )",
+            disease: "heart attack",
+            treatment: "Body Check",
             description: "If a dog chews shoes whose shoes does he choose?",
             estimatedFee: 190
         },
         {
-            facilityName: "Ipoh General Hospital",
-            disease: "diabetes",
-            treatment: "Insulin injection",
+            facilityName: "Insomnia General Hospital",
+            disease: "Insomnia",
+            treatment: "Medical checkup",
             description: "If a dog chews shoes whose shoes does he choose?",
             estimatedFee: 100
         },
@@ -61,23 +60,23 @@ export default function TreatmentRec(){
         },
     ];
 
-    const [treatmentInfo, setTreatmentInfo] = useState(treatmentInfoTable);
+    const [treatmentCardInfo, settreatmentCardInfo] = useState(treatmentInfoTable);
     const [searchBarVal, setSearchBarVal] = useState("");
 
     useEffect(()=>{
-        setTreatmentInfo(treatmentInfoTable.filter(data=>data.facilityName.toLowerCase().includes(searchBarVal.toLowerCase())))
+        settreatmentCardInfo(treatmentInfoTable.filter(data=>data.disease.toLowerCase().includes(searchBarVal.toLowerCase())))
     }, [searchBarVal]);
 
     return(
         <div className="flex flex-col ml-16 border-spacing-12 border border-slate-400 table-auto border-separate">
             <h1 className="m-10 mb-5 font-bold text-4xl">Treatment Recommendation</h1>
             <input className="m-10 my-3 p-3 pl-5 rounded-full drop-shadow-xl"
-            type="text" placeholder="Search here ( example: Diabetes )" onChange={(e)=>setSearchBarVal(e.target.value)} value={searchInput} ></input>
+            type="text" placeholder="Search here ( example: Diabetes )" onChange={(e)=>setSearchBarVal(e.target.value)}></input>
 
             
-                {treatmentInfo.length>0 ?
+                {treatmentCardInfo.length>0 ?
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 p-5 m-5 gap-5">
-                        {treatmentInfo.map((treatmentData)=>{
+                        {treatmentCardInfo.map((treatmentData)=>{
                             return(
                                 <div class="card w-96 bg-base-100 shadow-xl hover:outline hover:outline-blue-300">
                                     <div class="card-body">
