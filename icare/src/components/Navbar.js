@@ -1,5 +1,7 @@
 import React from 'react';
-
+import {Routes, Route} from "react-router-dom";
+import { a } from 'react-router-dom';
+import Notification from '../pages/Notification';
 import HomeIcon from '@mui/icons-material/Home';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -12,12 +14,20 @@ export default function Navbar(){
         <div className='fixed top-0 left-0 h-screen w-16 
                         m-0 flex flex-col text-white bg-primary
                         shadow-lg'>
-            <NavbarIcon icon={<HomeIcon />} text="Home"/>
+            <a href="/LoginDashboard">{<NavbarIcon icon={<HomeIcon />} text="Home"/>}</a>
+            <a href="/Appointment">{<NavbarIcon icon={<CalendarMonthIcon />} text="Appointments"/>}</a>
+            <a href="/Notification">{<NavbarIcon icon={<MedicationIcon />} text="Treatment"/>}</a>
+            <a href="/Notification">{<NavbarIcon icon={<NotificationsIcon />} text="Notifications"/>}</a>
+            <a href="/UserProfile">{<NavbarIcon icon={<AssignmentIndIcon/>} text="Profile"/>}</a>
+            <a href="/LandingPage">{<NavbarIcon icon={<LogoutIcon />} text="Logout"/>}</a>
+
+
+            {/* <NavbarIcon icon={<HomeIcon />} text="Home"/>
             <NavbarIcon icon={<CalendarMonthIcon />} text="Appointments"/>
             <NavbarIcon icon={<MedicationIcon />} text="Treatment"/>
             <NavbarIcon icon={<NotificationsIcon />} text="Notifications"/>
             <NavbarIcon icon={<AssignmentIndIcon/>} text="Profile"/>
-            <NavbarIcon icon={<LogoutIcon />} text="Logout"/>
+            <NavbarIcon icon={<LogoutIcon />} text="Logout"/> */}
         </div>
     );
 };

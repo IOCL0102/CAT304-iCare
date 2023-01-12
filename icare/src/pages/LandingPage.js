@@ -23,7 +23,7 @@ export default function LandingPage(){
         <div>
             <LPNavbar />
 
-            <div className="landing-page-header pb-20 flex flex-nowrap">
+            <div id="1" className="landing-page-header pb-20 flex flex-nowrap">
                 <span className="w-1/2 p-20 pt-10">
                     <h1 className="text-5xl font-bold m-10 text-primary">A Centralised Health Care Solution for Everyone</h1>
                     <p className="m-10 text-xl">One-stop shop for all the healthcare solutions you need within a click.</p>
@@ -34,7 +34,7 @@ export default function LandingPage(){
                 </span>
             </div>
 
-            <div className="landing-page-about-us flex flex-nowrap">
+            <div id="2" className="landing-page-about-us flex flex-nowrap">
                 <span className="w-3/4 p-20 pt-10">
                     <h1 className="text-5xl font-bold m-10 text-primary">About Us</h1>
                     <p className="m-10 text-xl">iCare is a digital healthcare platform, bringing easier and more 
@@ -49,7 +49,7 @@ export default function LandingPage(){
                 </span>
             </div>
 
-            <div className="p-20">
+            <div id="3" className="p-20">
                 <div><h1 className="text-5xl font-bold m-10 text-primary">Our Services</h1></div>
                 <div className="flex flex-nowrap justify-center my-20">
                      <LPCard
@@ -86,7 +86,7 @@ export default function LandingPage(){
                 </div>
             </div>
 
-            <div>
+            <div id="4">
                 <h1 className="text-5xl font-bold m-10 text-primary text-center">Testimonials by Patients</h1>
                 <h4 className="m-10 text-xl text-center">Let our users tell you their experience in using our platform!</h4>
                 <div className="flex mx-5 justify-center mb-32">
