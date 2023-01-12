@@ -8,6 +8,7 @@ export default function DoctorAppointPage(){
     return(
         <div className='grid ml-16 grid-cols-3'  >
 
+
             <div className='col-span-2'>
                 <div className='bg-white rounded-3xl m-5 px-5 pt-2 pb-7 drop-shadow-xl '>
                     <PatientList />
@@ -15,7 +16,7 @@ export default function DoctorAppointPage(){
             </div>
 
             <div className='col-span-1'>
-                <div className='rounded-3xl bg-white m-5 px-5 py-2 drop-shadow-xl'>
+                <div className='rounded-3xl bg-white m-5 ml-2 px-5 py-2 drop-shadow-xl'>
                     <AppointmentReq />
                 </div>
             </div>
