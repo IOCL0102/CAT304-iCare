@@ -134,18 +134,14 @@ export default function PatientList() {
 
     return(
         <div className="flex flex-row">
-            <div className="flex flex-col gap-3 w-2/4">
+            <div className="flex flex-col gap-3 w-2/4 ">
                     <h1 className="text-2xl font-semibold m-3 mt-5 col-span-3 ">Today's appointment</h1>
                     
-                    <div className='overflow-y-scroll overflow-x-hidden max-h-96 '>
+                    <div className='overflow-y-scroll overflow-x-hidden max-h-96 border-2 border-r-0 border-sky-200 rounded-2xl py-3'>
                         {patientLists.map((patientList)=>(
                             <PatientsBar key={patientList.id} data={patientList} onClick={setConsultation}/>
                         ))}
                     </div>
-   
-                <div className='text-center my-5'>
-                    <u className='text-base underline-offset-1 hover:cursor-pointer hover:text-blue-500 '>view all</u>
-                </div>
             </div>
             
             <div className='flex-initial grow-0 ml-10 w-2/4'>
@@ -177,6 +173,29 @@ const PatientsBar = ({data, onClick}) => {
     );
 };
 
+export const PatientDetailSummary = ({consultationData}) => {
+    return(
+        <div className="flex flex-col gap-5">
+            <div className="flex flex-row grow gap-5 font-base">
+                <h3 className="basis-1/4 shrink-0">Last Checked</h3>
+                <h3 className="font-light">{consultationData.lastChecked}</h3>
+            </div>
+            <div className="flex flex-row grow gap-5">
+                <h3 className="basis-1/4 shrink-0 font-base">Observation</h3>
+                <h3 className="font-light">{consultationData.observation}</h3>
+            </div>
+            <div className="flex flex-row grow gap-5">
+                <h3 className="basis-1/4 shrink-0 font-base">Prescription</h3>
+                <h3 className="font-light">{consultationData.prescription}</h3>
+            </div>
+            <div className="flex flex-col gap-5">
+                <h3 className="basis-1/4 shrink-0 font-base p-2 rounded-xl bg-sky-100">Appointment Purpose</h3>
+                <h3 className="font-light">{consultationData.appointPurpose}</h3>
+            </div>
+        </div>
+    );
+};
+
 const ConsultationInfo = ({consultationData}) => {
     return(
         <div>
@@ -199,24 +218,7 @@ const ConsultationInfo = ({consultationData}) => {
                 <div className='h-0.5 bg-blue-300 mb-7'></div>
                 
                 {/*=========== MAIN INFORMATION ===========*/}
-                <div className="flex flex-col gap-5">
-                    <div className="flex flex-row grow gap-5 font-base">
-                        <h3 className="basis-1/4 shrink-0">Last Checked</h3>
-                        <h3 className="font-light">{consultationData.lastChecked}</h3>
-                    </div>
-                    <div className="flex flex-row grow gap-5">
-                        <h3 className="basis-1/4 shrink-0 font-base">Observation</h3>
-                        <h3 className="font-light">{consultationData.observation}</h3>
-                    </div>
-                    <div className="flex flex-row grow gap-5">
-                        <h3 className="basis-1/4 shrink-0 font-base">Prescription</h3>
-                        <h3 className="font-light">{consultationData.prescription}</h3>
-                    </div>
-                    <div className="flex flex-col gap-5">
-                        <h3 className="basis-1/4 shrink-0 font-base p-2 rounded-xl bg-sky-100">Appointment Purpose</h3>
-                        <h3 className="font-light">{consultationData.appointPurpose}</h3>
-                    </div>
-                </div>
+                <PatientDetailSummary consultationData={consultationData} />
             </div> 
         </div>
     );
