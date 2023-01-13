@@ -89,33 +89,19 @@ export default function DoctorDashboardPage(){
 
           
                 {/*============================ GRAPH SECTION ============================ */}
-                <div className="col-start-1 col-end-3 row-start-4 row-end-7 bg-red-50">
+                <div className="col-start-1 col-end-3 row-start-4 row-end-7">
                     <div className='m-10 grid grid-cols-4 grid-rows-2'>  
-
-                        <div className='col-start-1 col-end-3 row-start-1 row-span-4 bg-white rounded-xl p-5 mx-5'>
-                            <div className='mb-5'>
-                                <h1 className='font-bold text-3xl'>Activity Graph</h1>
-                                <h2 className='font-light text-sm text-gray-400'>Schedule average taken by quarter</h2>
-                            </div>        
-                            <div className='h-96'>
-                                <DoctorActivityGraph/>
-                            </div>
+                        <div className='col-start-1 col-end-3 row-start-1 row-span-4 bg-white rounded-xl p-5 mx-5 drop-shadow-xl'>
+                            <DoctorActivityGraph/>
                         </div>
 
-                        <div className='col-start-3 col-end-5 row-span-2 bg-white rounded-xl p-5 m-2'>
-                            <h1 className='text-lg mb-5'>Patient Visit by Gender</h1>
-                            <div>
-                                <PatientVisitByGender/>
-                            </div>
+                        <div className='col-start-3 col-end-5 row-span-2 bg-white rounded-xl p-5 m-2 drop-shadow-xl'>
+                            <PatientVisitByGender/>
                         </div>
 
-                        <div className='col-start-3 col-end-5 row-span-2 bg-white rounded-xl p-5 m-2'>
-                            <h1 className='text-lg'>Average Patient Visit</h1> 
-                            <div className='h-48'>
-                                <AvgPatientVisitGraph/>
-                            </div>
-                        </div>
-                        
+                        <div className='col-start-3 col-end-5 row-span-2 bg-white rounded-xl p-5 m-2 drop-shadow-xl'>
+                            <AvgPatientVisitGraph/>
+                        </div>   
                     </div>
                 </div>
 

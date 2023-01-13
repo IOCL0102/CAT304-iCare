@@ -53,7 +53,10 @@ export default function PatientVisitByGender(){
 
     return (
         <>
+            <h1 className='text-lg font-semibold mb-5'>Patient Visit by Gender</h1>
+            <div>
             <Line data={data} options={options} />
+            </div>
         </>
     );
 };
