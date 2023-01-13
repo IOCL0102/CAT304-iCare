@@ -8,7 +8,12 @@ export default function PatientList() {
             name: "Simon Alix",
             time: "04:00 PM",
             link: "#",
-            appointPurpose: "My heart beat is too fast AAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAA!",
+            appointPurpose: `É vital, porém não derrubará aviões.
+            It's vital, but it won't shoot down aircraft.
+            Boa idéia, porém não funcionará.
+            Good idea, but it won't work.
+            Então não arriscarei nenhum... porém infelizmente estou tentada.
+            Then I shall venture none... however sorely I am tempted.`,
             profilePic: "https://placeimg.com/160/160/any",
             gender: "Male",
             age: 56,
@@ -129,21 +134,21 @@ export default function PatientList() {
 
     return(
         <div className="flex flex-row">
-            <div className="flex flex-col gap-3 basis-5/6">
-                <h1 className="text-2xl font-semibold m-3 mt-5 col-span-3 ">Today's appointment</h1>
-                
-                <div className='overflow-y-scroll overflow-x-hidden max-h-96'>
-                    {patientLists.map((patientList)=>(
-                        <PatientsBar key={patientList.id} data={patientList} onClick={setConsultation}/>
-                    ))}
-                </div>
+            <div className="flex flex-col gap-3 w-2/4">
+                    <h1 className="text-2xl font-semibold m-3 mt-5 col-span-3 ">Today's appointment</h1>
+                    
+                    <div className='overflow-y-scroll overflow-x-hidden max-h-96 '>
+                        {patientLists.map((patientList)=>(
+                            <PatientsBar key={patientList.id} data={patientList} onClick={setConsultation}/>
+                        ))}
+                    </div>
    
                 <div className='text-center my-5'>
                     <u className='text-base underline-offset-1 hover:cursor-pointer hover:text-blue-500 '>view all</u>
                 </div>
             </div>
             
-            <div className='flex-initial grow-0 ml-10'>
+            <div className='flex-initial grow-0 ml-10 w-2/4'>
                 <ConsultationInfo consultationData={consultation} />
             </div>
         </div>
