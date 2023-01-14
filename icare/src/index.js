@@ -7,7 +7,7 @@ import DoctorDashboardPage from './pages/DoctorDashboardPage';
 import DoctorAppointPage from './pages/DoctorAppointPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import TreatmentRec from './pages/TreatmentRec';
-
+import EditAvailabilityPage from './pages/EditAvailabilityPage';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
@@ -19,6 +19,7 @@ root.render(
         <Route path="/Dashboard" element={<DoctorDashboardPage />} />
         <Route path="/Appointments" element={<DoctorAppointPage />} />
         <Route path="/Patients" element={<TreatmentRec />} />
+        <Route path="/Appointments/EditAppointments" element={<EditAvailabilityPage />} />
         {/* ADD LOGOUT PAGE, PATIENT LIST, NOTIFICATION PAGE ... */}
       </Routes>
 

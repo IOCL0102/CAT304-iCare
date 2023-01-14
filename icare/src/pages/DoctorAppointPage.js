@@ -2,9 +2,9 @@ import PatientList from '../components/DrAppointmentComp/PatientList';
 import { PatientDetailSummary } from '../components/DrAppointmentComp/PatientList';
 import AppointmentReq from '../components/DrAppointmentComp/AppointmentReq';
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 export default function DoctorAppointPage(){
-
+    const navigate = useNavigate();
     const [isShowPopOut, setIsShowPopOut] = useState(false);
     const [popOutContent, setPopOutContent] = useState({});
 
@@ -14,6 +14,13 @@ export default function DoctorAppointPage(){
 
             { isShowPopOut ? <PopUpContent /> : <></> }
 
+            <div className='col-span-2 ml-5 mt-5'>
+                <button className='btn btn-primary' onClick={()=>{navigate('/Appointments/EditAppointments')}}> Edit appointment availability</button>
+            </div>
+
+            <div className='col-span-1 bg-green-500'>
+                <h1>notification icon and profile pic</h1>
+            </div>
 
             <div className='col-span-2'>
                 <div className='bg-white rounded-3xl m-5 px-5 pt-2 pb-7 drop-shadow-xl '>
@@ -25,14 +32,6 @@ export default function DoctorAppointPage(){
                 <div className='rounded-3xl bg-white m-5 ml-2 px-5 py-2 drop-shadow-xl'>
                     <AppointmentReq setPopUpFunc={setIsShowPopOut} setPopUpContent={setPopOutContent} />
                 </div>
-            </div>
-
-            <div className='col-span-2 bg-green-500'>
-                <AppointmentReq />
-            </div>
-
-            <div className='col-span-1 bg-red-500'>
-                <AppointmentReq />
             </div>
 
         </div>
