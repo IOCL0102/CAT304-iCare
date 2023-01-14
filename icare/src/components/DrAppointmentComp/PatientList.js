@@ -178,19 +178,19 @@ export const PatientDetailSummary = ({consultationData}) => {
         <div className="flex flex-col gap-5">
             <div className="flex flex-row grow gap-5 font-base">
                 <h3 className="basis-1/4 shrink-0">Last Checked</h3>
-                <h3 className="font-light">{consultationData.lastChecked}</h3>
+                <h3 className="font-light">{(consultationData.lastChecked == null || consultationData.lastChecked == undefined) ? "None" : consultationData.lastChecked}</h3>
             </div>
             <div className="flex flex-row grow gap-5">
                 <h3 className="basis-1/4 shrink-0 font-base">Observation</h3>
-                <h3 className="font-light">{consultationData.observation}</h3>
+                <h3 className="font-light">{(consultationData.observation == null || consultationData.observation == undefined) ? "None" : consultationData.observation}</h3>
             </div>
             <div className="flex flex-row grow gap-5">
                 <h3 className="basis-1/4 shrink-0 font-base">Prescription</h3>
-                <h3 className="font-light">{consultationData.prescription}</h3>
+                <h3 className="font-light">{(consultationData.prescription == null || consultationData.prescription == undefined) ? "None" : consultationData.prescription}</h3>
             </div>
             <div className="flex flex-col gap-5">
                 <h3 className="basis-1/4 shrink-0 font-base p-2 rounded-xl bg-sky-100">Appointment Purpose</h3>
-                <h3 className="font-light">{consultationData.appointPurpose}</h3>
+                <h3 className="font-light">{(consultationData.appointPurpose == null || consultationData.appointPurpose == undefined) ? "None" : consultationData.appointPurpose}</h3>
             </div>
         </div>
     );
