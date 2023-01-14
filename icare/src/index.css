@@ -32,3 +32,15 @@ code {
     scale-0 origin-left;
   }
 }
+
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  display: none !important;
+}
+
+.css-1hbyad5-MuiTypography-root{
+  display: none !important;
+}
+
+.css-z3au5x-MuiButtonBase-root-MuiIconButton-root-MuiPickersToolbar-penIconButton{
+  display: none !important;
+}
