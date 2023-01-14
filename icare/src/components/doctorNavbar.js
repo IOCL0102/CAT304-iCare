@@ -21,7 +21,7 @@ export default function DocNavbar(){
     );
 };
 
-const NavbarIcon = ({icon, text, filename}) => (
+const NavbarIcon = ({icon, text}) => (
     <Link to= {"/" + text}>
         <div className='navbar--icon group'>
                 {icon}
