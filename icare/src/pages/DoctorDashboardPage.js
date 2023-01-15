@@ -54,6 +54,7 @@ export default function DoctorDashboardPage(){
         new Date("2023-02-28"),
         new Date("2023-01-30")
     ]);
+    const {Calender, _} = Calendar({highlightedDays});
 
     return(
         <div className="grid grid-rows-7 grid-cols-3 ml-16">
@@ -114,8 +115,8 @@ export default function DoctorDashboardPage(){
             {/*============================ CALENDER SECTION ============================ */}
             <div className="col-start-3 col-end-4 row-start-2 row-end-7 bg-white m-7 p-2 rounded-xl drop-shadow-xl">
                 <h2 className='text-2xl font-semibold m-5 pl-5'>CALENDAR</h2> 
-                <div className='flex justify-center drop-shadow-xl grow'>
-                    <Calendar highlightedDays={highlightedDays}/>
+                <div className='flex justify-center drop-shadow-xl'>
+                    {Calender}
                 </div>
 
                 <div className='flex flex-row m-5 p-2 gap-5'>
