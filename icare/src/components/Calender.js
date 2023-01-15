@@ -25,40 +25,42 @@ import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 
 export default function Calendar({highlightedDays}){
     const [value, setValue] = useState(new Date());
-
     return (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <div className='w-max h-max'>
-            <StaticDatePicker
-                orientation="portrait"
-                openTo="day"
-                value={value}
-                onChange={(newValue) => {
-                setValue(newValue);
-                }}
-                renderInput={(params) => <TextField {...params} />} 
-                renderDay={(day, _value, DayComponentProps) => {
-                    const isSelected = !DayComponentProps.outsideCurrentMonth && highlightedDays.some((highlightedDay) => {
-                        return (
-                            highlightedDay.getFullYear() === day.getFullYear() &&
-                            highlightedDay.getMonth() === day.getMonth() &&
-                            highlightedDay.getDate() === day.getDate() 
-                        );
-                        });
+            {
+            currentSelectionDate: value,
+            Calender: <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <div className='w-max h-max'>
+                <StaticDatePicker
+                    orientation="portrait"
+                    openTo="day"
+                    value={value}
+                    onChange={(newValue) => {
+                    setValue(newValue);
+                    }}
+                    renderInput={(params) => <TextField {...params} />} 
+                    renderDay={(day, _value, DayComponentProps) => {
+                        const isSelected = !DayComponentProps.outsideCurrentMonth && highlightedDays.some((highlightedDay) => {
+                            return (
+                                highlightedDay.getFullYear() === day.getFullYear() &&
+                                highlightedDay.getMonth() === day.getMonth() &&
+                                highlightedDay.getDate() === day.getDate() 
+                            );
+                            });
 
-               
-                    return (
-                    <Badge
-                        key={day.toString()}
-                        overlap="circular"
-                        badgeContent={isSelected ? '🔴' : undefined}
-                    >
-                        <PickersDay {...DayComponentProps} />
-                    </Badge>
-                    );
-                }}
-            />
-            </div>  
-        </LocalizationProvider>
+                
+                        return (
+                        <Badge
+                            key={day.toString()}
+                            overlap="circular"
+                            badgeContent={isSelected ? '🔴' : undefined}
+                        >
+                            <PickersDay {...DayComponentProps} />
+                        </Badge>
+                        );
+                    }}
+                />
+                </div>  
+            </LocalizationProvider>
+        }
   );
 };
