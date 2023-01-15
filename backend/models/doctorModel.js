@@ -34,7 +34,7 @@ const doctorSchema = new Schema({
     treatment: {
         type: Array,
         required: true
-    }, // array of treatments (String)
+    }, // array of treatments (String) // later treatment  need to add fee and description
     // when post/patch request, this field should include all treatments with the modify one (pass as an array is easier instead of add element in array or change element in array) - for React data processing
     default_availability: {
         type: Array,
