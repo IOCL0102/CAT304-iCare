@@ -19,8 +19,11 @@ app.use((req,res,next) => {
 app.use('/api/hospitals', hospitalRoutes); 
 
 // connect to mongodb
-// later add optionals to avoid deprecation warnings
-mongoose.connect(process.env.MONGOATLAS_URI)
+mongoose.set('strictQuery', true); // to avoid deprecation warning (https://mongoosejs.com/docs/deprecations.html#-findandmodify-
+mongoose.connect(process.env.MONGOATLAS_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
     .then(() => {
         // listen for requests (only happen after connected to DB)
         app.listen(process.env.PORT, () => {
