@@ -2,6 +2,7 @@ require('dotenv').config(); // import .env variables into process.env
 
 const express = require('express');
 const mongoose = require('mongoose');
+const hospitalRoutes = require('./routes/hospitals');
 
 // express app
 const app = express();
@@ -12,6 +13,10 @@ app.use((req,res,next) => {
     console.log(req.url, req.method);
     next();
 }) // log all requests on the console (server side)
+
+// routes
+// all routes will be prefixed with their respective collection such as /api/hospitals
+app.use('/api/hospitals', hospitalRoutes); 
 
 // connect to mongodb
 // later add optionals to avoid deprecation warnings
