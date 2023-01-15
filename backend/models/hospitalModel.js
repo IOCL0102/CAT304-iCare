@@ -18,11 +18,15 @@ const hospitalSchema = new Schema({
         type: Number,
         required: true
     },
-    // see if need an array to track all doctors in this hospital
+    doctors:{
+        type: Array,
+        required: true
+    }, // array of doctor IDs
     schema_ver: {
         type: Number,
         required: true,
-        default: 1.0
+        default: 2.0
+        // 2.0: add doctors field to store doctor IDs
     }
 }, { timestamps: true });
 

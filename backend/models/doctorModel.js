@@ -33,12 +33,12 @@ const doctorSchema = new Schema({
     treatment: {
         type: Array,
         required: true
-    },
+    }, // array of treatments (String)
     // when post/patch request, this field should include all treatments with the modify one (pass as an array is easier instead of add element in array or change element in array) - for React data processing
     default_availability: {
         type: Array,
         required: true
-    },
+    }, // array of timeslots (Object)
     // when post/patch request, this field should include all timeslots with the modify one (pass as an array is easier instead of add element in array or change element in array)  - for React data processing
     schema_ver: {
         type: Number,
