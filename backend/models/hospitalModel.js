@@ -22,6 +22,7 @@ const hospitalSchema = new Schema({
         type: Array,
         required: true
     }, // array of doctor IDs
+    // probably not required by default, especially for array data type
     schema_ver: {
         type: Number,
         required: true,
