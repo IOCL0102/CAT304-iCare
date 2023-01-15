@@ -18,6 +18,7 @@ const hospitalSchema = new Schema({
         type: Number,
         required: true
     },
+    // see if need an array to track all doctors in this hospital
     schema_ver: {
         type: Number,
         required: true,
