@@ -6,6 +6,7 @@ const doctorSchema = new Schema({
         type: String,
         required: true
     },
+    // later add in photo field (file/url)
     email:{
         type: String,
         required: true
