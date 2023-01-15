@@ -11,11 +11,11 @@ const hospitalSchema = new Schema({
         required: true
     },
     latitude: {
-        type: Number, // later change to support decimal/double
+        type: Number,
         required: true
     },
     longitude: {
-        type: Number, // later change to support decimal/double
+        type: Number,
         required: true
     },
     schema_ver: {
