@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Doctor = require('../models/doctorModel');
+const Hospital = require('../models/hospitalModel');
 
 // get all doctors
 const getDoctors = async (req, res) => {
@@ -34,13 +35,20 @@ const createDoctor = async (req,res)=>{
     try{
         // add new document
         const doctor = await Doctor.create(req.body);
+        // update hospital's doctors array for 2 way referencing
+        const hospital = await Hospital.updateOne(
+            {_id: doctor.hospital},
+            {$push: {
+                "doctors": doctor._id
+            }}
+        ); // confirm hospital exists when creating doctor hence no need to check if hospital exists
         res.status(200).json(doctor);
+
     }catch(error){
         res.status(400).json({error: error.message})
     }
 
 }
-// have a .then() to update the hospital's doctors array
 
 // delete a doctor
 const deleteDoctor = async (req, res) => {
@@ -52,12 +60,20 @@ const deleteDoctor = async (req, res) => {
        return res.status(404).json({error: 'id is not valid'});
     }
 
-    const doctor = await Doctor.deleteOne({_id: id}); 
+    const doctor = await Doctor.findByIdAndDelete({_id: id}); 
+    // replace deleteOne with findByIdAndDelete to get the deleted document fields
 
     if(!doctor){
         return res.status(404).json({error: 'No such doctor'});
     }
 
+    // update hospital's doctors array for 2 way referencing
+    const hospital = await Hospital.updateOne(
+        {_id: doctor.hospital},
+        {$pull: {
+            "doctors": doctor._id
+        }}
+    ); // confirm hospital exists when creating doctor hence no need to check if hospital exists
     res.status(200).json(doctor);
 }
 
