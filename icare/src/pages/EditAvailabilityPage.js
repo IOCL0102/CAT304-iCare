@@ -82,12 +82,28 @@ export default function EditAvailabilityPage(){
                                     setSelectedFrom("From");
                                 }}>Confirm</button>
                     </div>
-                    <button className="btn btn-primary btn-lg rounded-full mt-5">Update</button>
+                    <button className="btn btn-primary btn-lg rounded-full mt-5"
+                            onClick={()=>{/* UPDATE AVAILABILITY ( SEND TO SERVER ) */}}>Update</button>
                 </div>
             </div>
         </div>
 
     );
+
+
+    function AvailabilityBar({schedule}) {
+        const removeAvailability = () => {
+            setCurrentDaySchedules(currentDaySchedules.filter(s => s !== schedule));
+        }
+        return(
+            <div className="bg-primary flex flex-row rounded-lg my-3">
+                <h2 className="grow self-center text-lg mx-7 text-white tracking-normal">
+                {schedule.start_time.toString().padStart(2, '0')} : 00 - {schedule.end_time.toString().padStart(2, '0')} : 00
+                </h2>
+                <button className="btn btn-primary hover:bg-red-500" onClick={removeAvailability}>REMOVE</button>
+            </div>
+        );
+    }
 
     function TimeSelectionBar({setSelectedFrom, setSelectedTo}) {
         const selectionsForFrom = __excludeFromSelectedTime(currentDaySchedules);
@@ -110,6 +126,10 @@ export default function EditAvailabilityPage(){
             </>
         );
     }
+
+
+
+    // UTILITIES FUNCTION
 
     function __excludeFromSelectedTime(todayAvailabilities){
         var dateList = [];
@@ -158,13 +178,3 @@ export default function EditAvailabilityPage(){
 
 
 
-const AvailabilityBar = ({schedule}) => {
-    return(
-        <div className="bg-primary flex flex-row rounded-lg my-3">
-            <h2 className="grow self-center text-lg mx-7 text-white tracking-normal">
-            {schedule.start_time.toString().padStart(2, '0')} : 00 - {schedule.end_time.toString().padStart(2, '0')} : 00
-            </h2>
-            <button className="btn btn-primary hover:bg-red-500">REMOVE</button>
-        </div>
-    );
-}
