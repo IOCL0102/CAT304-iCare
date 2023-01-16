@@ -68,13 +68,7 @@ const patientSchema = new Schema({
         type: String,
         required: true,
         default: "None"
-    }, 
-    medical_history: {
-        type: [String],
-        required: false,
-        default: []
-    }, // array of appointment id from appointment (String)
-    // when post/patch request, this field should include all previous treatments with the modify one (pass as an array is easier instead of add element in array or change element in array) - for React data processing
+    },
     requests: {
         type: [String],
         required: false,
@@ -90,14 +84,16 @@ const patientSchema = new Schema({
         required: false,
         default: []
     }, // array of notification id from notification (String)
+    // when post/patch request, this field should include all previous treatments with the modify one (pass as an array is easier instead of add element in array or change element in array) - for React data processing
     schema_ver: {
         type: Number,
         required: true,
-        default: 2.0
+        default: 3.0
     }
     // 2.0: 
     //  - change medical_history to array of appointment id from appointment (String)
     //  - add requests, appointments and notifications field for reference
+    // 3.0: remove medical_history field
 }, { timestamps: true });
 
 module.exports = mongoose.model('Patient', patientSchema);
