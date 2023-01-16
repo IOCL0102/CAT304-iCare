@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Appointment = require('../models/appointmentModel');
+const Doctor = require('../models/doctorModel');
+const Patient = require('../models/patientModel');
 
 // get all appointments
 const getAppointments = async (req, res) => {
@@ -36,13 +38,27 @@ const createAppointment = async (req,res)=>{
     try{
         // add new document
         const appointment = await Appointment.create(req.body);
+        // update the doctor's and patient's appointments array for 2 way referencing
+        const doctor = await Doctor.updateOne(
+            {_id: appointment.doctor},
+            {$push: {
+                "appointments": appointment._id
+            }}
+        );
+        const patient = await Patient.updateOne(
+            {_id: appointment.patient},
+            {$push: {
+                "appointments": appointment._id
+            }}
+        );
+        // confirm doctor and patient exists when creating appointment hence no need to check if doctor exists
         res.status(200).json(appointment);
     }catch(error){
         res.status(400).json({error: error.message})
     }
 
 }
-// have a .then() to update the patient's & doctor's appointments array if patient and doctor track their appointments
+// have a if else for if > 1 appointment, then return update the all appointments last checked field 
 
 // delete a appointment
 const deleteAppointment = async (req, res) => {
@@ -54,12 +70,27 @@ const deleteAppointment = async (req, res) => {
        return res.status(404).json({error: 'id is not valid'});
     }
 
-    const appointment = await Appointment.deleteOne({_id: id}); 
+    const appointment = await Appointment.findByIdAndDelete(id); 
+    // replace with deleteOne with findByIdAndDelete to get the deleted document fields
 
     if(!appointment){
         return res.status(404).json({error: 'No such appointment'});
     }
 
+    // update the doctor's and patient's appointments array for 2 way referencing
+    const doctor = await Doctor.updateOne(
+        {_id: appointment.doctor},
+        {$pull: {
+            "appointments": appointment._id
+        }}
+    );
+    const patient = await Patient.updateOne(
+        {_id: appointment.patient},
+        {$pull: {
+            "appointments": appointment._id
+        }}
+    );
+    // confirm doctor and patient exists when creating appointment hence no need to check if doctor exists
     res.status(200).json(appointment);
 }
 
@@ -80,6 +111,8 @@ const updateAppointment = async (req, res) => {
 
     res.status(200).json(appointment); 
 }
+
+// when prescription is updated, use workflow to auto generate notifications list and auto populate the notifications field (description)
 
 
 module.exports = {

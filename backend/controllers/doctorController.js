@@ -60,7 +60,7 @@ const deleteDoctor = async (req, res) => {
        return res.status(404).json({error: 'id is not valid'});
     }
 
-    const doctor = await Doctor.findByIdAndDelete({_id: id}); 
+    const doctor = await Doctor.findByIdAndDelete(id); 
     // replace deleteOne with findByIdAndDelete to get the deleted document fields
 
     if(!doctor){
