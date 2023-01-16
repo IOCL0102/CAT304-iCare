@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const hospitalRoutes = require('./routes/hospitals');
 const doctorRoutes = require('./routes/doctors');
+const patientRoutes = require('./routes/patients');
 
 // express app
 const app = express();
@@ -19,6 +20,7 @@ app.use((req,res,next) => {
 // all routes will be prefixed with their respective collection such as /api/hospitals
 app.use('/api/hospitals', hospitalRoutes); 
 app.use('/api/doctors', doctorRoutes);
+app.use('/api/patients', patientRoutes);
 
 // connect to mongodb
 mongoose.set('strictQuery', true); // to avoid deprecation warning (https://mongoosejs.com/docs/deprecations.html#-findandmodify-
