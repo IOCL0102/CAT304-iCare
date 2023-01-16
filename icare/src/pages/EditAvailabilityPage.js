@@ -62,9 +62,12 @@ export default function EditAvailabilityPage(){
                     <h1 className="font-semibold text-lg m-5 mb-2"> Selected date : <p className="text-3xl inline">{format(currentSelectionDate, "dd MMM yyyy")}</p></h1>
                     <h1 className="font-semibold text-lg m-5 mb-2">Current availability : </h1>
                     <div className="m-5 overflow-y-scroll overflow-x-hidden" >
-                        {currentDaySchedules.map((currentDaySchedule, index)=>
-                            <AvailabilityBar key={index} schedule={currentDaySchedule}/>
-                        )}
+                        {currentDaySchedules.length > 0 ? 
+                            currentDaySchedules.map((currentDaySchedule, index)=>
+                                <AvailabilityBar key={index} schedule={currentDaySchedule}/>
+                            )
+                            : <h1 className="flex justify-center items-center font-base text-2xl rounded-xl bg-green-100 p-5"> --- EMPTY --- </h1>
+                        }
                     </div> 
                 </div>
                 <div className="bg-white rounded-xl drop-shadow-xl flex flex-col justify-center items-center">
@@ -84,6 +87,7 @@ export default function EditAvailabilityPage(){
                     </div>
                     <button className="btn btn-primary btn-lg rounded-full mt-5"
                             onClick={()=>{/* UPDATE AVAILABILITY ( SEND TO SERVER ) */}}>Update</button>
+
                 </div>
             </div>
         </div>
@@ -101,6 +105,7 @@ export default function EditAvailabilityPage(){
                 {schedule.start_time.toString().padStart(2, '0')} : 00 - {schedule.end_time.toString().padStart(2, '0')} : 00
                 </h2>
                 <button className="btn btn-primary hover:bg-red-500" onClick={removeAvailability}>REMOVE</button>
+                
             </div>
         );
     }
@@ -126,8 +131,6 @@ export default function EditAvailabilityPage(){
             </>
         );
     }
-
-
 
     // UTILITIES FUNCTION
 
