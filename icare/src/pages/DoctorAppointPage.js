@@ -3,6 +3,7 @@ import { PatientDetailSummary } from '../components/DrAppointmentComp/PatientLis
 import AppointmentReq from '../components/DrAppointmentComp/AppointmentReq';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 export default function DoctorAppointPage(){
     const navigate = useNavigate();
     const [isShowPopOut, setIsShowPopOut] = useState(false);
@@ -23,13 +24,13 @@ export default function DoctorAppointPage(){
             </div>
 
             <div className='col-span-2'>
-                <div className='bg-white rounded-3xl m-5 px-5 pt-2 pb-7 drop-shadow-xl '>
+                <div className='bg-white rounded-3xl m-5 px-5 pt-2 pb-5 drop-shadow-xl '>
                     <PatientList />
                 </div>
             </div>
 
             <div className='col-span-1'>
-                <div className='rounded-3xl bg-white m-5 ml-2 px-5 py-2 drop-shadow-xl'>
+                <div className='rounded-3xl bg-white m-5 ml-2 px-5 pt-2 pb-3 drop-shadow-xl '>
                     <AppointmentReq setPopUpFunc={setIsShowPopOut} setPopUpContent={setPopOutContent} />
                 </div>
             </div>

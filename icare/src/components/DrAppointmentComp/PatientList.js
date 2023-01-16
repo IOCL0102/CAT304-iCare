@@ -137,7 +137,7 @@ export default function PatientList() {
             <div className="flex flex-col gap-3 w-2/4 ">
                     <h1 className="text-2xl font-semibold m-3 mt-5 col-span-3 ">Today's appointment</h1>
                     
-                    <div className='overflow-y-scroll overflow-x-hidden max-h-96 border-2 border-r-0 border-sky-200 rounded-2xl py-3'>
+                    <div className='overflow-y-scroll overflow-x-hidden border-2 border-r-0 border-sky-200 rounded-2xl py-3' style={{height: '35rem'}}>
                         {patientLists.map((patientList)=>(
                             <PatientsBar key={patientList.id} data={patientList} onClick={setConsultation}/>
                         ))}
