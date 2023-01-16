@@ -39,7 +39,7 @@ const doctorSchema = new Schema({
     default_availability: {
         type: Array,
         required: true
-    }, // array of timeslots (Object)
+    }, // array of timeslots (Object) // later change to subdocument with timeslot schema
     // when post/patch request, this field should include all timeslots with the modify one (pass as an array is easier instead of add element in array or change element in array)  - for React data processing
     schema_ver: {
         type: Number,
