@@ -1,12 +1,20 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// import subdoc schema
+const timeslotSchema = require('./timeslotSubdoc');
+const treatmentSchema = require('./treatmentSubdoc');
+
 const doctorSchema = new Schema({
+    photo:{
+        type: String, // change to buffer if manage to integrate multer to upload image
+        required: true,
+        default: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png"
+    },
     name: {
         type: String,
         required: true
     },
-    // later add in photo field (file/url)
     email:{
         type: String,
         required: true
@@ -26,26 +34,45 @@ const doctorSchema = new Schema({
     hospital: {
         type: String,
         required: true
-    },
+    }, // single hospital ID
     working_experience: {
         type: Number,
         required: true
     },
     treatment: {
-        type: Array,
-        required: true
-    }, // array of treatments (String) // later treatment  need to add fee and description
+        type: [treatmentSchema],
+        required: false,
+        default: []
+    }, // array of treatment (subdocument schema) 
+    // in react - better to create a new component for each treatment input
     // when post/patch request, this field should include all treatments with the modify one (pass as an array is easier instead of add element in array or change element in array) - for React data processing
     default_availability: {
-        type: Array,
-        required: true
-    }, // array of timeslots (Object) // later change to subdocument with timeslot schema
+        type: [timeslotSchema],
+        required: false,
+        default: []
+    }, // array of timeslot(subdocument schema)
     // when post/patch request, this field should include all timeslots with the modify one (pass as an array is easier instead of add element in array or change element in array)  - for React data processing
+    requests: {
+        type: [String],
+        required: false,
+        default: []
+    }, // array of request id from requests (String)
+    appointments: {
+        type: [String],
+        required: false,
+        default: []
+    }, // array of appointment id from appointments (String)
     schema_ver: {
         type: Number,
         required: true,
-        default: 1.0
+        default: 2.0
     }
+    // 2.0: 
+    //  - add photo field to store photo URL
+    //  - change treatment field to array of treatment subdoc
+    //  - change default_availability field to array of timeslot subdoc
+    //  - add requests field to store request id
+    //  - add appointments field to store appointment id
 }, { timestamps: true });
 
 module.exports = mongoose.model('Doctor', doctorSchema);

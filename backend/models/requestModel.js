@@ -1,21 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// timeslot schema
-const timeslotSchema = new Schema({
-    start_time: {
-        type: Number,
-        required: true,
-        default: 8.00
-    },
-    end_time: {
-        type: Number,
-        required: true,
-        default: 23.00
-    }
-    // add schema version for later
-    // time are in 24 hour format
-});
+// import subdoc schema
+const timeslotSchema = require('./timeslotSubdoc');
 
 const requestSchema = new Schema({
     date: {
@@ -48,8 +35,9 @@ const requestSchema = new Schema({
     schema_ver: {
         type: Number,
         required: true,
-        default: 1.0
+        default: 2.0
     }
+    // 2.0: replace time_slot field with single timeslot subdoc
 }, { timestamps: true });
 
 module.exports = mongoose.model('Request', requestSchema);

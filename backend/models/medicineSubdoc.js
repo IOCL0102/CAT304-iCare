@@ -19,11 +19,16 @@ const medicineSchema = new Schema({
         type: Number,
         required: true,
     }, // number of days, can be used for generate notifications collection
+    notifications: {
+        type: [String],
+        required: false,
+    }, // an array of notification ids
     schema_ver: {
         type: Number,
         required: true,
-        default: 1.0
+        default: 2.0
     }
+    // 2.0: add notifications field to store notification ids
     // how to automatic set different reminder time for morning/afternoon/night?
     // do it in workflows or in frontend or in backend?
 }, { timestamps: true });

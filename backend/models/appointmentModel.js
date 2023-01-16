@@ -1,39 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// medicine schema
-const medicineSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-    },
-    intake_per_day: {
-        type: Number,
-        required: true,
-    }, // number of times per day
-    meal_period: {
-        type: String,
-        required: true,
-    }, // value: before meal, after meal, no matter
-    duration_in_days: {
-        type: Number,
-        required: true,
-    }, // number of days, can be used for generate notifications collection
-    schema_ver: {
-        type: Number,
-        required: true,
-        default: 1.0
-    }
-    // how to automatic set different reminder time for morning/afternoon/night?
-    // do it in workflows or in frontend or in backend?
-});
+// import subdoc schema
+const medicineSchema = require('./medicineSubdoc');
 
 const appointmentSchema = new Schema({
-    datetime: {
+    // find ways to generate start & end automatically from accepting requst
+    start_datetime: {
         type: Date,
         required: true
     }, // yyyy-mm-ddThh:mm:ss 
-    // find ways to generate automatically from accepting requst
+    end_datetime: {
+        type: Date,
+        required: true
+    }, // yyyy-mm-ddThh:mm:ss 
     title: {
         type: String,
         required: true,
@@ -41,11 +21,11 @@ const appointmentSchema = new Schema({
     }, 
     observation: {
         type: String,
-        required: true,
+        required: true
     },
     treatment: {
         type: String,
-        required: true,
+        required: true
     },
     prescription: {
         type: [medicineSchema],
@@ -58,7 +38,6 @@ const appointmentSchema = new Schema({
         default: ""
     }, // single appointment id
     // auto populate when there is latest appointment when appointment > 0
-    // or just find the latest appointment in front end
     patient: {
         type: String,
         required: true
@@ -75,8 +54,10 @@ const appointmentSchema = new Schema({
     schema_ver: {
         type: Number,
         required: true,
-        default: 1.0
+        default: 2.0
     }
+    // 2.0:
+    //  - replace datetime field with start_datetime and end_datetime for calendar display usage
 }, { timestamps: true });
 
 module.exports = mongoose.model('Appointment', appointmentSchema);

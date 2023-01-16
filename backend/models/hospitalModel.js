@@ -17,17 +17,20 @@ const hospitalSchema = new Schema({
     longitude: {
         type: Number,
         required: true
-    },
+    }, // check if need to convert to [latitude, longitude] format for MongoDB
     doctors:{
-        type: Array,
-        required: true
+        type: [String],
+        required: false,
+        default: []
     }, // array of doctor IDs
-    // probably not required by default, especially for array data type
     schema_ver: {
         type: Number,
         required: true,
-        default: 2.0
+        default: 3.0
         // 2.0: add doctors field to store doctor IDs
+        // 3.0: 
+        //  - specify data type for doctors array field, Array > [String]
+        //  - improve doctors field: required = false & default = []
     }
 }, { timestamps: true });
 

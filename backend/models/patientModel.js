@@ -46,7 +46,8 @@ const patientSchema = new Schema({
     longitude: {
         type: Number,
         required: true
-    }, // in react, use Google Map API to get latitude and longitude from address
+    }, // check if need to convert to [latitude, longitude] format for MongoDB
+    // in react, use Google Map API to get latitude and longitude from address
     ic_number: {
         type: String,
         required: true
@@ -69,16 +70,34 @@ const patientSchema = new Schema({
         default: "None"
     }, 
     medical_history: {
-        type: Array,
-        required: false
-    }, // array of medical history from appointment (String) -  see if needed
+        type: [String],
+        required: false,
+        default: []
+    }, // array of appointment id from appointment (String)
     // when post/patch request, this field should include all previous treatments with the modify one (pass as an array is easier instead of add element in array or change element in array) - for React data processing
-    // see if need to store an array of request appointment and notification sent for medical intake or use DBref, same apply to doctor
+    requests: {
+        type: [String],
+        required: false,
+        default: []
+    }, // array of request id from requests (String)
+    appointments: {
+        type: [String],
+        required: false,
+        default: []
+    }, // array of appointment id from appointments (String)
+    notifications: {
+        type: [String],
+        required: false,
+        default: []
+    }, // array of notification id from notification (String)
     schema_ver: {
         type: Number,
         required: true,
-        default: 1.0
+        default: 2.0
     }
+    // 2.0: 
+    //  - change medical_history to array of appointment id from appointment (String)
+    //  - add requests, appointments and notifications field for reference
 }, { timestamps: true });
 
 module.exports = mongoose.model('Patient', patientSchema);
