@@ -13,6 +13,7 @@ const timeslotSchema = new Schema({
         required: true,
         default: 23.00
     }
+    // add schema version for later
     // time are in 24 hour format
 });
 
