@@ -7,6 +7,7 @@ const doctorRoutes = require('./routes/doctors');
 const patientRoutes = require('./routes/patients');
 const requestRoutes = require('./routes/requests');
 const appointmentRoutes = require('./routes/appointments');
+const notificationRoutes = require('./routes/notifications');
 
 // express app
 const app = express();
@@ -25,6 +26,7 @@ app.use('/api/doctors', doctorRoutes);
 app.use('/api/patients', patientRoutes);
 app.use('/api/requests', requestRoutes);
 app.use('/api/appointments', appointmentRoutes);
+app.use('/api/notifications', notificationRoutes);
 
 // connect to mongodb
 mongoose.set('strictQuery', true); // to avoid deprecation warning (https://mongoosejs.com/docs/deprecations.html#-findandmodify-
