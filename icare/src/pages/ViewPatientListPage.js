@@ -16,7 +16,7 @@ export default function ViewPatientListPage (){
     const patientInfoTable =[
        {
         patientID:1,
-        patientName: "Simon Alix",
+        patientName: "Simfrferfon Alix",
         patientProfilePic:"https://placeimg.com/160/160/any",
        },
        {
