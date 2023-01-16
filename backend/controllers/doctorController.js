@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const Doctor = require('../models/doctorModel');
 
 // get all doctors
-// only this func is needed for now
 const getDoctors = async (req, res) => {
     // currently sort by name in ascending order
     const doctors = await Doctor.find().sort({name: 1});
