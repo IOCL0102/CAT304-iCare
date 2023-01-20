@@ -83,15 +83,12 @@ export default function AppointmentReq({setPopUpFunc, setPopUpContent}){
     const [appointmentRequests, setAppointmentReq] = useState(appointmentRequestTable);
     
     return(
-        <div className="flex flex-col pb-3">
+        <div className="flex flex-col ">
             <h1 className="font-semibold text-2xl text-center my-5 ">Appointment Request</h1>
-            <div className="flex flex-col gap-3 overflow-y-scroll" style={{height: '35rem'}}>
+            <div className="flex flex-col gap-3 overflow-y-scroll mb-5 p-3" style={{height: '35rem'}}>
                 {appointmentRequests.map((appointmentRequest)=>(
                         <AppointmentRequestBar key={appointmentRequest.id} data={appointmentRequest}/>
                 ))}
-                <div className='grow text-center my-5'>
-                    <u className='text-base underline-offset-1 hover:cursor-pointer hover:text-blue-500'>view all</u>
-                </div>
             </div>            
         </div> 
     );
