@@ -1,11 +1,27 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const signup = require('../auth/signup')
+const login = require('../auth/login')
 
 // import subdoc schema
 const timeslotSchema = require('./timeslotSubdoc');
 const treatmentSchema = require('./treatmentSubdoc');
 
 const doctorSchema = new Schema({
+    email:{
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    type: {
+        type: String,
+        required: true,
+        default: "doctor"
+    },
     photo:{
         type: String, // change to buffer if manage to integrate multer to upload image
         required: true,
@@ -13,31 +29,23 @@ const doctorSchema = new Schema({
     },
     name: {
         type: String,
-        required: true
-    },
-    email:{
-        type: String,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
+        required: true,
+        default: " "
     },
     phone_number: {
         type: String,
-        required: true
-    },
-    type: {
-        type: String,
-        required: true
+        required: true,
+        default: " "
     },
     hospital: {
         type: String,
-        required: true
+        required: true,
+        default: " "
     }, // single hospital ID
     working_experience: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     treatment: {
         type: [treatmentSchema],
@@ -65,7 +73,7 @@ const doctorSchema = new Schema({
     schema_ver: {
         type: Number,
         required: true,
-        default: 2.0
+        default: 3.0
     }
     // 2.0: 
     //  - add photo field to store photo URL
@@ -73,6 +81,15 @@ const doctorSchema = new Schema({
     //  - change default_availability field to array of timeslot subdoc
     //  - add requests field to store request id
     //  - add appointments field to store appointment id
+    // 3.0: 
+    //  - add default value for fields other than email and password
+    //  - set email as unique field
+    //  - set type = 'doctor' for conditional routing
+    //  - rearrange fields
 }, { timestamps: true });
+
+// static methods
+doctorSchema.statics.signup = signup
+doctorSchema.statics.login = login
 
 module.exports = mongoose.model('Doctor', doctorSchema);

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const signup = require('../auth/signup')
+const login = require('../auth/login')
 
 const patientSchema = new Schema({
     photo:{
@@ -9,11 +11,18 @@ const patientSchema = new Schema({
     },
     name: {
         type: String,
-        required: true
+        required: true, 
+        default: " "
     },
     email:{
         type: String,
-        required: true
+        required: true,
+        unique: true
+    },
+    type:{
+        type: String,
+        required: true,
+        default: "patient"
     },
     password: {
         type: String,
@@ -21,48 +30,59 @@ const patientSchema = new Schema({
     },
     phone_number: {
         type: String,
-        required: true
+        required: true, 
+        default: " "
     },
     gender: {
         type: String,
-        required: true
+        required: true,
+        default: " "
     },
     age: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     birth_date: {
         type: Date,
-        required: true
+        required: true, 
+        default: Date.now
     },
     address: {
         type: String,
-        required: true
+        required: true,
+        default: " "
     },
     latitude: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     },
     longitude: {
         type: Number,
-        required: true
+        required: true, 
+        default: 0
     }, // check if need to convert to [latitude, longitude] format for MongoDB
     // in react, use Google Map API to get latitude and longitude from address
     ic_number: {
         type: String,
-        required: true
+        required: true, 
+        default: " "
     },
     weight: {
         type: Number,
-        required: true
+        required: true, 
+        default: 0
     }, // in kg
     height: {
         type: Number,
-        required: true
+        required: true,
+        default: 0
     }, // in cm
     blood_type: {
         type: String,
-        required: true
+        required: true, 
+        default: " "
     }, // added in
     allergies: {
         type: String,
@@ -88,12 +108,21 @@ const patientSchema = new Schema({
     schema_ver: {
         type: Number,
         required: true,
-        default: 3.0
+        default: 4.0
     }
     // 2.0: 
     //  - change medical_history to array of appointment id from appointment (String)
     //  - add requests, appointments and notifications field for reference
     // 3.0: remove medical_history field
+    // 4.0: 
+    //  - add defaults for field other than email and password
+    //  - set email as unique field
+    //  - add type field for better conditional routing
+    //  - rearrange fields for email, password, types
 }, { timestamps: true });
+
+// static methods
+patientSchema.statics.signup = signup
+patientSchema.statics.login = login
 
 module.exports = mongoose.model('Patient', patientSchema);
