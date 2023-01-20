@@ -101,7 +101,7 @@ export default function TreatmentRec(){
 
 const TreatmentCard = ({treatmentData}) => {
     return(
-        <div className="card w-96 bg-base-100 shadow-xl hover:outline hover:outline-blue-300">
+        <div className="card max-w-sm bg-base-100 shadow-xl hover:outline hover:outline-blue-300">
             <div className="card-body">
                 <h2 className="card-title bg-sky-100 text-xl p-3 rounded-2xl">{treatmentData.facilityName}</h2>
                 <div>
