@@ -2,6 +2,8 @@ import DoctorActivityGraph from '../components/DrDashboardGraph/DoctorActivityGr
 import PatientVisitByGender from '../components/DrDashboardGraph/PatientVisitGraph';
 import AvgPatientVisitGraph from '../components/DrDashboardGraph/AvgPatientVisitGraph';
 import { useState } from 'react';
+// can import {user} from useAuthContext to check if user is already login
+// if want to have doctor profile picture
 
 export default function DoctorDashboardPage(){
 

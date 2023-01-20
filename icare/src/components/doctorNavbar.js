@@ -6,8 +6,16 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import { Link } from 'react-router-dom';
+import { useLogout } from '../hooks/useLogout';
 
 export default function DocNavbar(){
+    // handling logout when the logout icon is clicked
+    const { logout } = useLogout()
+
+    const handleLogout = () =>{
+        logout()
+    }
+
     return(
         <div className='fixed top-0 left-0 min-h-full w-16 z-50
                         m-0 flex flex-col text-white bg-primary
@@ -16,7 +24,8 @@ export default function DocNavbar(){
             <NavbarIcon icon={<CalendarMonthIcon />} text="Appointments"/>
             <NavbarIcon icon={<PermContactCalendarIcon />} text="Patients"/>
             <NavbarIcon icon={<NotificationsIcon />} text="Notifications"/>
-            <NavbarIcon icon={<LogoutIcon />} text="Logout"/>
+            <button onClick={handleLogout}><NavbarIcon icon={<LogoutIcon />} text="Logout"/></button>
+            {/* need to do the same for PatientNavbar (change to button)  */}
         </div>
     );
 };
