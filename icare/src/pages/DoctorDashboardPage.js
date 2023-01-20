@@ -3,52 +3,65 @@ import PatientVisitByGender from '../components/DrDashboardGraph/PatientVisitGra
 import AvgPatientVisitGraph from '../components/DrDashboardGraph/AvgPatientVisitGraph';
 import Calendar from '../components/Calender';
 import { useState } from 'react';
+import { format } from 'date-fns'
+
+const upComingSchedulesTable = [
+    {
+        id: 1,
+        name: "Simon Alix",
+        date: "1 April 2022",
+        time: "04:00 PM",
+        link: "#",
+        profilePic: "https://placeimg.com/160/160/arch",
+    },
+    {
+        id: 2,
+        name: "Abu Bakar",
+        date: "2 April 2022",
+        time: "04:00 PM",
+        link: "#",
+        profilePic: "https://placeimg.com/160/160/arch",
+    },
+    {
+        id: 3,
+        name: "Chirstine",
+        date: "3 April 2022",
+        time: "04:00 PM",
+        link: "#",
+        profilePic: "https://placeimg.com/160/160/arch",
+    },
+    {
+        id: 4,
+        name: "Chirstine",
+        date: "3 April 2022",
+        time: "04:00 PM",
+        link: "#",
+        profilePic: "https://placeimg.com/160/160/arch",
+    },
+    {
+        id: 5,
+        name: "Chirstine",
+        date: "3 April 2022",
+        time: "04:00 PM",
+        link: "#",
+        profilePic: "https://placeimg.com/160/160/arch",
+    },
+]
+
+const doctorPatientStatistics = {
+        visitForToday : 104,
+        totalPatient : 5082,
+        newPatient : 64,
+        scheduleAvgByQuarter : [1,10,3,10,5,8,2],
+        maleVisitWeekly: [1,10,3,10,5,8,2],
+        femaleVisitWeekly: [2,3,7,2,8,11,33],
+    }
+
 
 export default function DoctorDashboardPage(){
 
-    const [upComingSchedules, setSchedules] = useState([
-        {
-            id: 1,
-            name: "Simon Alix",
-            date: "1 April 2022",
-            time: "04:00 PM",
-            link: "#",
-            profilePic: "https://placeimg.com/160/160/arch",
-        },
-        {
-            id: 2,
-            name: "Abu Bakar",
-            date: "2 April 2022",
-            time: "04:00 PM",
-            link: "#",
-            profilePic: "https://placeimg.com/160/160/arch",
-        },
-        {
-            id: 3,
-            name: "Chirstine",
-            date: "3 April 2022",
-            time: "04:00 PM",
-            link: "#",
-            profilePic: "https://placeimg.com/160/160/arch",
-        },
-        {
-            id: 4,
-            name: "Chirstine",
-            date: "3 April 2022",
-            time: "04:00 PM",
-            link: "#",
-            profilePic: "https://placeimg.com/160/160/arch",
-        },
-        {
-            id: 5,
-            name: "Chirstine",
-            date: "3 April 2022",
-            time: "04:00 PM",
-            link: "#",
-            profilePic: "https://placeimg.com/160/160/arch",
-        },
-    ]);
-
+    const [upComingSchedules, setSchedules] = useState(upComingSchedulesTable);
+    const [statisticData, setStatisticData] = useState(doctorPatientStatistics);
     const [highlightedDays, setHighlightedDays] = useState([
         new Date("2023-01-14"),
         new Date("2023-02-28"),
@@ -76,19 +89,19 @@ export default function DoctorDashboardPage(){
 
                         <div className='mt-5 mx-5 p-5'>
                             <h2 className='font-base text-2xl'>Visits for Today</h2>
-                            <h1 className='font-bold text-7xl mt-3'>104</h1>
+                            <h1 className='font-bold text-7xl mt-3'>{statisticData.visitForToday}</h1>
                         </div>
                     
                         <div className='bg-white/70 inline-block rounded-xl mx-5 p-4 drop-shadow-xl w-52'>
                             <h2 className='text-primary font-base text-xl'>Total Patients</h2>
-                            <h3 className='font-light text-sm'>Jan2023 to Apr2023</h3>
-                            <h1 className='text-3xl mt-2 font-semibold'>5082</h1>
+                            <h3 className='font-light text-sm'>Jan {format(new Date(), "yyyy")} to {format(new Date(), "MMM yyyy")}</h3>
+                            <h1 className='text-3xl mt-2 font-semibold'>{statisticData.totalPatient}</h1>
                         </div>
 
                         <div className='bg-white/70 inline-block rounded-xl m-5 p-4  drop-shadow-xl w-52'>
                             <h2 className='text-primary font-base text-lg '>New Patients</h2>
                             <h3 className='font-light text-sm'>Compared to Last Month</h3>
-                            <h1 className='text-3xl mt-2 font-semibold'>64</h1>
+                            <h1 className='text-3xl mt-2 font-semibold'>{statisticData.newPatient}</h1>
                         </div>
                   
                     </div>
@@ -99,11 +112,11 @@ export default function DoctorDashboardPage(){
                 <div className="col-start-1 col-end-3 row-start-4 row-end-7">
                     <div className='m-10 grid grid-cols-4 grid-rows-2'>  
                         <div className='col-start-1 col-end-3 row-start-1 row-span-4 bg-white rounded-xl p-5 mx-5 drop-shadow-xl'>
-                            <DoctorActivityGraph/>
+                            <DoctorActivityGraph scheduleAvgByQuarter={statisticData.scheduleAvgByQuarter}/>
                         </div>
 
                         <div className='col-start-3 col-end-5 row-span-2 bg-white rounded-xl p-5 m-2 drop-shadow-xl'>
-                            <PatientVisitByGender/>
+                            <PatientVisitByGender maleVisitWeekly={statisticData.maleVisitWeekly} femaleVisitWeekly={statisticData.femaleVisitWeekly} />
                         </div>
 
                         <div className='col-start-3 col-end-5 row-span-2 bg-white rounded-xl p-5 m-2 drop-shadow-xl'>
@@ -128,8 +141,8 @@ export default function DoctorDashboardPage(){
 
                 <div className='flex flex-col p-2 m-5 rounded-xl gap-3'>
 
-                    {upComingSchedules.map((schedule)=>(
-                        <ScheduleBar schedule={schedule} />
+                    {upComingSchedules.map((schedule, index)=>(
+                        <ScheduleBar key={index} schedule={schedule} />
                     ))}
                 </div>
             </div>    

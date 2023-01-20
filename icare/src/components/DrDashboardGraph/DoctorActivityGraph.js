@@ -15,12 +15,12 @@ ChartJS.register(
 );
 
 
-export default function DoctorActivityGraph(){
+export default function DoctorActivityGraph({scheduleAvgByQuarter}){
 
     const data = {
         labels: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat" ],
         datasets: [{
-            data: [1,10,3,10,5,8,2],
+            data: scheduleAvgByQuarter,
             backgroundColor: "transparent",
             borderColor: "#67BD8C",
             pointBorderColor: 'transparent',

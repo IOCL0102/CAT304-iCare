@@ -1,27 +1,38 @@
 import { Line } from "react-chartjs-2";
+
 import {
     Chart as ChartJS,
     LineElement,
     CategoryScale,
     LinearScale,
-    PointElement
+    PointElement,
 } from 'chart.js';
 
 ChartJS.register(
     LineElement,
     CategoryScale,
     LinearScale,
-    PointElement
+    PointElement,
 );
 
-export default function PatientVisitByGender(){
+export default function PatientVisitByGender({maleVisitWeekly, femaleVisitWeekly}){
 
     const data = {
         labels: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat" ],
         datasets: [{
-            data: [1,10,3,10,5,8,2],
+            label: "Male",
+            data: maleVisitWeekly,
             backgroundColor: "transparent",
-            borderColor: "#67BD8C",
+            borderColor:  "#8fb2eb",
+            pointBorderColor: 'transparent',
+            pointBorderWidth: 4,
+            tension: 0.4
+        },
+        {
+            label: "Female",
+            data: femaleVisitWeekly,
+            backgroundColor: "transparent",
+            borderColor: "#eb988f",
             pointBorderColor: 'transparent',
             pointBorderWidth: 4,
             tension: 0.4
@@ -29,8 +40,12 @@ export default function PatientVisitByGender(){
     };
     const options = {
         maintainAspectRatio : false,
+        interaction: {
+            mode: 'index',
+            intersect: false,
+        },
         plugins: {
-            legend: false
+            legend: true
         },
         scales: {
             x: {
@@ -42,7 +57,7 @@ export default function PatientVisitByGender(){
                 min: 0,
                 ticks: {
                     stepSize: 2,
-                    callback: (value) => value + 'K'
+                    // callback: (value) => value + 'K'
                 },
                 grid: {
                     borderDash: [10]
