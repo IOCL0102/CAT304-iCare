@@ -7,7 +7,7 @@ import DoctorDashboardPage from './pages/DoctorDashboardPage';
 import DoctorAppointPage from './pages/DoctorAppointPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import TreatmentRec from './pages/TreatmentRec';
-import { AuthContextProvider } from './context/AuthContext';
+import EditAvailabilityPage from './pages/EditAvailabilityPage';import { AuthContextProvider } from './context/AuthContext';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
@@ -24,6 +24,7 @@ root.render(
           <Route path="/Dashboard" element={<DoctorDashboardPage />} />
           <Route path="/Appointments" element={<DoctorAppointPage />} />
           <Route path="/Patients" element={<TreatmentRec />} />
+          <Route path="/Appointments/EditAppointments" element={<EditAvailabilityPage />} />
           <Route path="/Login" element = {<Login />} />
           <Route path="/Signup" element = {<Signup />} />
           {/* ADD LOGOUT PAGE, PATIENT LIST, NOTIFICATION PAGE ... */}

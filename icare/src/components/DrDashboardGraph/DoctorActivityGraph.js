@@ -15,12 +15,12 @@ ChartJS.register(
 );
 
 
-export default function DoctorActivityGraph(){
+export default function DoctorActivityGraph({scheduleAvgByQuarter}){
 
     const data = {
         labels: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat" ],
         datasets: [{
-            data: [1,10,3,10,5,8,2],
+            data: scheduleAvgByQuarter,
             backgroundColor: "transparent",
             borderColor: "#67BD8C",
             pointBorderColor: 'transparent',
@@ -54,7 +54,13 @@ export default function DoctorActivityGraph(){
 
     return (
         <>
+            <div className='mb-5'>
+                <h1 className='font-bold text-3xl'>Activity Graph</h1>
+                <h2 className='font-light text-sm text-gray-400'>Schedule average taken by quarter</h2>
+            </div>    
+            <div className='h-96'>
             <Line data={data} options={options} />
+            </div>
         </>
     );
 };

@@ -1,127 +1,8 @@
 import { useState } from 'react';
 
-export default function PatientList() {
+export default function PatientList({patientListTable}) {
 
-    const [patientLists, setPatientList] = useState([
-        {
-            id: 1,
-            name: "Simon Alix",
-            time: "04:00 PM",
-            link: "#",
-            appointPurpose: "My heart beat is too fast AAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAA!",
-            profilePic: "https://placeimg.com/160/160/any",
-            gender: "Male",
-            age: 56,
-            lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-            observation: "High fever and cough at normal hemoglobin levels. ",
-            prescription: `Paracetmol - 2 times a day
-                            Dizopam - Day and Night before mealw
-                            Wikoryl`,
-        },
-        {
-            id: 2,
-            name: "Alix",
-            time: "04:00 PM",
-            link: "#",
-            appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-            profilePic: "https://placeimg.com/160/160/any",
-            gender: "Male",
-            age: 56,
-            lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-            observation: "High fever and cough at normal hemoglobin levels. ",
-            prescription: `Paracetmol - 2 times a day
-                            Dizopam - Day and Night before mealw
-                            Wikoryl`,
-        },
-        {
-            id: 3,
-            name: "Abu Bakar",
-            time: "04:00 PM",
-            link: "#",
-            appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-            profilePic: "https://placeimg.com/160/160/any",
-            gender: "Male",
-            age: 56,
-            lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-            observation: "High fever and cough at normal hemoglobin levels. ",
-            prescription: `Paracetmol - 2 times a day Dizopam - Day and Night before mealw aaa Wikoryl`,
-        },
-        {
-            id: 4,
-            name: "Ahamd bin Yusoff Ali",
-            time: "04:00 PM",
-            link: "#",
-            appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-            profilePic: "https://placeimg.com/160/160/arch",
-            gender: "Male",
-            age: 56,
-            lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-            observation: "High fever and cough at normal hemoglobin levels. ",
-            prescription: `Paracetmol - 2 times a day
-                            Dizopam - Day and Night before mealw
-                            Wikoryl`,
-        },
-        {
-            id: 5,
-            name: "Ng Wei Kang",
-            time: "04:00 PM",
-            link: "#",
-            appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-            profilePic: "https://placeimg.com/160/160/arch",
-            gender: "Male",
-            age: 56,
-            lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-            observation: "High fever and cough at normal hemoglobin levels. ",
-            prescription: `Paracetmol - 2 times a day
-                            Dizopam - Day and Night before mealw
-                            Wikoryl`,
-        },
-        {
-            id: 6,
-            name: "Ng Wei Kang",
-            time: "04:00 PM",
-            link: "#",
-            appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-            profilePic: "https://placeimg.com/160/160/arch",
-            gender: "Male",
-            age: 56,
-            lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-            observation: "High fever and cough at normal hemoglobin levels. ",
-            prescription: `Paracetmol - 2 times a day
-                            Dizopam - Day and Night before mealw
-                            Wikoryl`,
-        },
-        {
-            id: 7,
-            name: "Ng Wei Kang",
-            time: "04:00 PM",
-            link: "#",
-            appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-            profilePic: "https://placeimg.com/160/160/arch",
-            gender: "Male",
-            age: 56,
-            lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-            observation: "High fever and cough at normal hemoglobin levels. ",
-            prescription: `Paracetmol - 2 times a day
-                            Dizopam - Day and Night before mealw
-                            Wikoryl`,
-        },
-        {
-            id: 8,
-            name: "Ng Wei Kang",
-            time: "04:00 PM",
-            link: "#",
-            appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-            profilePic: "https://placeimg.com/160/160/arch",
-            gender: "Male",
-            age: 56,
-            lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-            observation: "High fever and cough at normal hemoglobin levels. ",
-            prescription: `Paracetmol - 2 times a day
-                            Dizopam - Day and Night before mealw
-                            Wikoryl`,
-        },
-    ]);
+    const [patientLists, setPatientList] = useState(patientListTable);
     
     const [consultation, setConsultation] = useState(
         patientLists[0]
@@ -129,21 +10,17 @@ export default function PatientList() {
 
     return(
         <div className="flex flex-row">
-            <div className="flex flex-col gap-3 basis-5/6">
-                <h1 className="text-2xl font-semibold m-3 mt-5 col-span-3 ">Today's appointment</h1>
-                
-                <div className='overflow-y-scroll overflow-x-hidden max-h-96'>
-                    {patientLists.map((patientList)=>(
-                        <PatientsBar key={patientList.id} data={patientList} onClick={setConsultation}/>
-                    ))}
-                </div>
-   
-                <div className='text-center my-5'>
-                    <u className='text-base underline-offset-1 hover:cursor-pointer hover:text-blue-500 '>view all</u>
-                </div>
+            <div className="flex flex-col gap-3 w-2/4 ">
+                    <h1 className="text-2xl font-semibold m-3 mt-5 col-span-3 ">Today's appointment</h1>
+                    
+                    <div className='overflow-y-scroll overflow-x-hidden border-2 border-r-0 border-sky-200 rounded-2xl py-3' style={{height: '35rem'}}>
+                        {patientLists.map((patientList)=>(
+                            <PatientsBar key={patientList.id} data={patientList} onClick={setConsultation}/>
+                        ))}
+                    </div>
             </div>
             
-            <div className='flex-initial grow-0 ml-10'>
+            <div className='flex-initial grow-0 ml-10 w-2/4'>
                 <ConsultationInfo consultationData={consultation} />
             </div>
         </div>
@@ -172,6 +49,29 @@ const PatientsBar = ({data, onClick}) => {
     );
 };
 
+export const PatientDetailSummary = ({consultationData}) => {
+    return(
+        <div className="flex flex-col gap-5">
+            <div className="flex flex-row grow gap-5 font-base">
+                <h3 className="basis-1/4 shrink-0">Last Checked</h3>
+                <h3 className="font-light">{(consultationData.lastChecked == null || consultationData.lastChecked == undefined) ? "None" : consultationData.lastChecked}</h3>
+            </div>
+            <div className="flex flex-row grow gap-5">
+                <h3 className="basis-1/4 shrink-0 font-base">Observation</h3>
+                <h3 className="font-light">{(consultationData.observation == null || consultationData.observation == undefined) ? "None" : consultationData.observation}</h3>
+            </div>
+            <div className="flex flex-row grow gap-5">
+                <h3 className="basis-1/4 shrink-0 font-base">Prescription</h3>
+                <h3 className="font-light">{(consultationData.prescription == null || consultationData.prescription == undefined) ? "None" : consultationData.prescription}</h3>
+            </div>
+            <div className="flex flex-col gap-5">
+                <h3 className="basis-1/4 shrink-0 font-base p-2 rounded-xl bg-sky-100">Appointment Purpose</h3>
+                <h3 className="font-light">{(consultationData.appointPurpose == null || consultationData.appointPurpose == undefined) ? "None" : consultationData.appointPurpose}</h3>
+            </div>
+        </div>
+    );
+};
+
 const ConsultationInfo = ({consultationData}) => {
     return(
         <div>
@@ -194,24 +94,7 @@ const ConsultationInfo = ({consultationData}) => {
                 <div className='h-0.5 bg-blue-300 mb-7'></div>
                 
                 {/*=========== MAIN INFORMATION ===========*/}
-                <div className="flex flex-col gap-5">
-                    <div className="flex flex-row grow gap-5 font-base">
-                        <h3 className="basis-1/4 shrink-0">Last Checked</h3>
-                        <h3 className="font-light">{consultationData.lastChecked}</h3>
-                    </div>
-                    <div className="flex flex-row grow gap-5">
-                        <h3 className="basis-1/4 shrink-0 font-base">Observation</h3>
-                        <h3 className="font-light">{consultationData.observation}</h3>
-                    </div>
-                    <div className="flex flex-row grow gap-5">
-                        <h3 className="basis-1/4 shrink-0 font-base">Prescription</h3>
-                        <h3 className="font-light">{consultationData.prescription}</h3>
-                    </div>
-                    <div className="flex flex-col gap-5">
-                        <h3 className="basis-1/4 shrink-0 font-base p-2 rounded-xl bg-sky-100">Appointment Purpose</h3>
-                        <h3 className="font-light">{consultationData.appointPurpose}</h3>
-                    </div>
-                </div>
+                <PatientDetailSummary consultationData={consultationData} />
             </div> 
         </div>
     );
