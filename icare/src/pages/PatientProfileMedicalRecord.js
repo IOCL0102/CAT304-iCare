@@ -60,6 +60,12 @@ export default function patientprofileMedicalRecord () {
             patientMedicalIntakeDate:"01/12/2022",
             patientMedicalIntakeInstruction:["Dizopam - Day and Night before meal","Amoxycillin - Day and night after meal","Paracetamol - 2 times a day"],
         },
+        {
+            patientName: "Raiden Shogen",
+            patientRecordID:2,
+            patientMedicalIntakeDate:"23/12/2022",
+            patientMedicalIntakeInstruction:["Dizopam - Day and Night before meal","Amoxycillin - Day and night after meal","Paracetamol - 2 times a day"],
+        },
         
     ];
 
@@ -69,7 +75,7 @@ export default function patientprofileMedicalRecord () {
     const displayMedicalRecordInfo = PatientMedicalRecordTable.map((patientMedicalRecordInfo) => {
         return (
             <div>   
-                <tr className="bg-yellow-500 flex flex-row border-b ">
+                <tr className=" flex flex-row border-b ">
                 <td className="px-6 py-4 w-1/3 ml-20  whitespace-nowrap text-sm font-medium text-gray-900">{patientMedicalRecordInfo.patientRecordDate}</td>
                     <div className='flex flex-col space-y-1'>
                     <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Observation: {patientMedicalRecordInfo.patientRecordObservation}</td>
@@ -84,14 +90,13 @@ export default function patientprofileMedicalRecord () {
       const displayMedicalIntakeInfo = PatientMedicalIntakeInstructionTable.map((patientMedicalIntakeInfo) => {
         return (
             <div>   
-                <tr className="bg-yellow-500 flex flex-row border-b ">
+                <tr className=" flex flex-row border-b ">
                 <td className="px-6 py-4 w-1/3 ml-20  whitespace-nowrap text-sm font-medium text-gray-900">{patientMedicalIntakeInfo.patientMedicalIntakeDate}</td>
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col space-y-1'>
                     <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">    
                             <li>{patientMedicalIntakeInfo.patientMedicalIntakeInstruction[0]}</li>
                             <li>{patientMedicalIntakeInfo.patientMedicalIntakeInstruction[1]}</li>
                             <li>{patientMedicalIntakeInfo.patientMedicalIntakeInstruction[2]}</li>
-
                         </td>
                     </div>
                 </tr >
@@ -108,25 +113,34 @@ export default function patientprofileMedicalRecord () {
                 {<ArrowBackIosIcon sx={iconStyle}/>}
             </button> 
         </div>
+        <div className=' flex justify-end'>
+            <button type="button" class="w-32 h-9 ml-20 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
+                    Edit profile</button>
+        </div>  
 
         <img src={PatientInfo.patientProfilePic} alt="" class="p-2 absolute ml-48 mt-8 w-48 h-48 rounded-lg"/>
-        <div className='bg-blue-500 ml-96 flex flex-col space-y-1 '>   
-            <p className='bg-red-500 w-1/3 ml-28 text-3xl text-black font-semibold block'>{PatientInfo.patientName}</p>
-            <p className='bg-red-500 w-1/3 ml-28 text-base text-black font-normal block'>Birthdate: {PatientInfo.patientBirthdate}</p>
-            <p className='bg-red-500 w-1/3 ml-28 text-base text-black font-normal block'>Age: {PatientInfo.patientAge}</p>  
-            <p className='bg-red-500 w-1/3 ml-28 text-base text-black font-normal block'>I/C: {PatientInfo.patientIC}</p>
-            <p className='bg-red-500 w-1/3 ml-28 text-base text-black font-normal block'>Gender: {PatientInfo.patientGender}</p>
-            <p className='bg-red-500 w-1/3 ml-28 text-base text-black font-normal block'>Height(cm): {PatientInfo.patientHeight}</p>
-            <p className='bg-red-500 w-1/3 ml-28 text-base text-black font-normal block'>Weight(kg): {PatientInfo.patientWeight}</p>
-            <p className='bg-red-500 w-1/3 ml-28 text-base text-black font-normal block'>Email Address: {PatientInfo.patientEmail}</p>  
-            <p className='bg-red-500 w-1/3 ml-28 text-base text-black font-normal block'>Phone No.: {PatientInfo.patientPhone}</p>
-            <p className='bg-red-500 w-1/3 ml-28 text-base text-black font-normal block'>Medical Allergies: {PatientInfo.patientMedicalAllergies}</p>  
+        <div className=' ml-96 flex flex-col space-y-1 '>   
+            <p className=' w-1/3 ml-28 text-3xl text-black font-semibold block'>{PatientInfo.patientName}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Birthdate: {PatientInfo.patientBirthdate}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Age: {PatientInfo.patientAge}</p>  
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>I/C: {PatientInfo.patientIC}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Gender: {PatientInfo.patientGender}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Height(cm): {PatientInfo.patientHeight}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Weight(kg): {PatientInfo.patientWeight}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Email Address: {PatientInfo.patientEmail}</p>  
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Phone No.: {PatientInfo.patientPhone}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Medical Allergies: {PatientInfo.patientMedicalAllergies}</p>  
         </div>
 
+        <div className=' flex justify-end'>
+            <button type="button" class="w-32 h-9 ml-20 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
+                    Edit Record</button>
+        </div>  
+
         <div className="ml-40 mr-40 flex flex-col">
-            <div className="bg-yellow-500 sm:-mx-6 lg:-mx-8">
-                <div className=" bg-green-500 py-4 inline-block min-w-full sm:px-6 lg:px-8">
-                    <div className=" bg-purple-500 ">
+            <div className=" sm:-mx-6 lg:-mx-8">
+                <div className="  py-4 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div >
                         <table class="min-w-full text-center">
                             <thead class="border-b bg-gray-800">
                                 <tr>
@@ -140,11 +154,20 @@ export default function patientprofileMedicalRecord () {
                 </div>
             </div>
         </div>
+        <div className= 'flex justify-start'>
+            <button type="button" class="w-32 h-9 ml-40 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
+                    Add new record</button>
+        </div>  
+
+        <div className=' flex justify-end'>
+            <button type="button" class="w-32 h-9 ml-20 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
+                    Edit Instuction</button>
+        </div>  
 
         <div className="ml-40 mr-40 flex flex-col">
-            <div className="bg-yellow-500 sm:-mx-6 lg:-mx-8">
-                <div className=" bg-green-500 py-4 inline-block min-w-full sm:px-6 lg:px-8">
-                    <div className=" bg-purple-500 ">
+            <div className=" sm:-mx-6 lg:-mx-8">
+                <div className=" py-4 inline-block min-w-full sm:px-6 lg:px-8">
+                    <div >
                         <table class="min-w-full text-center">
                             <thead class="border-b bg-gray-800">
                                 <tr>
@@ -158,6 +181,11 @@ export default function patientprofileMedicalRecord () {
                 </div>
             </div>
         </div>   
+
+        <div className=' flex justify-start'>
+            <button type="button" class="w-48 h-9 ml-40 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
+                    Add new medical instruction</button>
+        </div>  
         
     </div>
    
