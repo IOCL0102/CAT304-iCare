@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// import subdoc schema
+const medicineSchema = require('./medicineSubdoc');
+
 const lastcheckedSchema = new Schema({
     // frequently accessed fields from appointments
     appointment_id:{
@@ -29,15 +32,18 @@ const lastcheckedSchema = new Schema({
         default: " "
     },
     prescription: {
-        type: String,
-        required: true,
-        default: " "
-    },
+        type: [medicineSchema],
+        required: true, 
+        default: [] // not every appointment has prescription
+    }, // an array of medicine objects
+    // when post/patch request, this field should include all medicines with the modify one (pass as an array is easier instead of add element in array or change element in array)  - for React data processing    
     schema_ver: {
         type: Number,
         required: true,
-        default: 1.0
+        default: 2.0
     }
+    // 2.0: 
+    //  - replace prescription datatype to [medicineSchema]
 }, { timestamps: true });
 
 module.exports = lastcheckedSchema;

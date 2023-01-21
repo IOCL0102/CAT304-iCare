@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const signup = require('../auth/signup')
 const login = require('../auth/login')
+const Doctor = require('./doctorModel')
+const Appointment = require('./appointmentModel')
 
 // import subdoc schema
 const lastcheckedSchema = require('./lastcheckedSubdoc')
@@ -134,5 +136,36 @@ const patientSchema = new Schema({
 // static methods
 patientSchema.statics.signup = signup
 patientSchema.statics.login = login
+patientSchema.statics.updateLastChecked = async function(patient_id) {
+    // if > 0 appointment, then update the patient last checked field with the latest one in the existing collection
+    // eg: if currently have 1 appointment, add 1 new appointment will set the latest appointment in the collection as the previous appointment (before creating new doc)
+
+    // count available appointments by the single patient
+    const count =  await Appointment.countDocuments({patient_id: patient_id})
+    console.log(count)
+    
+    if(count > 0){
+        // fetch the latest appointments (previous one)
+        const appointment = await Appointment.findOne({patient_id: patient_id}).sort({createdAt: -1})
+
+        // store the fields for lastcheckedSubdoc
+        const appointment_id = appointment._id
+        const observation = appointment.observation
+        const treatment = appointment.treatment
+        const prescription = appointment.prescription // only createdAt & updatedAt unable to copy from original
+        // only fetch doctor_name from doctor doc
+        const doctor = await Doctor.findById(appointment.doctor_id, 'name')
+        const doctor_name = doctor.name
+        // only need date information
+        const date = new Date(appointment.start_datetime)
+
+        // update last_checked field for the patient doc
+        const patient = await this.updateOne({_id: patient_id},{last_checked: { appointment_id, observation, treatment, prescription, doctor_name, date}})
+     
+        return patient // return update message
+    }else{
+        return Error("Patient do not have any previous appointment")
+    }
+}
 
 module.exports = mongoose.model('Patient', patientSchema);

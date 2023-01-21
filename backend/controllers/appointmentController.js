@@ -5,13 +5,14 @@ const Patient = require('../models/patientModel');
 
 // get all appointments
 const getAppointments = async (req, res) => {
+    
+    // separate response based on a doctor or a patient
+    
     // currently sort by createdAt in ascending order
     const appointments = await Appointment.find().sort({createdAt: 1});
 
     res.status(200).json(appointments);
 }
-
-// see if need to add a function to get all appointments with a doctor and a patient
 
 // get a single appointment
 const getAppointment = async (req, res) => {
@@ -36,29 +37,72 @@ const getAppointment = async (req, res) => {
 const createAppointment = async (req,res)=>{
     // mainly here is to check if the data is valid with the structure first before passing to mongodb
     try{
+        
+        // update last_checked before created new appointment doc
+        try{
+            await Patient.updateLastChecked(req.body.patient_id)
+        }catch(error){
+            console.log({error: error.message})
+        }
+
         // add new document
         const appointment = await Appointment.create(req.body);
+
         // update the doctor's and patient's appointments array for 2 way referencing
-        const doctor = await Doctor.updateOne(
+        await Doctor.updateOne(
             {_id: appointment.doctor},
             {$push: {
                 "appointments": appointment._id
             }}
         );
-        const patient = await Patient.updateOne(
+        await Patient.updateOne(
             {_id: appointment.patient},
             {$push: {
                 "appointments": appointment._id
             }}
         );
         // confirm doctor and patient exists when creating appointment hence no need to check if doctor exists
+
+        // when prescription is added, for each medicine, auto generate notifications list and auto populate the notifications field (description) and use workflow to send notification
+
         res.status(200).json(appointment);
     }catch(error){
         res.status(400).json({error: error.message})
     }
 
 }
-// have a if else for if > 1 appointment, then return update the all appointments last checked field 
+
+// create new medicine 
+const createMedicine = async(req, res) => {
+
+}
+// later add notifications generations based on prescription - single medicine changes
+
+// update new medicine
+const updateMedicine = async(req, res) => {
+
+}
+// later change notifications based on prescription - single medicine changes
+
+// update a appointment
+const updateAppointment = async (req, res) => {
+    const { id } = req.params;
+    
+    // always validate the id first before passing to mongodb
+    if(!mongoose.Types.ObjectId.isValid(id)){
+       return res.status(404).json({error: 'id is not valid'});
+    }
+
+    const appointment = await Appointment.updateOne({_id: id},{...req.body}) //... means spread operator, so it will spread the req.body into dedicated key-value pairs
+
+    if(!appointment){
+        return res.status(404).json({error: 'No such appointment'});
+    }
+
+    res.status(200).json(appointment); 
+}
+
+/* NOT USED */
 
 // delete a appointment
 const deleteAppointment = async (req, res) => {
@@ -94,31 +138,13 @@ const deleteAppointment = async (req, res) => {
     res.status(200).json(appointment);
 }
 
-// update a appointment
-const updateAppointment = async (req, res) => {
-    const { id } = req.params;
-    
-    // always validate the id first before passing to mongodb
-    if(!mongoose.Types.ObjectId.isValid(id)){
-       return res.status(404).json({error: 'id is not valid'});
-    }
-
-    const appointment = await Appointment.updateOne({_id: id},{...req.body}) //... means spread operator, so it will spread the req.body into dedicated key-value pairs
-
-    if(!appointment){
-        return res.status(404).json({error: 'No such appointment'});
-    }
-
-    res.status(200).json(appointment); 
-}
-
-// when prescription is updated, use workflow to auto generate notifications list and auto populate the notifications field (description)
-
 
 module.exports = {
     getAppointments,
     getAppointment,
     createAppointment,
+    createMedicine,
+    updateMedicine,
     deleteAppointment,
     updateAppointment
 }

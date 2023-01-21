@@ -13,7 +13,7 @@ const appointmentSchema = new Schema({
     end_datetime: {
         type: Date,
         required: true,
-        default: Date(Date.now + (60 * 60 * 1000))
+        default: new Date(Date.now + (60 * 60 * 1000))
     }, // yyyy-mm-ddThh:mm:ss : now + 1 hr in milliseconds
     // Defaults for start_datetime & end_time deals assumption for adding medical records for walked-in patients
     title: {
@@ -23,11 +23,13 @@ const appointmentSchema = new Schema({
     }, 
     observation: {
         type: String,
-        required: true
+        required: true,
+        default: " "
     },
     treatment: {
         type: String,
-        required: true
+        required: true,
+        default: " "
     },
     prescription: {
         type: [medicineSchema],
@@ -52,7 +54,7 @@ const appointmentSchema = new Schema({
     schema_ver: {
         type: Number,
         required: true,
-        default: 3.0
+        default: 4.0
     }
     // 2.0:
     //  - replace datetime field with start_datetime and end_datetime for calendar display usage
@@ -61,6 +63,34 @@ const appointmentSchema = new Schema({
     //  - change prescription to required: true and add default: [] for easier front end data handling
     //  - remove last_checked field, should store in patients doc instead
     //  - add default for request_id
+    // 4.0:
+    //  - add default for observation and treatment
 }, { timestamps: true });
+
+// static methods
+appointmentSchema.statics.acceptRequest = async function(request) {
+    // later solve timezone - time inaccurate issues
+    // UTC is stored in mongoDB, need conversion before insert and after fetch
+
+    // store start_datetime from date and time_slot.start_time
+    let start_datetime = new Date(request.date)
+    start_datetime.setHours(request.time_slot.start_time)
+    // store end_datetime from date and time_slot.end_time
+    let end_datetime = new Date(request.date)
+    end_datetime.setHours(request.time_slot.end_time)
+    // pass patient_id, doctor_id, request_id  
+    const patient_id = request.patient_id
+    const doctor_id = request.doctor_id
+    const request_id = request._id
+
+    const appointment = await this.create({start_datetime, end_datetime, patient_id, doctor_id, request_id})
+
+    if(appointment){
+        return appointment
+    }else{
+        throw Error("Unable to create appointment from accepted request")
+    }
+
+}
 
 module.exports = mongoose.model('Appointment', appointmentSchema);
