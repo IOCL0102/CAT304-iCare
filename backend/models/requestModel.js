@@ -23,21 +23,22 @@ const requestSchema = new Schema({
         required: true,
         default: "Pending"
     }, // value: Pending, Accepted, Rejected
-    doctor: {
+    doctor_id: {
         type: String,
         required: true
-    }, // single doctor id
-    patient: {
+    },
+    patient_id: {
         type: String,
         required: true
-    }, // single patient id
+    },
     // see if need to use DBref
     schema_ver: {
         type: Number,
         required: true,
-        default: 2.0
+        default: 3.0
     }
     // 2.0: replace time_slot field with single timeslot subdoc
+    // 3.0: change doctor > doctor_id and patient > patient_id
 }, { timestamps: true });
 
 module.exports = mongoose.model('Request', requestSchema);

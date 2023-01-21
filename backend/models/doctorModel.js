@@ -37,15 +37,20 @@ const doctorSchema = new Schema({
         required: true,
         default: " "
     },
-    hospital: {
+    hospital_id: {
         type: String,
         required: true,
         default: " "
-    }, // single hospital ID
+    }, 
     working_experience: {
         type: Number,
         required: true,
         default: 0
+    },
+    working_hours:{
+        type: timeslotSchema,
+        required: true,
+        default: {}
     },
     treatment: {
         type: [treatmentSchema],
@@ -54,7 +59,7 @@ const doctorSchema = new Schema({
     }, // array of treatment (subdocument schema) 
     // in react - better to create a new component for each treatment input
     // when post/patch request, this field should include all treatments with the modify one (pass as an array is easier instead of add element in array or change element in array) - for React data processing
-    default_availability: {
+    availability: {
         type: [timeslotSchema],
         required: false,
         default: []

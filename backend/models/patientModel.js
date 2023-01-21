@@ -3,7 +3,24 @@ const Schema = mongoose.Schema;
 const signup = require('../auth/signup')
 const login = require('../auth/login')
 
+// import subdoc schema
+const lastcheckedSchema = require('./lastcheckedSubdoc')
+
 const patientSchema = new Schema({
+    email:{
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    type:{
+        type: String,
+        required: true,
+        default: "patient"
+    },
     photo:{
         type: String, // change to buffer if manage to integrate multer to upload image
         required: true,
@@ -13,20 +30,6 @@ const patientSchema = new Schema({
         type: String,
         required: true, 
         default: " "
-    },
-    email:{
-        type: String,
-        required: true,
-        unique: true
-    },
-    type:{
-        type: String,
-        required: true,
-        default: "patient"
-    },
-    password: {
-        type: String,
-        required: true
     },
     phone_number: {
         type: String,
@@ -89,6 +92,12 @@ const patientSchema = new Schema({
         required: true,
         default: "None"
     },
+    last_checked:{
+        type: lastcheckedSchema,
+        required: true,
+        default: {} 
+    }, 
+    // auto populate when there is latest appointment when appointment > 0
     requests: {
         type: [String],
         required: false,
@@ -104,11 +113,10 @@ const patientSchema = new Schema({
         required: false,
         default: []
     }, // array of notification id from notification (String)
-    // when post/patch request, this field should include all previous treatments with the modify one (pass as an array is easier instead of add element in array or change element in array) - for React data processing
     schema_ver: {
         type: Number,
         required: true,
-        default: 4.0
+        default: 5.0
     }
     // 2.0: 
     //  - change medical_history to array of appointment id from appointment (String)
@@ -118,7 +126,9 @@ const patientSchema = new Schema({
     //  - add defaults for field other than email and password
     //  - set email as unique field
     //  - add type field for better conditional routing
+    // 5.0: 
     //  - rearrange fields for email, password, types
+    //  - add last_checked (subdoc with frequently accessed fields)
 }, { timestamps: true });
 
 // static methods

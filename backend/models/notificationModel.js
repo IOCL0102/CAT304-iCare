@@ -21,20 +21,21 @@ const notificationSchema = new Schema({
         required: true,
     }, // yyyy-mm-ddThh:mm:ss where it records the send time
     // or should set the time like 9am/11am/6pm
-    medicine: {
+    medicine_id: {
         type: String,
         required: true
-    }, // single medicine id
-    patient: {
+    },
+    patient_id: {
         type: String,
         required: true
-    }, // single patient id
+    },
     // see if need to use DBref
     schema_ver: {
         type: Number,
         required: true,
-        default: 1.0
+        default: 2.0
     }
+    // 2.0: change medicine > medicine_id and patient > patient_id
 }, { timestamps: true });
 
 module.exports = mongoose.model('Notification', notificationSchema);

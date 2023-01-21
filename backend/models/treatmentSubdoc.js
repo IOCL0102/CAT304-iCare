@@ -6,7 +6,7 @@ const treatmentSchema = new Schema({
     name: {
         type: String,
         required: true
-    },
+    }, // treatment name instead of disease, ie: insulin injection
     fee: {
         type: Number,
         required: true
@@ -14,7 +14,7 @@ const treatmentSchema = new Schema({
     description: {
         type: String,
         required: false
-    },
+    }, // should contain diseases name, ie: diabetes
     schema_ver: {
         type: Number,
         required: true,
