@@ -38,9 +38,9 @@ const doctorSchema = new Schema({
         default: " "
     },
     hospital_id: {
-        type: String,
-        required: true,
-        default: " "
+        type: Schema.Types.ObjectId,
+        ref: "Hospital", // refer to Hospital schema model
+        required: false, // no need to set hospital in initial sign up
     }, 
     working_experience: {
         type: Number,
@@ -66,19 +66,25 @@ const doctorSchema = new Schema({
     }, // array of timeslot(subdocument schema)
     // when post/patch request, this field should include all timeslots with the modify one (pass as an array is easier instead of add element in array or change element in array)  - for React data processing
     requests: {
-        type: [String],
-        required: false,
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: "Request" // refer to Request schema model
+        }],
+        required: true,
         default: []
-    }, // array of request id from requests (String)
+    }, // array of request object id from requests
     appointments: {
-        type: [String],
-        required: false,
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: "Appointment" // refer to Appointment schema model
+        }],
+        required: true,
         default: []
-    }, // array of appointment id from appointments (String)
+    }, // array of appointment object id from appointments
     schema_ver: {
         type: Number,
         required: true,
-        default: 3.0
+        default: 4.0
     }
     // 2.0: 
     //  - add photo field to store photo URL
@@ -91,6 +97,9 @@ const doctorSchema = new Schema({
     //  - set email as unique field
     //  - set type = 'doctor' for conditional routing
     //  - rearrange fields
+    // 4.0:
+    //  - change hospital_id to object_id type for better query result through .populate()
+    //  - change requests and appointments to [object_id] type for better query result through .populate() and required as true as need to insert later 
 }, { timestamps: true });
 
 // static methods

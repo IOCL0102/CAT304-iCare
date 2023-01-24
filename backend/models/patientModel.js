@@ -101,24 +101,33 @@ const patientSchema = new Schema({
     }, 
     // auto populate when there is latest appointment when appointment > 0
     requests: {
-        type: [String],
-        required: false,
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: "Request" // refer to Request schema model
+        }],
+        required: true,
         default: []
-    }, // array of request id from requests (String)
+    }, // array of request object id from requests
     appointments: {
-        type: [String],
-        required: false,
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: "Appointment" // refer to Appointment schema model
+        }],
+        required: true,
         default: []
-    }, // array of appointment id from appointments (String)
+    }, // array of appointment object id from appointments
     notifications: {
-        type: [String],
-        required: false,
+        type: [{
+            type: Schema.Types.ObjectId,
+            ref: "Notification" // refer to Notification schema model
+        }],
+        required: true,
         default: []
-    }, // array of notification id from notification (String)
+    }, // array of notification object id from notifications
     schema_ver: {
         type: Number,
         required: true,
-        default: 5.0
+        default: 6.0
     }
     // 2.0: 
     //  - change medical_history to array of appointment id from appointment (String)
@@ -131,6 +140,8 @@ const patientSchema = new Schema({
     // 5.0: 
     //  - rearrange fields for email, password, types
     //  - add last_checked (subdoc with frequently accessed fields)
+    // 6.0:
+    //  - change requests, appointments and notifications to [object_id] type for better query result through .populate() and required as true as need to insert later 
 }, { timestamps: true });
 
 // static methods

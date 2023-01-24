@@ -13,12 +13,15 @@ const treatmentSchema = new Schema({
     },
     description: {
         type: String,
-        required: false
+        required: true,
+        default: " "
     }, // should contain diseases name, ie: diabetes
     schema_ver: {
         type: Number,
         required: true,
-        default: 1.0
+        default: 2.0
+        // 2.0:
+        //  - Add default value for "description", and set as required
     }
 }, { timestamps: true });
 

@@ -11,6 +11,7 @@ const lastcheckedSchema = new Schema({
         required: true,
         default: "None"
     }, // Use "None" for checking if there is previous appointments in the front end
+    // no need set as object id as no need to populate data here
     doctor_name:{
         type: String,
         required: true,

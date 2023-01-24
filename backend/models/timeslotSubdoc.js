@@ -16,7 +16,7 @@ const timeslotSchema = new Schema({
     schema_ver: {
         type: Number,
         required: true,
-        default: 2.0
+        default: 3.0
     }
     // 2.0: add timestamps
     // 3.0: change default for end_time
