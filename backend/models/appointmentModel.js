@@ -8,12 +8,12 @@ const appointmentSchema = new Schema({
     start_datetime: {
         type: Date,
         required: true,
-        default: Date.now
+        default: Date.now()
     }, // yyyy-mm-ddThh:mm:ss : now
     end_datetime: {
         type: Date,
         required: true,
-        default: new Date(Date.now + (60 * 60 * 1000))
+        default: new Date(Date.now() + (60 * 60 * 1000))
     }, // yyyy-mm-ddThh:mm:ss : now + 1 hr in milliseconds
     // Defaults for start_datetime & end_time deals assumption for adding medical records for walked-in patients
     title: {
@@ -54,7 +54,6 @@ const appointmentSchema = new Schema({
         required: false 
         // some appointment document can directly store on-site visit medical record
     },
-    // see if need to use DBref
     schema_ver: {
         type: Number,
         required: true,
@@ -91,6 +90,8 @@ appointmentSchema.statics.acceptRequest = async function(request) {
     const request_id = request._id
 
     const appointment = await this.create({start_datetime, end_datetime, patient_id, doctor_id, request_id})
+
+    // cannot insert $push appointment id to patients or doctors here as it cause patients to have circular dependency
 
     if(appointment){
         return appointment

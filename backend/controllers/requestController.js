@@ -42,15 +42,18 @@ const createRequest = async (req,res)=>{
     try{
         // add new document
         const request = await Request.create(req.body);
+
+        // Trigger
         // update the doctor's and patient's requests array for 2 way referencing
         const doctor = await Doctor.updateOne(
-            {_id: request.doctor},
+            {_id: request.doctor_id},
             {$push: {
                 "requests": request._id
             }}
         );
+        // Trigger
         const patient = await Patient.updateOne(
-            {_id: request.patient},
+            {_id: request.patient_id},
             {$push: {
                 "requests": request._id
             }}
@@ -79,10 +82,36 @@ const updateRequest = async (req, res) => {
         return res.status(404).json({error: 'No such request'});
     }
 
+    // Trigger
     // On status update to "Accepted" need to create doc in appointment collection (auto populate start time and end time based on the time slots)
     if(req.body.status==="Accepted"){
         try{
-            await Appointment.acceptRequest(request)
+            // Trigger
+            // update last_checked before created new appointment doc
+            try{
+                const patient_update = await Patient.updateLastChecked(request.patient_id)
+            }catch(error){
+                console.log({error: error.message})
+            }
+
+            const appointment = await Appointment.acceptRequest(request)
+
+            // Trigger
+            // update the doctor's and patient's appointments array for 2 way referencing
+            const doctor = await Doctor.updateOne(
+                {_id: request.doctor_id},
+                {$push: {
+                    "appointments": appointment._id
+                }}
+            );
+            // Trigger
+            const patient = await Patient.updateOne(
+                {_id: request.patient_id},
+                {$push: {
+                    "appointments": appointment._id
+                }}
+            );
+            // confirm doctor and patient exists when creating appointment hence no need to check if doctor exists
         }catch(error){
             console.log({error: error.message})
         }
@@ -112,15 +141,17 @@ const deleteRequest = async (req, res) => {
         return res.status(404).json({error: 'No such request'});
     }
 
+    // Trigger
     // update the doctor's and patient's requests array for 2 way referencing
     const doctor = await Doctor.updateOne(
-        {_id: request.doctor},
+        {_id: request.doctor_id},
         {$pull: {
             "requests": request._id
         }}
     );
+    // Trigger
     const patient = await Patient.updateOne(
-        {_id: request.patient},
+        {_id: request.patient_id},
         {$pull: {
             "requests": request._id
         }}

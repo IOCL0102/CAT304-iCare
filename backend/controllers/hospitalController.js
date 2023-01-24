@@ -29,6 +29,8 @@ const getHospital = async (req, res) => {
     res.status(200).json(hospital);
 }
 
+/* NOT USED in Front end */
+
 // create a hospital
 const createHospital = async (req,res)=>{
     // mainly here is to check if the data is valid with the structure first before passing to mongodb

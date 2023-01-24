@@ -42,7 +42,7 @@ const createPatient = async (req,res)=>{
     }
 
 }
-// have a .then() to update the hospital's patients array
+
 
 // delete a patient
 const deletePatient = async (req, res) => {

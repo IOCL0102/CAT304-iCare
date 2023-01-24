@@ -51,7 +51,7 @@ const patientSchema = new Schema({
     birth_date: {
         type: Date,
         required: true, 
-        default: Date.now
+        default: Date.now()
     },
     address: {
         type: String,
@@ -153,7 +153,6 @@ patientSchema.statics.updateLastChecked = async function(patient_id) {
 
     // count available appointments by the single patient
     const count =  await Appointment.countDocuments({patient_id: patient_id})
-    console.log(count)
     
     if(count > 0){
         // fetch the latest appointments (previous one)

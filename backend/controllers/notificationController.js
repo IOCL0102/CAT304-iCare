@@ -37,9 +37,10 @@ const createNotification = async (req,res)=>{
     try{
         // add new document
         const notification = await Notification.create(req.body);
+        // Trigger
         // update the patient's notifications array for 2 way referencing
         const patient = await Patient.updateOne(
-            {_id: notification.patient},
+            {_id: notification.patient_id},
             {$push: {
                 "notifications": notification._id
             }}
@@ -69,9 +70,10 @@ const deleteNotification = async (req, res) => {
         return res.status(404).json({error: 'No such notification'});
     }
 
+    // Trigger
     // update the patient's notifications array for 2 way referencing
     const patient = await Patient.updateOne(
-        {_id: notification.patient},
+        {_id: notification.patient_id},
         {$pull: {
             "notifications": notification._id
         }}
@@ -93,6 +95,16 @@ const updateNotification = async (req, res) => {
 
     if(!notification){
         return res.status(404).json({error: 'No such notification'});
+    }
+
+    // Trigger
+    // On isRead update to true, record the is_read time
+    if(req.body.is_read===true){
+        try{
+            await Notification.updateOne({_id: id},{time_read: Date.now()})
+        }catch(error){
+            console.log({error: error.message})
+        }
     }
 
     res.status(200).json(notification); 

@@ -38,6 +38,7 @@ const createAppointment = async (req,res)=>{
     // mainly here is to check if the data is valid with the structure first before passing to mongodb
     try{
         
+        // Trigger
         // update last_checked before created new appointment doc
         try{
             await Patient.updateLastChecked(req.body.patient_id)
@@ -48,15 +49,17 @@ const createAppointment = async (req,res)=>{
         // add new document
         const appointment = await Appointment.create(req.body);
 
+        // Trigger
         // update the doctor's and patient's appointments array for 2 way referencing
         await Doctor.updateOne(
-            {_id: appointment.doctor},
+            {_id: appointment.doctor_id},
             {$push: {
                 "appointments": appointment._id
             }}
         );
+        // Trigger
         await Patient.updateOne(
-            {_id: appointment.patient},
+            {_id: appointment.patient_id},
             {$push: {
                 "appointments": appointment._id
             }}
@@ -121,20 +124,24 @@ const deleteAppointment = async (req, res) => {
         return res.status(404).json({error: 'No such appointment'});
     }
 
+    // Trigger
     // update the doctor's and patient's appointments array for 2 way referencing
     const doctor = await Doctor.updateOne(
-        {_id: appointment.doctor},
+        {_id: appointment.doctor_id},
         {$pull: {
             "appointments": appointment._id
         }}
     );
+    // Trigger
     const patient = await Patient.updateOne(
-        {_id: appointment.patient},
+        {_id: appointment.patient_id},
         {$pull: {
             "appointments": appointment._id
         }}
     );
     // confirm doctor and patient exists when creating appointment hence no need to check if doctor exists
+
+    // if got extra time, once delete appointment, update last_checked for the patient document
     res.status(200).json(appointment);
 }
 

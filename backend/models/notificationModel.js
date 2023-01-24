@@ -25,7 +25,6 @@ const notificationSchema = new Schema({
         type: Date,
         required: false,
     }, // yyyy-mm-ddThh:mm:ss where it records the read time
-    // Need to add controller, when added, this is changed
     medicine_id: {
         type: Schema.Types.ObjectId,
         ref: "medicineSchema", // refer to medicineSchema subdocument
@@ -36,7 +35,6 @@ const notificationSchema = new Schema({
         ref: "Patient", // refer to Patient schema model
         required: true
     },
-    // see if need to use DBref
     schema_ver: {
         type: Number,
         required: true,
