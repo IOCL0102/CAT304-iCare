@@ -2,6 +2,7 @@ import React from 'react';
 import DocNavbar from '../components/doctorNavbar';
 import { useState, useEffect } from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import {useNavigate} from 'react-router-dom';
 
 const iconStyle = {
     "&.MuiSvgIcon-root": {
@@ -10,6 +11,7 @@ const iconStyle = {
 }
 
 export default function patientprofileMedicalRecord () {
+    let navigate = useNavigate();
     const PatientInfo ={
         patientName:"Raiden Shogen",
         patientBirthdate:"25/8/2020",
@@ -101,7 +103,6 @@ export default function patientprofileMedicalRecord () {
                     </div>
                 </tr >
             </div> 
-           
         );
       });
 
@@ -109,7 +110,7 @@ export default function patientprofileMedicalRecord () {
     <div>
         <DocNavbar/>
         <div className=' p-3 flex justify-start ml-20 space-x-5'>
-            <button type="button" class="w-11 h-11 flex-wrap justify-center text-sm text-white bg-primary rounded-lg  ">
+            <button type="button"  onClick={()=>{navigate("/viewpatientlist")}} class="w-11 h-11 flex-wrap justify-center text-sm text-white bg-primary rounded-lg  ">
                 {<ArrowBackIosIcon sx={iconStyle}/>}
             </button> 
         </div>
