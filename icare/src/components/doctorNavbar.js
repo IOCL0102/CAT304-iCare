@@ -6,7 +6,9 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 
+
 export default function DocNavbar(){
+    
     return(
         <div className='fixed top-0 left-0 min-h-full w-16 
                         m-0 flex flex-col text-white bg-primary
