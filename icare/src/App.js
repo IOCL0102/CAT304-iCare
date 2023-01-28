@@ -9,22 +9,25 @@ import DocNavbar from './components/doctorNavbar';
 import UserProfile from './pages/UserProfile';
 import ViewPatientListPage from './pages/ViewPatientListPage';
 import AddNewPatientPage from './pages/AddNewPatient';
-import DoctorUserProfilePage from './pages/DoctorUserProfilePage';
+import DoctorUserProfileForm from './pages/DoctorUserProfileForm';
 import PatientProfileMedicalRecord from './pages/PatientProfileMedicalRecord';
+import DoctorProfileViewPage from './pages/DoctorProfileViewPage';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 function App(){
 root.render(
   <React.StrictMode>
-    <Router>
-        
+    <Router>     
       <Routes>
         <Route path="/" element={<LoginPage/>}/>
         <Route path="/signup" element={<SignUpPage/>}/>
         <Route path="/viewpatientList" element={<ViewPatientListPage/>}/>
         <Route path="/addnewpatientList" element={<AddNewPatientPage/>}/>
-        <Route path="/doctorprofile" element={<DoctorUserProfilePage/>}/>
-        <Route path="/patientprofileMedicalRecord" element={<PatientProfileMedicalRecord/>}/>
+        <Route path="/doctorprofileform" element={<DoctorUserProfileForm/>}/>
+        <Route path="/patientprofilemedicalrecord" element={<PatientProfileMedicalRecord/>}/>
+        <Route path="/doctorprofileview" element={<DoctorProfileViewPage/>}/>
+ 
       </Routes>
     </Router>
   </React.StrictMode>
