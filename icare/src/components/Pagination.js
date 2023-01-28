@@ -1,6 +1,7 @@
 
 
-export default function Paganition({totalCardsCount, setPageFunc, cardsPerPage, currentPage, showPageLength=5}){
+
+export function Paganition2({totalCardsCount, setPageFunc, cardsPerPage, currentPage, showPageLength=5}){
     // set ShowPageLength as odd number
     let totalPage = Math.ceil(totalCardsCount / cardsPerPage);
     let pages = [];
