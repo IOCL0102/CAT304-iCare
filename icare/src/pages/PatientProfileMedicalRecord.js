@@ -10,7 +10,7 @@ const iconStyle = {
     }
 }
 
-export default function patientprofileMedicalRecord () {
+export default function PatientProfileMedicalRecord () {
     let navigate = useNavigate();
     const PatientInfo ={
         patientName:"Raiden Shogen",
@@ -87,7 +87,7 @@ export default function patientprofileMedicalRecord () {
                 </tr >
             </div> 
         );
-      });''
+      });
 
       const displayMedicalIntakeInfo = PatientMedicalIntakeInstructionTable.map((patientMedicalIntakeInfo) => {
         return (

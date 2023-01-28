@@ -3,28 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import DocNavbar from './components/doctorNavbar';
-import DoctorDashboardPage from './pages/DoctorDashboardPage';
-import DoctorAppointPage from './pages/DoctorAppointPage';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import TreatmentRec from './pages/TreatmentRec';
-import EditAvailabilityPage from './pages/EditAvailabilityPage';
+import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Router>
-
-      <DocNavbar/>
-      <Routes>
-        <Route path="/" element={<DoctorDashboardPage />} />
-        <Route path="/Dashboard" element={<DoctorDashboardPage />} />
-        <Route path="/Appointments" element={<DoctorAppointPage />} />
-        <Route path="/Patients" element={<TreatmentRec />} />
-        <Route path="/Appointments/EditAppointments" element={<EditAvailabilityPage />} />
-        {/* ADD LOGOUT PAGE, PATIENT LIST, NOTIFICATION PAGE ... */}
-      </Routes>
-
-    </Router>
-
+    <App />
   </React.StrictMode>
 );
 
