@@ -4,8 +4,21 @@ const Patient = require('../models/patientModel');
 
 // get all notifications
 const getNotifications = async (req, res) => {
-    // currently sort by createdAt in ascending order
-    const notifications = await Notification.find().sort({createdAt: 1});
+    
+    let query, notifications
+    switch(req.user.type){
+        case 'doctor':
+            notifications = {mssg: "Doctor unable to access patient notifications"}
+            break;
+        case 'patient':
+            // to filtered by patient_id
+            query = { patient_id: { $eq: req.user._id}}
+            // currently sort by time_sent in descending order
+            notifications = await Notification.find(query).sort({time_sent: -1});
+            break;
+        default:
+            throw Error(`Invalild type: ${req.user.type}`)
+    }
 
     res.status(200).json(notifications);
 }

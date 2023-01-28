@@ -7,6 +7,7 @@ export const AuthContext = createContext()
 export const authReducer = (state, action) => {
   switch (action.type) {
     // use for both signup & login as they store user information
+    // Auth context should only store user email + token (_id & type accessible by backend)
     case 'LOGIN':
       return { user: action.payload }
     case 'LOGOUT':
@@ -24,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
 
   // set initial auth status
   useEffect(() => {
-    // fetch user (email, JWT, type) from local storage
+    // fetch user (email, type, JWT) from local storage
     const user = JSON.parse(localStorage.getItem('user'))
 
     if(user){

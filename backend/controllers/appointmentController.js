@@ -6,10 +6,29 @@ const Patient = require('../models/patientModel');
 // get all appointments
 const getAppointments = async (req, res) => {
     
-    // separate response based on a doctor or a patient
-    
-    // currently sort by createdAt in ascending order
-    const appointments = await Appointment.find().sort({createdAt: 1});
+    let query, appointments
+    switch(req.user.type){
+        case 'doctor':
+            // to filtered by doctor_id
+            query = { doctor_id: { $eq: req.user._id}}
+            // currently sort by createdAt in ascending order
+            appointments = await Appointment.find(query).populate("patient_id").sort({createdAt: 1}).exec();
+            // need access patient details too
+            // can further limit the fields in populated patient_id
+            // only access filtered patients list related to the doctor
+            break;
+        case 'patient':
+            // to filtered by patient_id
+            query = { patient_id: { $eq: req.user._id}}
+            // currently sort by createdAt in ascending order
+            appointments = await Appointment.find(query).populate("doctor_id").sort({createdAt: 1}).exec();
+            // need access doctors details too
+            // can further limit the fields in populated doctor_id
+            // only access filtered patients list related to the patients
+            break;
+        default:
+            throw Error(`Invalild type: ${req.user.type}`)
+    }
 
     res.status(200).json(appointments);
 }

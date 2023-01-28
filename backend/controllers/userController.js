@@ -28,11 +28,10 @@ const login = async (req, res) => {
 
         // when user login, a json web token is automatically generated to the user
         // create a token
-        const token = createToken(user._id)
+        // _id & type as the payload for access by backend 
+        const token = createToken(user._id, user.type)
 
         // store type for better routing controls
-        // dive in deeper first before adding _id, name inside the return data
-        // see to store profiles at where first Auth context or other context
         res.status(200).json({email, type, token}) 
     }catch (error){
         res.status(400).json({error: error.message})
@@ -42,7 +41,7 @@ const login = async (req, res) => {
 }
 
 const signup = async(req, res) => {
-    // The front end should include 'type' in the fetch()
+    
     const {email, password, type} = req.body
 
     // validate the type first
@@ -64,18 +63,47 @@ const signup = async(req, res) => {
 
         // when user sign up, a json web token is automatically generated to the user as the user stayed signed in after signup
         // create a token
-        const token = createToken(user._id)
+        // _id & type as the payload for access by backend 
+        const token = createToken(user._id, user.type)
 
         // store type for better routing controls
-        // dive in deeper first before adding _id, name inside the return data
-        // see to store profiles at where first Auth context or other context
         res.status(200).json({email, type, token})
     }catch (error){
         res.status(400).json({error: error.message})
     }
 }
 
+// get a profile
+const getProfile = async(req, res) => {
+    let user
+    switch(req.user.type){
+        case 'doctor':
+            user = await Doctor.findById(req.user._id).populate('hospital_id').exec()
+            // need to access hospital detail too
+            // can further limit the fields in populated hospital_id
+            break;
+        case 'patient':
+            user = await Patient.findById(req.user._id)
+            break;
+        default:
+            throw Error(`Invalild type: ${req.user.type}`)
+    }
+
+    if(!user){
+        return res.status(404).json({error: 'No such profile'});
+    }
+
+    res.status(200).json(user);
+}
+
+// update a profile
+const updateProfile = async(req, res) => {
+
+}
+
 module.exports = {
     login,
-    signup
+    signup,
+    getProfile,
+    updateProfile
 }

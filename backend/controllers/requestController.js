@@ -6,8 +6,30 @@ const Appointment = require('../models/appointmentModel')
 
 // get all requests
 const getRequests = async (req, res) => {
-    // currently sort by createdAt in ascending order
-    const requests = await Request.find().sort({createdAt: 1});
+    
+    let query, requests
+    switch(req.user.type){
+        case 'doctor':
+            // to filtered by doctor_id
+            query = { doctor_id: { $eq: req.user._id}}
+            // currently sort by createdAt in ascending order
+            requests = await Request.find(query).populate("patient_id").sort({createdAt: 1}).exec();
+            // need access patient details too
+            // can further limit the fields in populated patient_id
+            // only access filtered patients list related to the doctor
+            break;
+        case 'patient':
+            // to filtered by patient_id
+            query = { patient_id: { $eq: req.user._id}}
+            // currently sort by createdAt in ascending order
+            requests = await Request.find(query).populate("doctor_id").sort({createdAt: 1}).exec();
+            // need access doctors details too
+            // can further limit the fields in populated doctor_id
+            // only access filtered patients list related to the patients
+            break;
+        default:
+            throw Error(`Invalild type: ${req.user.type}`)
+    }
 
     res.status(200).json(requests);
 }
@@ -24,7 +46,20 @@ const getRequest = async (req, res) => {
        return res.status(404).json({error: 'id is not valid'});
     }
 
-    const request = await Request.findById(id);
+    let request
+    switch(req.user.type){
+        case 'doctor':
+            request = await Request.findById(id).populate('patient_id').exec()
+            // need access patient details too
+            // can further limit the fields in populated patient_id
+            // only access single patient as doctor's side already have filtered patients list
+            break;
+        case 'patient':
+            request = await Request.findById(id)
+            break;
+        default:
+            throw Error(`Invalild type: ${req.user.type}`)
+    }
 
     if(!request){
         return res.status(404).json({error: 'No such request'});
