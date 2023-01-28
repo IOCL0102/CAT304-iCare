@@ -1,9 +1,12 @@
 import React from "react";
 import icare from "../images/iCare.png"
 import stethoscope from "../images/stethoscope.png"
-import { useState, useEffect } from 'react';
+import {useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 export default function SignUpPage (){
+    let navigate = useNavigate();
+
     const signUpInfo ={
         userName: "",
         userEmail: "",
@@ -26,6 +29,10 @@ export default function SignUpPage (){
             e.preventDefault();
             setFormErrors(validate(formValues));
             setIsSubmit(true);
+            if (Object.keys(formErrors).length === 0) {
+                navigate("/doctorprofileform");
+              }
+
           };
         
           useEffect(() => {
@@ -137,9 +144,10 @@ export default function SignUpPage (){
                           <p className= 'text-red-500  font-medium text-xs'>{formErrors.userTermNCondition}</p>
                         </div>
                     </div>
-                        <button type="submit" className="w-full text-white bg-primary hover:bg-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center">Create an account</button>
+                        <button type="submit"  className="w-full text-white bg-primary hover:bg-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                            Create an account </button>
                         <p className="text-sm font-light text-gray-500">
-                        Already have an account? <a href="#" className="font-medium text-primary hover:underline">Login here</a>
+                        Already have an account? <a href="/" className="font-medium text-primary hover:underline">Login here</a>
                         </p>
                 </form>           
             </div>

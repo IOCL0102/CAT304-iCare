@@ -1,9 +1,12 @@
 import React from "react";
 import icare from "../images/iCare.png"
 import pill from "../images/pills.png"
-import { useState, useEffect } from 'react';
+import {useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 export default function LoginPage() {
+    let navigate = useNavigate();
+
    const loginInfo ={
     userEmail: "",
     userPassword: "",
@@ -80,9 +83,9 @@ export default function LoginPage() {
                             <input type="radio" class="mr-2 w-4 h-4" name="userAccountType" onChange={handleChange}/>
                             <span>Normal user</span>
                             </label>
-                            <p className= 'text-red-500  font-medium text-xs'>{formErrors.userAccountType}</p>
+                            
                         </div>   
-
+                        <p className= 'text-red-500  font-medium text-xs'>{formErrors.userAccountType}</p>
                         <div class="space-y-3 mt-1" >
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
                             <input type="email" name="userEmail" onChange={handleChange} 
@@ -103,7 +106,7 @@ export default function LoginPage() {
                         <button type="submit" class="w-full mt-3 text-white bg-primary hover:bg-primary 
                          font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
                         <p class="text-sm font-light text-gray-500">
-                        Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
+                        Don’t have an account yet? <a href="/signup" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                         </p>
             </form>
         </div>
