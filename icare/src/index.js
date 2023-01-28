@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import DocNavbar from './components/DoctorNavbar';
+import DocNavbar from './components/doctorNavbar';
 import DoctorDashboardPage from './pages/DoctorDashboardPage';
 import DoctorAppointPage from './pages/DoctorAppointPage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
