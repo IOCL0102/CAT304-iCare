@@ -1,61 +1,27 @@
 import React, { useCallback, useState } from "react";
-import LocationMap from "../components/LocationMap";
 
 export default function Appointment() {
-    const [latitude, setLatitude] = useState('');
-    const [longitude, setLongitude] = useState('');
-
-    const handleSave = async(e) =>{
-        getLocation()
         return(
-            <LocationMap 
-                latitude={latitude}
-                longitude={longitude}
-            />
-        )
-    }
-
-    const getLocation = useCallback(() => {
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(getCoordinates)
-        } else {
-            alert("Geolocation not supported");
-        }
-    }, [], );
-
-    const getCoordinates = useCallback((position) => {
-        setLatitude(position.coords.latitude)
-        setLongitude(position.coords.longitude)
-    }, [], );
-
-    return(
         <div>
             <div className="ml-20">
-                <h1>Appointments</h1>
+                <h1 className='text-5xl text-primary font-bold pt-16 pl-10 mb-20'>Appointments</h1>
                 <div>
-                    <select>
-                        <option disabled>Choose your desired facility</option>
-                        <option>Hospitals/Clinics</option>
-                        <option>Pharmacies</option>
-                    </select>
-                </div>
-                <div>
-                    <form onSubmit={ handleSave }>
+                    <form className = "pl-10" onSubmit={ handleSave }>
                         <label>
-                            <span>Location:</span>
-                            <input type="text" required />
+                            <span className="text-2xl text-black font-semibold block">Location:</span>
+                            <input className='bg-white border-2 rounded-lg border-gray-400' type="text" required />
                         </label>
                         <label>
-                            <span>Preferred Time:</span>
-                            <input type="text" required />
+                            <span className="text-2xl text-black font-semibold block">Preferred Time:</span>
+                            <input className='bg-white border-2 rounded-lg border-gray-400' type="text" required />
                         </label>
                         <label>
-                            <span>Purpose of Appointment:</span>
-                            <input type="text" required />
+                            <span className="text-2xl text-black font-semibold block">Purpose of Appointment:</span>
+                            <input className='bg-white border-2 rounded-lg border-gray-400' type="text" required />
                         </label>
                         <label>
-                            <span>Preferred Doctor:</span>
-                            <input type="text" required />
+                            <span className="text-2xl text-black font-semibold block">Preferred Doctor:</span>
+                            <input className='bg-white border-2 rounded-lg border-gray-400' type="text" required />
                         </label>
                         <input type="submit" />
                     </form>
