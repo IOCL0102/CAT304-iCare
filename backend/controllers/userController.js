@@ -1,6 +1,7 @@
 // handles user sign up & log in details using either Doctor and Patient model directly
 // the reason to keep user model separated is due to the better utilisation of the object id for each Doctor or Patient document
 const Doctor = require('../models/doctorModel');
+const Hospital = require('../models/hospitalModel')
 const Patient = require('../models/patientModel');
 const createToken = require('../auth/createToken')
 
@@ -99,6 +100,36 @@ const getProfile = async(req, res) => {
 // update a profile
 const updateProfile = async(req, res) => {
 
+    let user
+    switch(req.user.type){
+        case 'doctor':
+            user = await Doctor.findOneAndUpdate({_id: req.user._id},{...req.body}) 
+            // use findOneAndUpdate to fetch the data of the document
+            // Trigger
+            // doctor only return previous document data, check if previous update don't have  hospital_id add to hospital's doctor list
+            if(user.hospital_id == undefined){
+                // update hospital's doctors array for 2 way referencing
+                try{
+                    const hospital = await Hospital.updateOne(
+                        {_id: req.body.hospital_id}, // need to fetch from req.body for the hospital_id as the returned doctor json don't have the property
+                        {$push: {
+                            "doctors": user._id
+                        }}
+                    ); // confirm hospital exists when updating doctor profile hence no need to check if hospital exists
+
+                }catch(error){
+                    console.log({error: error.message});
+                }
+            }
+            break;
+        case 'patient':
+            user = await Patient.findOneAndUpdate({_id: req.user._id},{...req.body})
+            break;
+        default:
+            throw Error(`Invalild type: ${req.user.type}`)
+    }
+
+    res.status(200).json(user)
 }
 
 module.exports = {

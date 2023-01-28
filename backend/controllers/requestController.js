@@ -74,9 +74,12 @@ const createRequest = async (req,res)=>{
 
     // check request timelslot is within 1 hour or not if need validation for simple process
 
+    // since only patient need to create request, no need check for user type
+    const patient_id = req.user._id;
+
     try{
         // add new document
-        const request = await Request.create(req.body);
+        const request = await Request.create({...req.body,patient_id: patient_id});
 
         // Trigger
         // update the doctor's and patient's requests array for 2 way referencing

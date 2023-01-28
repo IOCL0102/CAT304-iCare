@@ -55,6 +55,10 @@ const getAppointment = async (req, res) => {
 // create a appointment
 const createAppointment = async (req,res)=>{
     // mainly here is to check if the data is valid with the structure first before passing to mongodb
+
+    // since only doctor can create appointment, no need to check for user type
+    const doctor_id = req.user._id;
+
     try{
         
         // Trigger
@@ -66,7 +70,7 @@ const createAppointment = async (req,res)=>{
         }
 
         // add new document
-        const appointment = await Appointment.create(req.body);
+        const appointment = await Appointment.create({...req.body, doctor_id: doctor_id});
 
         // Trigger
         // update the doctor's and patient's appointments array for 2 way referencing
