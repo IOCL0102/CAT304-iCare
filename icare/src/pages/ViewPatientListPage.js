@@ -5,12 +5,6 @@ import { useState,useEffect } from 'react';
 import ReactPaginate from "react-paginate";
 import {useNavigate} from 'react-router-dom';
 
-const iconStyle = {
-    "&.MuiSvgIcon-root": {
-        fontSize: '3 rem',
-    }
-}
-
 export default function ViewPatientListPage (){
     const patientInfoTable =[
        {
@@ -140,12 +134,9 @@ export default function ViewPatientListPage (){
                      onChange={(e)=>setSearchPatient(e.target.value)}/>
                 </div>
             </form>
-            {/*============================ HEADING & ADD NEW PATIENT BUTTON ============================ */}
+            {/*============================ HEADING  ============================ */}
             <div className =' ml-20 mr-10 place-content-between flex p-2'>
                 <h1 className="items-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">Patient List</h1>
-                <div className='flex items-end'>
-                    <button type="button" onClick={()=>{navigate("/addnewpatientList")} } class="w-40 h-10 ml-30 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">Add new patient</button>
-                </div>  
             </div>
 
             {/*============================ DISPLAY PATIENT CARD ============================ */}
