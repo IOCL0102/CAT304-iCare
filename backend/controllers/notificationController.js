@@ -4,8 +4,21 @@ const Patient = require('../models/patientModel');
 
 // get all notifications
 const getNotifications = async (req, res) => {
-    // currently sort by createdAt in ascending order
-    const notifications = await Notification.find().sort({createdAt: 1});
+    
+    let query, notifications
+    switch(req.user.type){
+        case 'doctor':
+            notifications = {mssg: "Doctor unable to access patient notifications"}
+            break;
+        case 'patient':
+            // to filtered by patient_id
+            query = { patient_id: { $eq: req.user._id}}
+            // currently sort by time_sent in descending order
+            notifications = await Notification.find(query).sort({time_sent: -1});
+            break;
+        default:
+            throw Error(`Invalild type: ${req.user.type}`)
+    }
 
     res.status(200).json(notifications);
 }
@@ -37,9 +50,10 @@ const createNotification = async (req,res)=>{
     try{
         // add new document
         const notification = await Notification.create(req.body);
+        // Trigger
         // update the patient's notifications array for 2 way referencing
         const patient = await Patient.updateOne(
-            {_id: notification.patient},
+            {_id: notification.patient_id},
             {$push: {
                 "notifications": notification._id
             }}
@@ -69,9 +83,10 @@ const deleteNotification = async (req, res) => {
         return res.status(404).json({error: 'No such notification'});
     }
 
+    // Trigger
     // update the patient's notifications array for 2 way referencing
     const patient = await Patient.updateOne(
-        {_id: notification.patient},
+        {_id: notification.patient_id},
         {$pull: {
             "notifications": notification._id
         }}
@@ -93,6 +108,16 @@ const updateNotification = async (req, res) => {
 
     if(!notification){
         return res.status(404).json({error: 'No such notification'});
+    }
+
+    // Trigger
+    // On isRead update to true, record the is_read time
+    if(req.body.is_read===true){
+        try{
+            await Notification.updateOne({_id: id},{time_read: Date.now()})
+        }catch(error){
+            console.log({error: error.message})
+        }
     }
 
     res.status(200).json(notification); 

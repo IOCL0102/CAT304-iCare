@@ -11,6 +11,12 @@ router.get('/:id', appointmentController.getAppointment);
 // POST a new appointment
 router.post('/', appointmentController.createAppointment);
 
+// POST new medicine
+router.post('/medicine', appointmentController.createMedicine)
+
+// UPDATE a medicine
+router.patch('/medicine', appointmentController.createMedicine)
+
 // DELETE a new appointment
 router.delete('/:id', appointmentController.deleteAppointment);
 

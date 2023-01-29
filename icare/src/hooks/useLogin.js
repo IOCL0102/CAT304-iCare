@@ -24,11 +24,9 @@ export const useLogin = () => {
     }
     if (response.ok) {
       // save the user to local storage (email, type & JWT)
-      // change in userController if need other information
       localStorage.setItem('user', JSON.stringify(json))
 
       // update the auth context
-      // see if it's the auth context to store user profiles
       dispatch({type: 'LOGIN', payload: json})
 
       // update loading state

@@ -11,14 +11,15 @@ const timeslotSchema = new Schema({
     end_time: {
         type: Number,
         required: true,
-        default: 23.00
+        default: 17.00
     },
     schema_ver: {
         type: Number,
         required: true,
-        default: 2.0
+        default: 3.0
     }
     // 2.0: add timestamps
+    // 3.0: change default for end_time
 }, { timestamps: true });
 
 module.exports = timeslotSchema;
