@@ -7,7 +7,7 @@ import LoginPage from './pages/LoginPage';
 import DocNavbar from './components/doctorNavbar';
 import UserProfile from './pages/UserProfile';
 import ViewPatientListPage from './pages/ViewPatientListPage';
-import AddNewPatientPage from './pages/AddNewPatient';
+import AddNewPatientPage from './pages/EditPatientProfile';
 import DoctorUserProfileForm from './pages/DoctorUserProfileForm';
 import PatientProfileMedicalRecord from './pages/PatientProfileMedicalRecord';
 import DoctorProfileViewPage from './pages/DoctorProfileViewPage';
@@ -28,7 +28,6 @@ root.render(
         <Route path="/signup" element={<SignUpPage/>}/>
         
         <Route path="/viewpatientList" element={<ViewPatientListPage/>}/>
-        <Route path="/addnewpatientList" element={<AddNewPatientPage/>}/>
         <Route path="/doctorprofileform" element={<DoctorUserProfileForm/>}/>
         <Route path="/patientprofilemedicalrecord" element={<PatientProfileMedicalRecord/>}/>
         <Route path="/doctorprofileview" element={<DoctorProfileViewPage/>}/>
