@@ -5,45 +5,33 @@ import Calendar from '../components/Calender';
 import { useState } from 'react';
 import { format } from 'date-fns'
 
+
+const doctorInfo = {
+    name: "ALi baba",
+};
+
+// appointment table
+const appointments = [
+    {
+        start_datetime: new Date("Sun Jan 29 2023 18:30:49 GMT+0800 (Malaysia Time)")
+    },
+    {
+        start_datetime: new Date("Sun Jan 22 2023 18:30:49 GMT+0800 (Malaysia Time)")
+    },
+];
+
+// request table
 const upComingSchedulesTable = [
     {
-        id: 1,
-        name: "Simon Alix",
+        _id: 1,
         date: "1 April 2022",
-        time: "04:00 PM",
-        link: "#",
-        profilePic: "https://placeimg.com/160/160/arch",
-    },
-    {
-        id: 2,
-        name: "Abu Bakar",
-        date: "2 April 2022",
-        time: "04:00 PM",
-        link: "#",
-        profilePic: "https://placeimg.com/160/160/arch",
-    },
-    {
-        id: 3,
-        name: "Chirstine",
-        date: "3 April 2022",
-        time: "04:00 PM",
-        link: "#",
-        profilePic: "https://placeimg.com/160/160/arch",
-    },
-    {
-        id: 4,
-        name: "Chirstine",
-        date: "3 April 2022",
-        time: "04:00 PM",
-        link: "#",
-        profilePic: "https://placeimg.com/160/160/arch",
-    },
-    {
-        id: 5,
-        name: "Chirstine",
-        date: "3 April 2022",
-        time: "04:00 PM",
-        link: "#",
+        time_slot:{
+            start_time: "04:00 PM",
+        },
+        patient_id:{
+            name: "Simon Alix",
+            photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
+        },
         profilePic: "https://placeimg.com/160/160/arch",
     },
 ]
@@ -67,7 +55,7 @@ export default function DoctorDashboardPage(){
         new Date("2023-02-28"),
         new Date("2023-01-30")
     ]);
-    const {Calender, _} = Calendar({highlightedDays});
+    const {currentSelectionDate, Calender} = Calendar({highlightedDays});
 
     return(
         <div className="grid grid-rows-7 grid-cols-3 ml-16">
@@ -75,7 +63,7 @@ export default function DoctorDashboardPage(){
                 <div className="col-start-1 col-end-3 row-span-1">
                     <div className="mt-8 ml-5">
                     <h2 className="font-base text-4xl inline"> Welcome back </h2>
-                    <h1 className="text-primary font-bold text-6xl inline"> Dr Kim !</h1>
+                    <h1 className="text-primary font-bold text-6xl inline"> Dr {doctorInfo.name.split(" ")[0]} !</h1>
                     </div>
                 </div>
             {/*============================ NOTIFICATION ============================ */}
@@ -154,12 +142,12 @@ const ScheduleBar = ({schedule}) => {
     return(
         <div className='flex flex-row bg-sky-100 rounded-xl px-3 py-2'>
             <div className="mask mask-circle h-11 w-11 ml-2 mr-5">
-                <img src={schedule.profilePic} className='object-fill' />
+                <img src={schedule.patient_id.photo} className='object-fill' />
             </div>
         
             <div className='grow'>
-                <h1 className=''> Schedule with {schedule.name}</h1>
-                <h3 className='font-light text-sm text-gray-500'>{schedule.date} | {schedule.time} </h3>
+                <h1 className=''> Schedule with {schedule.patient_id.name}</h1>
+                <h3 className='font-light text-sm text-gray-500'>{schedule.date} | {schedule.time_slot.start_time} </h3>
             </div>
         </div>
     );

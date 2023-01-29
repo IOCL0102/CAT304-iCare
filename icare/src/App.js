@@ -20,8 +20,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 function App(){
 root.render(
   <React.StrictMode>
-        {/* <DocNavbar/> */ }
-    <Router>     
+       
+    <Router>    
+    <DocNavbar/> 
       <Routes>
         <Route path="/" element={<LoginPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
