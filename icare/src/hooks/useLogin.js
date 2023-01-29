@@ -4,7 +4,7 @@ import { useAuthContext } from './useAuthContext'
 export const useLogin = () => {
   const [error, setError] = useState(null)
   const [isLoading, setIsLoading] = useState(null) // loading state to allow 'disabled' property on front end
-  const { dispatch } = useAuthContext()
+  const { user, dispatch } = useAuthContext()
 
   const login = async (email, password, type) => {
     // starting the request
@@ -31,6 +31,9 @@ export const useLogin = () => {
 
       // update loading state
       setIsLoading(false)
+
+      // check if auth values is set
+      // console.log(user)
     }
   }
 

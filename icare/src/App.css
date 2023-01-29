@@ -45,3 +45,35 @@
   box-sizing: border-box;
   display: block;
 }
+
+.paginationBttns {
+  width: 100%;
+  height: 40px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.paginationBttns a {
+  padding: 7px;
+  margin: 1px;
+  border-radius: 5px;
+  border: 1px solid #3E36B0;
+  color: #3E36B0;
+  cursor: pointer;
+}
+
+.paginationBttns a:hover {
+  color: white;
+  background-color: #3E36B0;
+}
+
+.paginationActive a {
+  color: white;
+  background-color: #3E36B0;
+}
+
+.paginationDisabled a {
+  color: white;
+  background-color: rgb(82, 79, 79);
+}

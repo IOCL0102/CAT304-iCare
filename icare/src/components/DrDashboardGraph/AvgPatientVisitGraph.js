@@ -47,7 +47,10 @@ export default function AvgPatientVisitGraph(){
     
     return(
         <>
-            <Bar data={data} options={options}  />
+            <h1 className='text-lg font-semibold'>Average Patient Visit</h1> 
+            <div className='h-48'>
+              <Bar data={data} options={options}  />
+            </div>
         </>
 
     );

@@ -2,34 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import DocNavbar from './components/DoctorNavbar';
-import DoctorDashboardPage from './pages/DoctorDashboardPage';
-import DoctorAppointPage from './pages/DoctorAppointPage';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import TreatmentRec from './pages/TreatmentRec';
+import DocNavbar from './components/doctorNavbar';
+import { BrowserRouter as Router, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-
+import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* Auth context must be at the highest level of Context Provider */}
     <AuthContextProvider>
-      <Router>
-
-        <DocNavbar/>
-        <Routes>
-          <Route path="/" element={<DoctorDashboardPage />} />
-          <Route path="/Dashboard" element={<DoctorDashboardPage />} />
-          <Route path="/Appointments" element={<DoctorAppointPage />} />
-          <Route path="/Patients" element={<TreatmentRec />} />
-          <Route path="/Login" element = {<Login />} />
-          <Route path="/Signup" element = {<Signup />} />
-          {/* ADD LOGOUT PAGE, PATIENT LIST, NOTIFICATION PAGE ... */}
-        </Routes>
-
-      </Router>
+      <App />
     </AuthContextProvider>
   </React.StrictMode>
 );
