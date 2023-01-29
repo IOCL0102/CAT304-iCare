@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
+import { Link } from "react-router-dom";
+import { useAuthContext } from "../hooks/useAuthContext";
 import Appointment from "../pages/Appointment";
 import Navbar from "./Navbar";
 
@@ -8,10 +10,26 @@ export default function LocationMap() {
   const [longitude, setLongitude] = useState();
 
   const [facilities, setFacilities] = useState(FacilityItems);
+  //const { user } = useAuthContext();
+
+  async function getHospitals() {
+    await getLocation();
+    console.log(latitude, longitude)
+    const coordinates = {latitude: latitude, longitude: longitude}
+    // const response = await fetch('/api/hospitals/bynearest', {
+    //     method: 'POST',
+    //     body: JSON.stringify(coordinates),
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //         'Authorization': `Bearer ${user.token}`
+    //     }
+    // })
+    // const json = await response.json()
+    // console.log(json)
+  }
 
   useEffect(() => {
-    getLocation();
-    console.log(latitude, longitude)
+    getHospitals();
   }, []);
 
   const getLocation = () => {
@@ -53,12 +71,12 @@ export default function LocationMap() {
 }
 
 const Card = ({ facilityName, facilityDistance, fee }) => {
-    const handleclick = () => {
-        //pass necessary data to appointment page
-        return (
-            <Appointment />
-        )
-      }
+    // const handleclick = () => {
+    //     //pass necessary data to appointment page
+    //     return (
+    //         <Appointment />
+    //     )
+    //   }
 
     return (
         <div className="bg-primary rounded-full h-20 my-5 flex">
@@ -68,7 +86,8 @@ const Card = ({ facilityName, facilityDistance, fee }) => {
                 <p className="ml-10">Estimated Fee: RM{fee}</p>
             </div>
             <div className="bg-white rounded-lg h-8 content-center ml-48 mt-5">
-                <button onClick={ handleclick } className="ml-5 text-center justify-center text-primary">Make Appointment</button>
+                <Link to="/Appointment/Details" className="ml-5 text-center justify-center text-primary">Make Appointment</Link>
+                {/* <button onClick={ handleclick } className="ml-5 text-center justify-center text-primary">Make Appointment</button> */}
             </div>
         </div>
     );

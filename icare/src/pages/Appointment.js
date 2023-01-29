@@ -1,8 +1,10 @@
 import React, { useCallback, useState } from "react";
+import Navbar from "../components/Navbar";
 
 export default function Appointment() {
         return(
         <div>
+            <Navbar />
             <div className="ml-20">
                 <h1 className='text-5xl text-primary font-bold pt-16 pl-10 mb-20'>Appointments</h1>
                 <div>

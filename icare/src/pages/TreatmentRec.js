@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
+import Navbar from "../components/Navbar";
 
 // dummy data
 var treatmentInfoTable = [
@@ -81,6 +82,7 @@ export default function TreatmentRec(){
 
     return(
         <div className="flex flex-col ml-16 border-spacing-12 border border-slate-400 table-auto border-separate">
+            <Navbar />
             <h1 className="m-10 mb-5 font-bold text-4xl">Treatment Recommendation</h1>
             <input className="m-10 my-3 p-3 pl-5 rounded-full drop-shadow-xl"
             type="text" placeholder="Search here ( example: Diabetes )" onChange={(e)=>setSearchBarVal(e.target.value)}></input>
