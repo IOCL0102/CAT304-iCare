@@ -20,18 +20,14 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 function App(){
 root.render(
   <React.StrictMode>
-        {/* <DocNavbar/> */ }
-    <Router>     
+       
+    <Router>    
+    <DocNavbar/> 
       <Routes>
         <Route path="/" element={<LoginPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/signup" element={<SignUpPage/>}/>
         
-        <Route path="/viewpatientList" element={<ViewPatientListPage/>}/>
-        <Route path="/addnewpatientList" element={<AddNewPatientPage/>}/>
-        <Route path="/doctorprofileform" element={<DoctorUserProfileForm/>}/>
-        <Route path="/patientprofilemedicalrecord" element={<PatientProfileMedicalRecord/>}/>
-        <Route path="/doctorprofileview" element={<DoctorProfileViewPage/>}/>
 
         <Route path="/Dashboard" element={<DoctorDashboardPage />} />
         <Route path="/Appointments" element={<DoctorAppointPage />} />
@@ -43,6 +39,15 @@ root.render(
   </React.StrictMode>
 );
 }
+
+/**
+ * 
+        <Route path="/viewpatientList" element={<ViewPatientListPage/>}/>
+        <Route path="/addnewpatientList" element={<AddNewPatientPage/>}/>
+        <Route path="/doctorprofileform" element={<DoctorUserProfileForm/>}/>
+        <Route path="/patientprofilemedicalrecord" element={<PatientProfileMedicalRecord/>}/>
+        <Route path="/doctorprofileview" element={<DoctorProfileViewPage/>}/>
+ */
 
 export default App ;
 
