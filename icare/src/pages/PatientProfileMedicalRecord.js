@@ -10,7 +10,7 @@ const iconStyle = {
     }
 }
 
-export default function patientprofileMedicalRecord () {
+export default function PatientProfileMedicalRecord () {
     let navigate = useNavigate();
 
     const PatientInfo ={
@@ -92,7 +92,7 @@ export default function patientprofileMedicalRecord () {
                 </tr >
             </div> 
         );
-      });''
+      });
 
       const displayMedicalIntakeInfo = PatientMedicalIntakeInstructionTable.map((patientMedicalIntakeInfo) => {
         return (
@@ -122,7 +122,7 @@ export default function patientprofileMedicalRecord () {
         </div>
 
         <div className=' flex justify-end'>
-            <button type="button" onClick={()=>{setIsShowPopOut(true),PopUpContent()}} class="w-32 h-9 ml-20 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
+            <button type="button" onClick={()=>{setIsShowPopOut(true);PopUpContent()}} class="w-32 h-9 ml-20 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
                     Edit profile</button>
         </div>  
 

@@ -22,6 +22,12 @@ app.use((req,res,next) => {
     console.log(req.url, req.method);
     next();
 }) // log all requests on the console (server side)
+// enable CORS in backend -server.js
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 // routes
 // all routes will be prefixed with their respective collection such as /api/hospitals

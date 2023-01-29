@@ -34,7 +34,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [])
   
   // use this to check auth status
-  console.log('AuthContext state:', state)
+  // console.log('AuthContext state:', state)
   
   return (
     // ...state allow the fields inside to spread, hence directly access 'user' instead of 'state.user'
