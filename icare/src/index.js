@@ -4,11 +4,15 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import DocNavbar from './components/doctorNavbar';
 import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import { AuthContextProvider } from './context/AuthContext';
 import App from './App';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* Auth context must be at the highest level of Context Provider */}
+    <AuthContextProvider>
+      <App />
+    </AuthContextProvider>
   </React.StrictMode>
 );
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import Notification from './Notification';
 import Navbar from '../components/Navbar';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Oxygen from '../images/Oxygen Cylinder_1.png'
@@ -16,7 +17,7 @@ const IconStyle = {
 
 export default function UserProfile(){
     return(
-        <div className='ml-20'>
+        <div className='ml-20 h-max'>
             <Navbar />
             <h1 className='text-5xl text-primary font-bold pt-16 pl-10 mb-20'>User Profile</h1>
             <div className='flex m-0'>

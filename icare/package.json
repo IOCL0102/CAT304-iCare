@@ -1,4 +1,5 @@
 {
+  "proxy": "http://localhost:5000",
   "name": "icare",
   "version": "0.1.0",
   "private": true,
@@ -8,6 +9,7 @@
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.4",
     "@mui/x-date-pickers": "^5.0.13",
+    "@react-google-maps/api": "^2.17.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -15,10 +17,12 @@
     "daisyui": "^2.46.0",
     "date-fns": "^2.29.3",
     "material-icons": "^1.13.1",
+    "node-sass": "^7.0.3",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-paginate": "^8.1.4",
+    "react-native-toggle-element": "^2.0.1",
     "react-router-dom": "^6.6.2",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
