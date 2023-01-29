@@ -10,130 +10,101 @@ const iconStyle = {
     }
 }
 
-export default function PatientProfileMedicalRecord () {
+export default function patientprofileMedicalRecord () {
     let navigate = useNavigate();
-    const patients ={
-        name:"Raiden Shogen",
-        birth_date:"25/8/2020",
-        age:"25",
-        ic_number:"000199-08-0888", 
-        gender:"Male",
-        height:"152",
-        weight:"52",
-        email:"dwdq@gmail.com",
-        phone_number:"0125887958",
-        address:"xxx",
-        allergies:"xxx",
-        photo:"https://placeimg.com/160/160/any",
-        appointment:[
-            {
-                date:"01/12/2022",
-                observation:"Cough, Fever..... ",
-                treatment:"Taken X-ray, done blood test and bla bla bla",
-                prescription:"Amoxicillin 250mg 1 tabs bla bla bla",
-            },
-            {
-                date:"01/12/2022",
-                observation:"Cough, Fever..... ",
-                treatment:"Taken X-ray, done blood test and bla bla bla",
-                prescription:"Amoxicillin 250mg 1 tabs bla bla bla",
-            },
-            {
-                date:"01/12/2022",
-                observation:"Cough, Fever..... ",
-                treatment:"Taken X-ray, done blood test and bla bla bla",
-                prescription:"Amoxicillin 250mg 1 tabs bla bla bla",
-            },
-        ],
-        prescription:[
-            {
-                date:"01/12/2022",
-                name: "paracetamol",
-                intake_per_Day:3,
-                meal_period:"after",
-                duration_in_days:7,
-            },
-            {
-                date:"01/12/2022",
-                name: "padjdfracetamol",
-                intake_per_Day:3,
-                meal_period:"before",
-                duration_in_days:7,
-            },
-        ]
+
+    const PatientInfo ={
+        patientName:"Raiden Shogen",
+        patientBirthdate:"25/8/2020",
+        patientAge:"25",
+        patientIC:"000199-08-0888", 
+        patientGender:"Male",
+        patientHeight:"152",
+        patientWeight:"52",
+        patientEmail:"dwdq@gmail.com",
+        patientPhone:"0125887958",
+        patientAddress:"xxx",
+        patientMedicalAllergies:"xxx",
+        patientProfilePic:"https://placeimg.com/160/160/any",
     };
 
-    const last_checked =[
+    const PatientMedicalRecordTable =[
         {
-            date:"01/12/2022",
-            observation:"Cough, Fever..... ",
-            treatment:"Taken X-ray, done blood test and bla bla bla",
-            prescription:"Amoxicillin 250mg 1 tabs bla bla bla",
+            patientName: "Raiden Shogen",
+            patientRecordID:1,
+            patientRecordDate:"01/12/2022",
+            patientRecordObservation:"Cough, Fever..... ",
+            patientRecordTreatmentGiven:"Taken X-ray, done blood test and bla bla bla",
+            patientRecordPrescription:"Amoxicillin 250mg 1 tabs bla bla bla",
         },
         {
-            date:"01/12/2022",
-            observation:"Cough, Fever..... ",
-            treatment:"Taken X-ray, done blood test and bla bla bla",
-            prescription:"Amoxicillin 250mg 1 tabs bla bla bla",
+            patientName: "Raiden Shogen",
+            patientRecordID:2,
+            patientRecordDate:"11/12/2022",
+            patientRecordObservation:"Cddough, Fever..... ",
+            patientRecordTreatmentGiven:"Taddken X-ray, done blood test and bla bla bla",
+            patientRecordPrescription:"Amoxiddcillin 250mg 1 tabs bla bla bla",
         },
         {
-            date:"01/12/2022",
-            observation:"Cough, Fever..... ",
-            treatment:"Taken X-ray, done blood test and bla bla bla",
-            prescription:"Amoxicillin 250mg 1 tabs bla bla bla",
-        },
-        
-    ];
-
-    const prescription =[
-        {
-            date:"01/12/2022",
-            name: "paracetamol",
-            intake_per_Day:3,
-            meal_period:"after",
-            duration_in_days:7,
-        },
-        {
-            date:"01/12/2022",
-            name: "padjdfracetamol",
-            intake_per_Day:3,
-            meal_period:"before",
-            duration_in_days:7,
+            patientName: "Raiden Shogen",
+            patientRecordID:3,
+            patientRecordDate:"23/01/2023",
+            patientRecordObservation:"Coeeugh, Fever..... ",
+            patientRecordTreatmentGiven:"Teeaken X-ray, done blood test and bla bla bla",
+            patientRecordPrescription:"Amoxicieellin 250mg 1 tabs bla bla bla",
         },
         
     ];
 
-    const [patientInfo, setpatientInfo] = useState(patients); 
-    
+    const PatientMedicalIntakeInstructionTable =[
+        {
+            patientName: "Raiden Shogen",
+            patientRecordID:1,
+            patientMedicalIntakeDate:"01/12/2022",
+            patientMedicalIntakeInstruction:["Dizopam - Day and Night before meal","Amoxycillin - Day and night after meal","Paracetamol - 2 times a day"],
+        },
+        {
+            patientName: "Raiden Shogen",
+            patientRecordID:2,
+            patientMedicalIntakeDate:"23/12/2022",
+            patientMedicalIntakeInstruction:["Dizopam - Day and Night before meal","Amoxycillin - Day and night after meal","Paracetamol - 2 times a day"],
+        },
+        
+    ];
 
-    const displayMedicalRecordInfo = patients.map((patientInfo) => {
+    const [patientMedicalRecordInfo, setpatientMedicalRecordInfo] = useState(PatientMedicalRecordTable); 
+    const [patientMedicalIntakeInfo, setpatientMedicalIntakeInfo] = useState(PatientMedicalIntakeInstructionTable); 
+
+    const [isShowPopOut, setIsShowPopOut] = useState(false);
+    const [popOutContent, setPopOutContent] = useState({});
+
+    const displayMedicalRecordInfo = PatientMedicalRecordTable.map((patientMedicalRecordInfo) => {
         return (
-            <div>   
+
+            <div> 
                 <tr className=" flex flex-row border-b ">
-                <td className="px-6 py-4 w-1/3 ml-20  whitespace-nowrap text-sm font-medium text-gray-900">{patientInfo.last_checked.date}</td>
+                <td className="px-6 py-4 w-1/3 ml-20  whitespace-nowrap text-sm font-medium text-gray-900">{patientMedicalRecordInfo.patientRecordDate}</td>
                     <div className='flex flex-col space-y-1'>
-                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Observation: {patientInfo.last_checked.observation}</td>
-                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Treatment Given: {patientInfo.last_checked.treatment}</td>
-                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Presciption: {patientInfo.last_checked.prescription}</td>
+                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Observation: {patientMedicalRecordInfo.patientRecordObservation}</td>
+                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Treatment Given: {patientMedicalRecordInfo.patientRecordTreatmentGiven}</td>
+                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Presciption: {patientMedicalRecordInfo.patientRecordPrescription}</td>
                     </div>
                 </tr >
             </div> 
         );
-      });
+      });''
 
-      const displayMedicalIntakeInfo = patients.map((patientInfo) => {
+      const displayMedicalIntakeInfo = PatientMedicalIntakeInstructionTable.map((patientMedicalIntakeInfo) => {
         return (
             <div>   
                 <tr className=" flex flex-row border-b ">
-                <td className="px-6 py-4 w-1/3 ml-20  whitespace-nowrap text-sm font-medium text-gray-900">{patientInfo.prescription.date}</td>
+                <td className="px-6 py-4 w-1/3 ml-20  whitespace-nowrap text-sm font-medium text-gray-900">{patientMedicalIntakeInfo.patientMedicalIntakeDate}</td>
                     <div className='flex flex-col space-y-1'>
-                    
-                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Medicine Name:{patientInfo.prescription.name}</td>
-                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Intake/day:{patientInfo.prescription.intake_per_Day}</td>
-                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Meal period:{patientInfo.prescription.meal_period}</td>
-                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">Duration(days):{patientInfo.prescription.duration_in_days}</td>
-                            
-                        
+                    <td className="text-sm text-gray-900  font-medium px-6 whitespace-nowrap">    
+                            <li>{patientMedicalIntakeInfo.patientMedicalIntakeInstruction[0]}</li>
+                            <li>{patientMedicalIntakeInfo.patientMedicalIntakeInstruction[1]}</li>
+                            <li>{patientMedicalIntakeInfo.patientMedicalIntakeInstruction[2]}</li>
+                        </td>
                     </div>
                 </tr >
             </div> 
@@ -143,28 +114,30 @@ export default function PatientProfileMedicalRecord () {
     return (
     <div>
         <DocNavbar/>
+        { isShowPopOut ? <PopUpContent /> : <></> }  
         <div className=' p-3 flex justify-start ml-20 space-x-5'>
             <button type="button"  onClick={()=>{navigate("/viewpatientlist")}} class="w-11 h-11 flex-wrap justify-center text-sm text-white bg-primary rounded-lg  ">
                 {<ArrowBackIosIcon sx={iconStyle}/>}
             </button> 
         </div>
+
         <div className=' flex justify-end'>
-            <button type="button" class="w-32 h-9 ml-20 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
+            <button type="button" onClick={()=>{setIsShowPopOut(true),PopUpContent()}} class="w-32 h-9 ml-20 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
                     Edit profile</button>
         </div>  
 
-        <img src={patients.photo} alt="" class="p-2 absolute ml-48 mt-8 w-48 h-48 rounded-lg"/>
+        <img src={PatientInfo.patientProfilePic} alt="" class="p-2 absolute ml-48 mt-8 w-48 h-48 rounded-lg"/>
         <div className=' ml-96 flex flex-col space-y-1 '>   
-            <p className=' w-1/3 ml-28 text-3xl text-black font-semibold block'>{patients.name}</p>
-            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Birthdate: {patients.birth_date}</p>
-            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Age: {patients.age}</p>  
-            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>I/C: {patients.ic_number}</p>
-            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Gender: {patients.gender}</p>
-            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Height(cm): {patients.height}</p>
-            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Weight(kg): {patients.weight}</p>
-            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Email Address: {patients.email}</p>  
-            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Phone No.: {patients.phone_number}</p>
-            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Medical Allergies: {patients.allergies}</p>  
+            <p className=' w-1/3 ml-28 text-3xl text-black font-semibold block'>{PatientInfo.patientName}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Birthdate: {PatientInfo.patientBirthdate}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Age: {PatientInfo.patientAge}</p>  
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>I/C: {PatientInfo.patientIC}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Gender: {PatientInfo.patientGender}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Height(cm): {PatientInfo.patientHeight}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Weight(kg): {PatientInfo.patientWeight}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Email Address: {PatientInfo.patientEmail}</p>  
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Phone No.: {PatientInfo.patientPhone}</p>
+            <p className=' w-1/3 ml-28 text-base text-black font-normal block'>Medical Allergies: {PatientInfo.patientMedicalAllergies}</p>  
         </div>
 
         <div className=' flex justify-end'>
@@ -217,16 +190,24 @@ export default function PatientProfileMedicalRecord () {
             </div>
         </div>   
 
-        <div className=' flex justify-start p-3'>
-            <button type="button" class=" w-48 h-10 ml-40 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
+        <div className=' flex justify-start'>
+            <button type="button" class="w-48 h-9 ml-40 mr-40 text-sm font-medium text-white bg-primary rounded-lg border border-primary hover:bg-primary">
                     Add new medical instruction</button>
         </div>  
-        
+      <div>   
     </div>
-   
-        
+</div>
+    );
 
-
-    )    
+    function PopUpContent(){
+        return(
+            <div className='fixed z-10 bg-black/10 inset-0 ml-16 flex justify-center items-center '>
+                <div className='flex flex-col z-20 bg-sky-100/90 h-3/4 w-3/4 rounded-3xl'>
+                <p>frneigureg</p>
+                    
+                </div>
+            </div>
+        );
+    };    
 
 }
