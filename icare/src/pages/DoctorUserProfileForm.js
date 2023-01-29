@@ -5,18 +5,22 @@ import {useNavigate} from 'react-router-dom';
 export default function DoctorUserProfilePage () {
     let navigate = useNavigate();
 
-    const DoctorInfo ={
-        doctorName:"",
-        doctorEmail:"",
-        doctorPhone:"",
-        doctorWorkingExperience:"",
-        doctorWorkingHospital:"",
-        doctorWorkingHospitalAddress:"",
-        doctorWorkingHoursStart:"",
-        doctorWorkingHoursEnd:"",
+    const doctors ={
+        name:"",
+        email:"",
+        phone_number:"",
+        working_experience:"",
+        hospital_id:{
+            facility_name:"",
+            address:"",
+        },
+        working_hours:{
+            start_time:"",
+            end_time:"",
+        },
     };
 
-    const [formValues, setFormValues]= useState(DoctorInfo);
+    const [formValues, setFormValues]= useState(doctors);
     const [formErrors, setFormErrors]= useState({});
     const [isSubmit, setIsSubmit]= useState(false);
 
@@ -43,36 +47,36 @@ export default function DoctorUserProfilePage () {
         const emailregex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
         const phoneregex = /^\d{10}$/;
 
-        if (!values.doctorName) {
-            errors.doctorName = "Name is required.";
+        if (!values.name) {
+            errors.name = "Name is required.";
         }
-        if (!values.doctorEmail) {
-            errors.doctorEmail = "Email address is required.";
-        }else if (!emailregex.test(values.doctorEmail)) {
-          errors.doctorEmail = "This is not a valid email format.";
-        }
-
-        if (!values.doctorPhone) {
-            errors.doctorPhone = " Phone no. is required.";
-        } else if (!phoneregex.test(values.doctorPhone)){
-            errors.doctorPhone = "This is not a valid phone format.";
+        if (!values.email) {
+            errors.email = "Email address is required.";
+        }else if (!emailregex.test(values.email)) {
+          errors.email = "This is not a valid email format.";
         }
 
-        if (!values.doctorWorkingExperience) {
-            errors.doctorWorkingExperience = "Please enter your working experience.";
+        if (!values.phone_number) {
+            errors.phone_number = " Phone no. is required.";
+        } else if (!phoneregex.test(values.phone_number)){
+            errors.phone_number = "This is not a valid phone format.";
+        }
+
+        if (!values.working_experience) {
+            errors.working_experience = "Please enter your working experience.";
           }
        
-        if (!values.doctorWorkingHospital) {
-            errors.doctorWorkingHospital = "Please enter your working hospital name.";
+        if (!values.facility_name) {
+            errors.facility_name = "Please enter your working hospital name.";
         }
-        if (!values.doctorWorkingHospitalAddress) {
-            errors.doctorWorkingHospitalAddress = "Please enter your working hospital address.";
+        if (!values.address) {
+            errors.address = "Please enter your working hospital address.";
         }
-        if (!values.doctorWorkingHoursStart) {
-            errors.doctorWorkingHoursStart = "Please enter your start working hours";
+        if (!values.start_time) {
+            errors.start_time = "Please enter your start working hours";
         }
-        if (!values.doctorWorkingHoursEnd) {
-            errors.doctorWorkingHoursEnd = "Please enter your end working hours";
+        if (!values.end_time) {
+            errors.end_time = "Please enter your end working hours";
         }
         
         return errors;
@@ -91,46 +95,46 @@ export default function DoctorUserProfilePage () {
                     <h1 className='text-xs text-black font-semibold block'>Please fill in this form to create account</h1>
                     <label className='text-xl text-black font-semibold block'>Name</label>
                     <input className='bg-white w-1/2 border-2 rounded-lg border-gray-400' 
-                    type='text' name="doctorName" onChange={handleChange}/>
-                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.doctorName}</p>
+                    type='text' name="name" onChange={handleChange}/>
+                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.name}</p>
 
                     <label className='text-xl text-black font-semibold block'>Email</label>
                     <input className='bg-white w-1/2 border-2 rounded-lg border-gray-400' 
-                    type='email' name="doctorEmail" onChange={handleChange}/>
-                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.doctorEmail}</p>
+                    type='email' name="email" onChange={handleChange}/>
+                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.email}</p>
 
                     <label className='text-xl text-black font-semibold block'>Mobile Phone</label>
                     <input className='bg-white w-1/2 border-2 rounded-lg border-gray-400' 
-                    type='tel' name="doctorPhone"  onChange={handleChange}/>
-                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.doctorPhone}</p>
+                    type='tel' name="phone_number"  onChange={handleChange}/>
+                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.phone_number}</p>
 
                     <label className='text-xl text-black font-semibold block'>Working Experience</label>
                     <input className='bg-white w-1/2 border-2 rounded-lg border-gray-400' 
                     type='text' name="doctorWorkingExperience" onChange={handleChange}/>
-                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.doctorWorkingExperience}</p>
+                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.working_experience}</p>
 
                     <label className='text-xl text-black font-semibold block'>Working Hospital</label>
                     <input className='bg-white w-1/2 border-2 rounded-lg border-gray-400' 
-                    type='text' name="doctorWorkingHospital" onChange={handleChange}/>
-                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.doctorWorkingHospital}</p>
+                    type='text' name="facility_name" onChange={handleChange}/>
+                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.facility_name}</p>
 
                     <label className='text-xl text-black font-semibold block'>Working Hospital Address</label>
                     <input className='bg-white w-1/2 border-2 rounded-lg border-gray-400' 
-                    type='text' name="doctorWorkingHospitalAddress" onChange={handleChange}/>
-                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.doctorWorkingHospitalAddress}</p>
+                    type='text' name="address" onChange={handleChange}/>
+                    <p className= 'text-red-500  font-medium text-xs'>{formErrors.address}</p>
 
                     <label className='text-xl text-black font-semibold block'>Working Hours</label>
                     <div className='text-xl mt-2 flex flex-row'>
                         <input className='bg-white w-1/2 border-2 rounded-lg border-gray-400' 
-                        type='time' name="doctorWorkingHoursStart" onChange={handleChange}/> 
+                        type='time' name="start_time" onChange={handleChange}/> 
                        
                     <p className= ' text-black p-2 font-medium items-center text-xl'>to</p>
                         
                         <input className='bg-white w-1/2 border-2 rounded-lg border-gray-400' 
-                        type='time' name="doctorWorkingHoursEnd" onChange={handleChange}/></div>
+                        type='time' name="end_time" onChange={handleChange}/></div>
                         <div className='flex flex-row'>
-                            <div className= 'text-red-500 font-medium text-xs'>{formErrors.doctorWorkingHoursStart}</div>
-                            <div className= 'ml-28 text-red-500 font-medium text-xs'>{formErrors.doctorWorkingHoursEnd}</div>
+                            <div className= 'text-red-500 font-medium text-xs'>{formErrors.start_time}</div>
+                            <div className= 'ml-28 text-red-500 font-medium text-xs'>{formErrors.end_time}</div>
                         </div>    
                 </div>    
             </div> 
