@@ -1,19 +1,11 @@
 import React from 'react';
 import {useState, useEffect } from 'react';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {useNavigate} from 'react-router-dom';
-
-const iconStyle = {
-    "&.MuiSvgIcon-root": {
-        fontSize: '3 rem',
-    }
-}
 
 export default function DoctorUserProfilePage () {
     let navigate = useNavigate();
 
     const DoctorInfo ={
-        doctorProfilePic:"https://placeimg.com/160/160/any",
         doctorName:"",
         doctorEmail:"",
         doctorPhone:"",
@@ -90,13 +82,10 @@ export default function DoctorUserProfilePage () {
     return (
     <div>
         <div className=' p-3 flex justify-start ml-20 space-x-5'>
-            <button type="button" onClick={()=>{navigate("/doctorprofileview")} }class="w-11 h-11 flex-wrap justify-center text-sm text-white bg-primary rounded-lg  ">
-                {<ArrowBackIosIcon sx={iconStyle}/>}
-            </button> 
+            <button className="btn btn-primary" onClick={()=>{navigate(-1)}}>GO BACK</button>
         </div>
 
         <form onSubmit={handleSubmit}>
-            <img src={DoctorInfo.doctorProfilePic} alt="" class="absolute ml-48 w-30 h-30 rounded-lg"/>
             <div className="flex flex-row justify-center space-x-1 form-control ">
                 <div className=" ml-20 mr-10 flex space-y-2 w-1/3 form-control ">
                     <h1 className='text-xs text-black font-semibold block'>Please fill in this form to create account</h1>
@@ -142,13 +131,11 @@ export default function DoctorUserProfilePage () {
                         <div className='flex flex-row'>
                             <div className= 'text-red-500 font-medium text-xs'>{formErrors.doctorWorkingHoursStart}</div>
                             <div className= 'ml-28 text-red-500 font-medium text-xs'>{formErrors.doctorWorkingHoursEnd}</div>
-                        </div>
-                         
-                   
-                </div>      
+                        </div>    
+                </div>    
             </div> 
             <div className='flex justify-center mt-8'>
-                <button type="submit" className="flex justify-center text-white bg-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                <button type="submit" className="btn btn-primary">
                 Submit</button>
             </div>
 
