@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Pagination from "../components/Pagination";
+import { Pagination2 } from "../components/Pagination";
 import Navbar from "../components/Navbar";
 
 // dummy data
@@ -95,7 +95,7 @@ export default function TreatmentRec(){
                     : (<div className="m-10 p-10"> <h1 className="text-center text-3xl">-----  TREATMENT NOT FOUND  ------</h1> </div>)
                 }
 
-            <Pagination totalCardsCount={treatmentCardInfo.length} setPageFunc={setCurrentPage} 
+            <Pagination2 totalCardsCount={treatmentCardInfo.length} setPageFunc={setCurrentPage} 
                         currentPage={currentPage} cardsPerPage={cardsPerPage} />
         </div>
     );

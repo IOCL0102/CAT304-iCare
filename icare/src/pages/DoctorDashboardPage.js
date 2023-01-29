@@ -3,6 +3,8 @@ import PatientVisitByGender from '../components/DrDashboardGraph/PatientVisitGra
 import AvgPatientVisitGraph from '../components/DrDashboardGraph/AvgPatientVisitGraph';
 import Calendar from '../components/Calender';
 import { useState } from 'react';
+// can import {user} from useAuthContext to check if user is already login
+// if want to have doctor profile picture
 import { format } from 'date-fns'
 // can import {user} from useAuthContext to check if user is already login
 // if want to have doctor profile picture
