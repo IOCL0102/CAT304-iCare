@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { format } from 'date-fns'
 import { useAuthContext } from '../hooks/useAuthContext';
-
+import NotiUserBar from '../components/NotificationProfile';
 
 const doctorInfo = {
     name: "ALi baba",
@@ -162,8 +162,8 @@ export default function DoctorDashboardPage(){
                     </div>
                 </div>
             {/*============================ NOTIFICATION ============================ */}
-                <div className="bg-green-500">                 
-                    notification icon and profile pic
+                <div className="mt-5">                 
+                   <NotiUserBar />
                 </div>
             {/*======================= VISIT AND PATIENT ANALYTICS INFORMATION ======================= */}
                 <div className="col-start-1 col-end-3 row-span-2"> 

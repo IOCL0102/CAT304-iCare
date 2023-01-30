@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Calendar from "../components/Calender";
 import { format } from 'date-fns'
+import NotiUserBar from '../components/NotificationProfile';
 
 
 // GET Profile Details
@@ -56,7 +57,7 @@ export default function EditAvailabilityPage(){
             <div className="flex flex-row">
                 <button className="btn btn-primary" onClick={()=>{navigate(-1)}}>GO BACK</button>
                 <div className="flex justify-end grow">
-                    notification
+                    <NotiUserBar />
                 </div>
             </div>
             <div className="flex flex-row gap-5 pt-5 h-screen">
@@ -90,8 +91,6 @@ export default function EditAvailabilityPage(){
                                     setSelectedFrom("From");
                                 }}>Confirm</button>
                     </div>
-                    <button className="btn btn-primary btn-lg rounded-full mt-5"
-                            onClick={()=>{/* UPDATE AVAILABILITY ( SEND TO SERVER ) */}}>Update</button>
 
                 </div>
             </div>
