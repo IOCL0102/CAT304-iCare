@@ -25,7 +25,7 @@ const getHospitals = async (req, res) => {
 // Get hospitals by nearest location through geospatial query
 const getNearestHospital = async (req, res) => {
     
-    const defaultMaxDistance = 10000 // in m, =10km
+    const defaultMaxDistance = req.body.distance ? req.body.distance : 10000; // in m, =10km
     const defaultMinDistance = 0 
 
     const query = {

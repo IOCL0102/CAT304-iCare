@@ -63,12 +63,12 @@ return(
         // Add patient nav bar here
         <Routes>
           <Route path="/LoginDashboard" element={<LoginDashboard />} />
-                <Route path="/Appointment/Map" element={<LocationMap />} />
-                <Route path="/Appointment/Details" element={<Appointment />} />
-                <Route path="/Treatment" element={<TreatmentRec />} />
-                <Route path="/PatientNotification" element={<Notification />} />
-                <Route path="/UserProfile" element = {<UserProfile />} />
-                <Route path="/LandingPage" element = {<LandingPage />} />
+          <Route path="/Appointment/Map" element={<LocationMap />} />
+          <Route path="/Appointment/Details" element={<Appointment />} />
+          <Route path="/Treatment" element={<TreatmentRec />} />
+          <Route path="/PatientNotification" element={<Notification />} />
+          <Route path="/UserProfile" element = {<UserProfile />} />
+          <Route path="/LandingPage" element = {<LandingPage />} />
         </Routes>
       )}
     </Router>
