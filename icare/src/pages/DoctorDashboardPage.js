@@ -3,12 +3,9 @@ import PatientVisitByGender from '../components/DrDashboardGraph/PatientVisitGra
 import AvgPatientVisitGraph from '../components/DrDashboardGraph/AvgPatientVisitGraph';
 import Calendar from '../components/Calender';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-// can import {user} from useAuthContext to check if user is already login
-// if want to have doctor profile picture
+import { useState, useEffect } from 'react';
 import { format } from 'date-fns'
-// can import {user} from useAuthContext to check if user is already login
-// if want to have doctor profile picture
+import { useAuthContext } from '../hooks/useAuthContext';
 
 
 const doctorInfo = {
@@ -58,6 +55,102 @@ export default function DoctorDashboardPage(){
     const [statisticData, setStatisticData] = useState(doctorPatientStatistics);
     const [highlightedDays, setHighlightedDays] = useState(tempHighightDays);
     const {_, Calender} = Calendar({highlightedDays});
+    const [doctor, setDoctor] = useState(null);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(null)
+    const { user } = useAuthContext();
+    const [appointments, setAppointments] = useState(null)
+
+    const fetchDoctor = async () => {
+        // starting the fetch request
+        setIsLoading(true)
+        setError(null)
+
+        const response = await fetch('/api/profile/', {
+            headers: {'Authorization': `Bearer ${user.token}`},
+        });
+        const json = await response.json();
+
+        if (!response.ok) {
+            setIsLoading(false)
+            setError(json.error)
+        }else{
+            // setDoctor({...doctor, json});
+            setDoctor(json)
+
+            setIsLoading(false)
+        }
+        
+    };
+
+    const fetchAppointments = async () => {
+        // starting the fetch request
+        setIsLoading(true)
+        setError(null)
+
+        const response = await fetch('/api/appointments/', {
+            headers: {'Authorization': `Bearer ${user.token}`},
+        });
+        const json = await response.json();
+
+        if (!response.ok) {
+            setIsLoading(false)
+            setError(json.error)
+        }else{
+            setAppointments(json)
+            const today = new Date();
+            const filteredAppointments = appointments.filter(appointment => {
+                const appointmentDate = new Date(appointment.start_datetime);
+                return appointmentDate >= today;
+            });
+            console.log('Before filtered',appointments)
+            console.log('after filtered',filteredAppointments)
+            setSchedules(filteredAppointments)
+            setIsLoading(false)
+        }
+        
+    };
+
+    // synchronous
+    useEffect(() => {
+        if(user){
+            fetchDoctor()
+            // fetchAppointments()
+            // Promise.all([fetchDoctor(),fetchAppointments()])
+            //     .then(([doctorData, appointmentData]) => {
+            //     // handle success
+            //   })
+            //     .catch(error => {
+            //     // handle error
+            //   });
+        } 
+    }, []);
+
+    if (isLoading) {
+        return (
+            <div>
+                {/* Add loading commponent here */}
+                <p> Loading .. </p>
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div>
+                <p>Error: {error.message}</p>
+            </div>
+        )
+    }
+
+    if (!doctor){
+        return (
+            <div>
+                <p> Doctor details unable to fetched </p>
+            </div>
+        )
+    }
+
 
     return(
         <div className="grid grid-rows-7 grid-cols-3 ml-16">
@@ -65,7 +158,7 @@ export default function DoctorDashboardPage(){
                 <div className="col-start-1 col-end-3 row-span-1">
                     <div className="mt-8 ml-5">
                     <h2 className="font-base text-4xl inline"> Welcome back </h2>
-                    <h1 className="text-primary font-bold text-6xl inline"> Dr {doctorInfo.name.split(" ")[0]} !</h1>
+                    <h1 className="text-primary font-bold text-6xl inline"> Dr {doctor.name.split(" ")[0]} !</h1>
                     </div>
                 </div>
             {/*============================ NOTIFICATION ============================ */}
@@ -130,7 +223,6 @@ export default function DoctorDashboardPage(){
                 </div>
 
                 <div className='flex flex-col p-2 m-5 rounded-xl gap-3'>
-
                     {upComingSchedules.map((schedule, index)=>(
                         <ScheduleBar key={index} schedule={schedule} />
                     ))}

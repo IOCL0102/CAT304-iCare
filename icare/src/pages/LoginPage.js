@@ -49,7 +49,7 @@ export default function LoginPage() {
                 default:
                     console.log(`Invalid type: ${user.type}`)
                     break;
-            }
+            } 
         }
       };
     
@@ -83,7 +83,7 @@ export default function LoginPage() {
 
     return (
         <div>
-            <a href="#" className=" flex items-center mb-6 text-5xl font-bold text-gray-900">
+            <a onClick={() => navigate('/LandingPage')} href="#" className=" flex items-center mb-6 text-5xl font-bold text-gray-900">
             <img className="items-end m-10 mt-10" src={icare} width="80px"/> 
             iCare
             </a>

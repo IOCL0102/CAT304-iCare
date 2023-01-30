@@ -37,6 +37,7 @@ export default function SignUpPage (){
             setIsSubmit(true);
 
             // after sign up successful only go to user profile page based on type of user
+            // later test again
             if (!error && Object.keys(formErrors).length === 0) {
                 // console.log(`Should navigate to another to ${user.type} page for ${user.email}`)
 
@@ -101,7 +102,7 @@ export default function SignUpPage (){
          };
     return(
     <div> 
-        <a href="#" className="flex items-center mb-6 text-5xl font-bold text-gray-900">
+        <a onClick={() => navigate('/LandingPage')} href="#" className="flex items-center mb-6 text-5xl font-bold text-gray-900">
         <img className="items-end m-10 mt-10" src={icare} width="80px"/> 
         iCare </a>
         <div className="flex flex-col items-center justify-start px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -174,7 +175,7 @@ export default function SignUpPage (){
                             Create an account </button>
                         {error && <div className="text-red-500">{error}</div>}
                         <p className="text-sm font-light text-gray-500">
-                        Already have an account? <a href="/" className="font-medium text-primary hover:underline">Login here</a>
+                        Already have an account? <a href="/login" className="font-medium text-primary hover:underline">Login here</a>
                         </p>
                 </form>           
             </div>

@@ -1,8 +1,11 @@
 import React from "react"
 import iCare from "../images/iCare.png"
 import Register from "../images/Register.png"
+import { useNavigate } from "react-router-dom";
 
 export default function LPNavbar (){
+    const navigate = useNavigate()
+
     return(
         <div className="navbar bg-white">
             <div className="navbar-start">
@@ -28,8 +31,8 @@ export default function LPNavbar (){
                 </ul>
             </div>
             <div className="navbar-end mt-3">
-                <a className="btn bg-primary text-white rounded-full border-none"><img src={Register}/>Register</a>
-                <a className="btn bg-secondary text-white mx-5 rounded-full border-none"><img src={Register}/>Login</a>
+                <a onClick={() => navigate('/signup')} className="btn bg-primary text-white rounded-full border-none"><img src={Register}/>Register</a>
+                <a onClick={() => navigate('/login')} className="btn bg-secondary text-white mx-5 rounded-full border-none"><img src={Register}/>Login</a>
             </div>
         </div>
     ); 

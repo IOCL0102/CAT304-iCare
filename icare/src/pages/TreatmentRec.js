@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Pagination2 } from "../components/Pagination";
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 // dummy data
 var treatmentInfoTable = [
@@ -102,6 +103,7 @@ export default function TreatmentRec(){
 }
 
 const TreatmentCard = ({treatmentData}) => {
+    const navigate = useNavigate()
     return(
         <div className="card max-w-sm bg-base-100 shadow-xl hover:outline hover:outline-blue-300">
             <div className="card-body">
@@ -120,7 +122,7 @@ const TreatmentCard = ({treatmentData}) => {
                 </div>
 
                 <div className="card-actions justify-center mt-5">
-                    <button className="btn btn-primary">Make Appointment</button>
+                    <button onClick={() => navigate("/Appointment/Map")} className="btn btn-primary">Make Appointment</button>
                 </div>
             </div>
         </div>

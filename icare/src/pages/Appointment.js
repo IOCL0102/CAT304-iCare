@@ -13,7 +13,7 @@ export default function Appointment() {
     var today = new Date()
     const [date, setDate] = useState(today.toISOString().split('T')[0]);
     const [starttime, setStartime] = useState(0)
-    const [description, setDescription] = useState(" ")
+    const [description, setDescription] = useState(null)
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(null)
     const { user } = useAuthContext()
@@ -87,7 +87,7 @@ export default function Appointment() {
                         </label>
                         <label>
                             <span className="text-2xl text-black font-semibold block">Preferred Startime (24-hour):</span>
-                            <input className='bg-white border-2 rounded-lg border-gray-400 mx-5' type="number" onChange={(e) => setStartime(e.target.value)} value={starttime} max="23" required />
+                            <input className='bg-white border-2 rounded-lg border-gray-400 mx-5' type="number" onChange={(e) => setStartime(e.target.value)} value={starttime} max="23" min="0" required />
                         </label>
                         <label>
                             <span className="text-2xl text-black font-semibold block">Purpose of Appointment:</span>
