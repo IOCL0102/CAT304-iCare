@@ -19,23 +19,37 @@ const todayAvailabilities = {
     availability: [
         {
             start_time: 10,
-            end_time: 14,
+            end_time: 11,
             _id: "63d4ad58aa57289c9ee76693",
         },
         {
-            start_time: 15,
-            end_time: 20,
+            start_time: 12,
+            end_time: 13,
             _id: "63d4ad58aa57289c9ee76694",
-        }
+        },
+        {
+            start_time: 14,
+            end_time: 18,
+            _id: "63d4ad58aa57289c9ee76694",
+        },
+        {
+            start_time: 20,
+            end_time: 22,
+            _id: "63d4ad58aa57289c9ee76694",
+        },
     ],
 }
 
 
 // GET All appointments
 const highlightDaysTable = [
-    {start_datetime: new Date("2023-01-15")},
-    {start_datetime: new Date("2023-02-28")},
-    {start_datetime: new Date("2023-01-30")}
+    {start_datetime: new Date("2023-01-13")},
+    {start_datetime: new Date("2023-01-04")},
+    {start_datetime: new Date("2023-01-22")},
+    {start_datetime: new Date("2023-01-17")},
+    {start_datetime: new Date("2023-02-03")},
+    {start_datetime: new Date("2023-02-10")},
+    {start_datetime: new Date("2023-01-31")}
 ]
 
 

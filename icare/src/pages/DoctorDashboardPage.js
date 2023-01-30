@@ -12,37 +12,53 @@ const doctorInfo = {
     name: "ALi baba",
 };
 
-// GET All appointments
+/// GET All appointments
 const highlightDaysTable = [
-    {start_datetime: new Date("2023-02-15")},
-    {start_datetime: new Date("2023-02-28")},
-    {start_datetime: new Date("2023-01-30")}
+
+    {start_datetime: new Date("2023-01-13")},
+    {start_datetime: new Date("2023-01-04")},
+    {start_datetime: new Date("2023-01-22")},
+    {start_datetime: new Date("2023-01-17")},
+    {start_datetime: new Date("2023-02-03")},
+    {start_datetime: new Date("2023-02-10")},
+    {start_datetime: new Date("2023-01-31")}
 ]
 
 // request table
 const upComingSchedulesTable = [
     {
         _id: 1,
-        date: "1 April 2022",
+        date: "31 Jan 2023",
         time_slot:{
-            start_time: "04:00 PM",
+            start_time: "14:00",
         },
         patient_id:{
             name: "Simon Alix",
             photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
         },
-        profilePic: "https://placeimg.com/160/160/arch",
     },
+    {
+        _id: 2,
+        date: "31 Jan 2023",
+        time_slot:{
+            start_time: "16:00",
+        },
+        patient_id:{
+            name: "Ng Mei Teng",
+            photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
+        },
+    },
+
 ]
 
 const doctorPatientStatistics = {
-        visitForToday : 104,
-        totalPatient : 5082,
-        newPatient : 64,
+        visitForToday : 2,
+        totalPatient : 153,
+        newPatient : 26,
         scheduleAvgByQuarter : [1,10,3,10,5,8,2],
         maleVisitWeekly: [1,10,3,10,5,8,2],
         femaleVisitWeekly: [2,3,7,2,8,11,33],
-    }
+}
 
 
 export default function DoctorDashboardPage(){
