@@ -24,7 +24,7 @@ export default function UserProfile(){
                 <span className='text-center w-2/5 mt-32'>
                     <AccountCircleIcon sx={IconStyle}/>
                     <div>
-                        <h2 className='text-5xl text-black font-semibold text-center mt-10'>Hello User Name!</h2>
+                        <h2 className='text-5xl text-black font-semibold text-center mt-10'>Hello Tom Cat!</h2>
                     </div>
                     <div>
                         <img src={FAK} />
@@ -34,13 +34,13 @@ export default function UserProfile(){
                     <h2 className='text-5xl text-black font-semibold mb-20'>Edit Your Profile Here</h2>
                     <form>
                         <label className='text-2xl text-black font-semibold block'>Name</label>
-                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="gg"/>
+                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="Tom Cat"/>
                         <label className='text-2xl text-black font-semibold block'>IC Number</label>
-                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="gg"/>
+                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="910101-07-2311"/>
                         <label className='text-2xl text-black font-semibold block'>Email</label>
-                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="gg"/>
+                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="tom@gmail.com"/>
                         <label className='text-2xl text-black font-semibold block'>Mobile Phone</label>
-                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="gg"/>
+                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="016-342323"/>
                         <label className='text-2xl text-black font-semibold block'>Gender</label>
                         <select className='bg-white border-2 rounded-lg border-gray-400'>
                             <option placeholder="Male">Male</option>
@@ -51,9 +51,9 @@ export default function UserProfile(){
                         <label className='text-2xl text-black font-semibold block'>Address</label>
                         <textarea className='w-full bg-white border-2 rounded-lg border-gray-400'></textarea>
                         <label className='text-2xl text-black font-semibold block'>Height</label>
-                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="gg" />
+                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="65kg" />
                         <label className='text-2xl text-black font-semibold block'>Weight</label>
-                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="gg" />
+                        <input className='bg-white border-2 rounded-lg border-gray-400' type='text' placeholder="172cm" />
                         <label className='text-2xl text-black font-semibold block'>Allergies</label>
                         <textarea className='w-full bg-white border-2 rounded-lg border-gray-400'></textarea>
                         <button className="btn btn-wide bg-primary my-10 text-white">Save</button>
