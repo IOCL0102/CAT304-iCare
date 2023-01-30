@@ -95,7 +95,7 @@ export default function LocationMap() {
                 center={{ lat: latitude, lng: longitude }}
                 mapContainerClassName="map-container"
             >
-            <Marker position={{ lat: latitude, lng: longitude }} />
+                <Marker position={{ lat: latitude, lng: longitude }} />
             </GoogleMap>
         </div>
         <Navbar />
