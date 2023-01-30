@@ -21,6 +21,7 @@ import DoctorProfileViewPage from './pages/DoctorProfileViewPage';
 import EditAvailabilityPage from './pages/EditAvailabilityPage';
 import DoctorDashboardPage from './pages/DoctorDashboardPage';
 import DoctorAppointPage from './pages/DoctorAppointPage';
+import DoctorNotification from './pages/DoctorNotification';
 
 function App(){
   const { user } = useAuthContext()
@@ -56,6 +57,7 @@ return(
             <Route path="/Dashboard" element={<DoctorDashboardPage />} />
             <Route path="/Appointments" element={<DoctorAppointPage />} />
             <Route path="/Appointments/EditAppointments" element={<EditAvailabilityPage />} />
+            <Route path="/Notifications" element={<DoctorNotification />} />
           </Routes>
         </>
       )}
