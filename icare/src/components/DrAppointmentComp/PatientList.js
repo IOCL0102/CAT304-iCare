@@ -15,7 +15,7 @@ export default function PatientList({patientListTable}) {
                     
                     <div className='overflow-y-scroll overflow-x-hidden border-2 border-r-0 border-sky-200 rounded-2xl py-3' style={{height: '35rem'}}>
                         {patientLists.map((patientList)=>(
-                            <PatientsBar key={patientList.id} data={patientList} onClick={setConsultation}/>
+                            <PatientsBar key={patientList._id} data={patientList} onClick={setConsultation}/>
                         ))}
                     </div>
             </div>
@@ -34,16 +34,16 @@ const PatientsBar = ({data, onClick}) => {
         <div className='flex flex-row rounded-xl px-3 py-2 active:scale-105 cursor-pointer 
         hover:bg-sky-100' onClick={()=>onClick(data)}>
             <div className="mask mask-circle h-11 w-11 ml-2 mr-5 self-center shrink-0">
-                <img src={data.profilePic} className='object-fill' />
+                <img src={data.patient_id.photo} className='object-fill' />
             </div>
 
             <div className='grow mr-5'>
-                <h1 className='text-lg font-base '> {data.name}</h1>
-                <h3 className="text-sm ">{data.appointPurpose.length > 50 ? data.appointPurpose.slice(0,50) + " ..." : data.appointPurpose}</h3>
+                <h1 className='text-lg font-base '> {data.patient_id.name}</h1>
+                <h3 className='text-sm p-2 pl-0'> Appointment </h3>
             </div>
 
             <div className="justify-end self-center shrink-0">
-                <h3 className="font-base text-sm text-blue-600 bg-blue-200 rounded-2xl px-3 text-justify tracking-tight py-3">{data.time}</h3>
+                <h3 className="font-base text-sm text-blue-600 bg-blue-200 rounded-2xl px-3 text-justify tracking-tight py-3">{data.start_datetime.getHours().toString().padStart(2, '0')} : 00</h3>
             </div>
         </div>
     );
@@ -53,20 +53,25 @@ export const PatientDetailSummary = ({consultationData}) => {
     return(
         <div className="flex flex-col gap-5">
             <div className="flex flex-row grow gap-5 font-base">
-                <h3 className="basis-1/4 shrink-0">Last Checked</h3>
-                <h3 className="font-light">{(consultationData.lastChecked == null || consultationData.lastChecked == undefined) ? "None" : consultationData.lastChecked}</h3>
+                <h3 className="basis-1/4 shrink-0">Last checked by</h3>
+                <h3 className="font-light">{(consultationData.patient_id.last_checked.doctor_name == null || consultationData.patient_id.last_checked.doctor_name == undefined) ? "None" : "Dr " + consultationData.patient_id.last_checked.doctor_name  }</h3>
             </div>
+
             <div className="flex flex-row grow gap-5">
                 <h3 className="basis-1/4 shrink-0 font-base">Observation</h3>
-                <h3 className="font-light">{(consultationData.observation == null || consultationData.observation == undefined) ? "None" : consultationData.observation}</h3>
+                <h3 className="font-light">{(consultationData.patient_id.last_checked.observation == null || consultationData.patient_id.last_checked.observation == undefined) ? "None" : consultationData.patient_id.last_checked.observation}</h3>
             </div>
+
             <div className="flex flex-row grow gap-5">
                 <h3 className="basis-1/4 shrink-0 font-base">Prescription</h3>
-                <h3 className="font-light">{(consultationData.prescription == null || consultationData.prescription == undefined) ? "None" : consultationData.prescription}</h3>
+                <h3 className="font-light">Paracetmol - 2           times a day
+                            Dizopam - Day and Night before mealw
+                            Wikoryl</h3>
             </div>
+
             <div className="flex flex-col gap-5">
                 <h3 className="basis-1/4 shrink-0 font-base p-2 rounded-xl bg-sky-100">Appointment Purpose</h3>
-                <h3 className="font-light">{(consultationData.appointPurpose == null || consultationData.appointPurpose == undefined) ? "None" : consultationData.appointPurpose}</h3>
+                <h3 className="font-light">{(consultationData.title == null || consultationData.title == undefined) ? consultationData.description : consultationData.title}</h3>
             </div>
         </div>
     );
@@ -81,13 +86,13 @@ const ConsultationInfo = ({consultationData}) => {
                 <div className="flex flex-row items-center mb-3">
                     {/*=========== PROFILE PICTURE ===========*/}
                         <div className="mask mask-circle inline h-11 w-11 m-3 shrink-0 rounded-full">
-                            <img src={consultationData.profilePic} />
+                            <img src={consultationData.patient_id.photo} />
                         </div>
 
                     {/*=========== PATIENT INFORMATION ===========*/}
                     <div className="flex flex-col ml-5">
-                        <h1 className="font-medium">{consultationData.name}</h1>
-                        <h2 className="font-light">{consultationData.gender} - {consultationData.age}</h2>
+                        <h1 className="font-medium">{consultationData.patient_id.name}</h1>
+                        <h2 className="font-light">{consultationData.patient_id.gender} - {consultationData.patient_id.age}</h2>
                     </div>
                 </div>
 

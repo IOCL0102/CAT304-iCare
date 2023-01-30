@@ -4,191 +4,127 @@ import AppointmentReq from '../components/DrAppointmentComp/AppointmentReq';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const appointmentRequestTable = [ {
-    id: 1,
-    name: "Simon Alix",
-    gender: "Male",
-    age: "35",
-    date: "1 Sept 2022",
-    time: "04:00 PM",
-    link: "#",
-    appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-    timePassed: "5 minutes",
-    profilePic: "https://placeimg.com/160/160/arch",
-    lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-    observation: "High fever and cough at normal hemoglobin levels. ",
-    prescription: `Paracetmol - 2 times a day
-                    Dizopam - Day and Night before mealw
-                    Wikoryl`,
-},
-{
-    id: 4,
-    name: "Chirstine",
-    date: "3 Apr 2022",
-    time: "04:00 PM",
-    link: "#",
-    appointPurpose: "I am not feeling well so i plan to do the medical check up",
-    timePassed: "58 minutes ago",
-    profilePic: "https://placeimg.com/160/160/arch",
-},
-{
-    id: 5,
-    name: "Chirstine",
-    date: "3 April 2022",
-    time: "04:00 PM",
-    link: "#",
-    appointPurpose: "I am not feeling well so i plan to do the medical check up",
-    timePassed: "2 hours ago",
-    profilePic: "https://placeimg.com/160/160/any",
-},
-{
-    id: 2,
-    name: "Abu Bakar",
-    date: "2 April 2022",
-    time: "04:00 PM",
-    link: "#",
-    appointPurpose: "I am not feeling well so i plan to do the medical check up",
-    timePassed: "1 day ago",
-    profilePic: "https://placeimg.com/160/160/any",
-},
-{
-    id: 3,
-    name: "Chirstine",
-    date: "3 April 2022",
-    time: "04:00 PM",
-    link: "#",
-    appointPurpose: "I am not feeling well so i plan to do the medical check up",
-    timePassed: "2 days ago",
-    profilePic: "https://placeimg.com/160/160/arch",
-},
+// GET ALL Requests
+var appointmentRequestTable = [ 
+    {
+        _id: 1,
+        date: "1 Sept 2022",
+        time_slot:{
+            start_time: 4
+        },
+        patient_id:{
+            name: "Simon Alix",
+            gender: "Male",
+            age: "35",
+            photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
+            last_checked:{
+                doctor_name: "Everly",
+                date: new Date(),
+                observation: "High fever and cough at normal hemoglobin levels. ",
+                prescription: []
+            }
+        },
+
+        description: "Daily check up because I feel like my chest feel pain",
+        //lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
+    },
+    {
+        _id: 2,
+        date: "1 Sept 2022",
+        time_slot:{
+            start_time: 4
+        },
+        patient_id:{
+            name: "Simon Alix",
+            gender: "Male",
+            age: "35",
+            photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
+            last_checked:{
+                doctor_name: "Everly",
+                date: new Date(),
+                observation: "High fever and cough at normal hemoglobin levels. ",
+                prescription: []
+            }
+        },
+
+        description: "Daily check up because I feel like ",
+        //lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
+    },
 ];
-appointmentRequestTable.push(...appointmentRequestTable);
 
 const patientLists = [
     {
-        id: 1,
-        name: "Simon Alix",
-        time: "04:00 PM",
-        link: "#",
-        appointPurpose: `É vital, porém não derrubará aviões.
-        It's vital, but it won't shoot down aircraft.
-        Boa idéia, porém não funcionará.
-        Good idea, but it won't work.
-        Então não arriscarei nenhum... porém infelizmente estou tentada.
-        Then I shall venture none... however sorely I am tempted.`,
-        profilePic: "https://placeimg.com/160/160/any",
-        gender: "Male",
-        age: 56,
-        lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-        observation: "High fever and cough at normal hemoglobin levels. ",
-        prescription: `Paracetmol - 2 times a day
-                        Dizopam - Day and Night before mealw
-                        Wikoryl`,
+        _id: "63d014458cf30f2fa2a0a6b7",
+        start_datetime: new Date(),
+        title: "Normal Doctor Appointment",
+        observation: "High fever and cough at normal hemoglobin levels.",
+        treatment: " ",
+        patient_id: {
+            _id: "63d0081c455e7b28062fff1e",
+            photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
+            name: "Tom Cata",
+            gender: "female",
+            age: 34,
+            last_checked: {
+                appointment_id: "63d53fc0d4c27cce07753f8b",
+                doctor_name: "Chong Zhan Hang",
+                date: new Date(),
+                observation: "High blood sugar level",
+                treatment: "Complete blood test and take insulin injection",
+                prescription: `Paracetmol - 2 times a day
+                                Dizopam - Day and Night before mealw
+                                Wikoryl`,
+            },
+        },
     },
     {
-        id: 2,
-        name: "Alix",
-        time: "04:00 PM",
-        link: "#",
-        appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-        profilePic: "https://placeimg.com/160/160/any",
-        gender: "Male",
-        age: 56,
-        lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-        observation: "High fever and cough at normal hemoglobin levels. ",
-        prescription: `Paracetmol - 2 times a day
-                        Dizopam - Day and Night before mealw
-                        Wikoryl`,
+        _id: "63d014458cf30f2fa2a0a6b2",
+        start_datetime: new Date(),
+        title: "Normal Doctor Appointment",
+        observation: "High fever and cough at normal hemoglobin levels.",
+        treatment: " ",
+        patient_id: {
+            _id: "63d0081c455e7b28062fff1e",
+            photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
+            name: "Tom Cat",
+            gender: "male",
+            age: 34,
+            last_checked: {
+                appointment_id: "63d53fc0d4c27cce07753f8b",
+                doctor_name: "Chong Zhan Hang",
+                date: new Date(),
+                observation: "High blood sugar level",
+                treatment: "Complete blood test and take insulin injection",
+                prescription: [],
+            },
+        },
     },
     {
-        id: 3,
-        name: "Abu Bakar",
-        time: "04:00 PM",
-        link: "#",
-        appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-        profilePic: "https://placeimg.com/160/160/any",
-        gender: "Male",
-        age: 56,
-        lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-        observation: "High fever and cough at normal hemoglobin levels. ",
-        prescription: `Paracetmol - 2 times a day Dizopam - Day and Night before mealw aaa Wikoryl`,
-    },
-    {
-        id: 4,
-        name: "Ahamd bin Yusoff Ali",
-        time: "04:00 PM",
-        link: "#",
-        appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-        profilePic: "https://placeimg.com/160/160/arch",
-        gender: "Male",
-        age: 56,
-        lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-        observation: "High fever and cough at normal hemoglobin levels. ",
-        prescription: `Paracetmol - 2 times a day
-                        Dizopam - Day and Night before mealw
-                        Wikoryl`,
-    },
-    {
-        id: 5,
-        name: "Ng Wei Kang",
-        time: "04:00 PM",
-        link: "#",
-        appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-        profilePic: "https://placeimg.com/160/160/arch",
-        gender: "Male",
-        age: 56,
-        lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-        observation: "High fever and cough at normal hemoglobin levels. ",
-        prescription: `Paracetmol - 2 times a day
-                        Dizopam - Day and Night before mealw
-                        Wikoryl`,
-    },
-    {
-        id: 6,
-        name: "Ng Wei Kang",
-        time: "04:00 PM",
-        link: "#",
-        appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-        profilePic: "https://placeimg.com/160/160/arch",
-        gender: "Male",
-        age: 56,
-        lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-        observation: "High fever and cough at normal hemoglobin levels. ",
-        prescription: `Paracetmol - 2 times a day
-                        Dizopam - Day and Night before mealw
-                        Wikoryl`,
-    },
-    {
-        id: 7,
-        name: "Ng Wei Kang",
-        time: "04:00 PM",
-        link: "#",
-        appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-        profilePic: "https://placeimg.com/160/160/arch",
-        gender: "Male",
-        age: 56,
-        lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-        observation: "High fever and cough at normal hemoglobin levels. ",
-        prescription: `Paracetmol - 2 times a day
-                        Dizopam - Day and Night before mealw
-                        Wikoryl`,
-    },
-    {
-        id: 8,
-        name: "Ng Wei Kang",
-        time: "04:00 PM",
-        link: "#",
-        appointPurpose: "Daily check up because I feel like my chest feel pain sometimes",
-        profilePic: "https://placeimg.com/160/160/arch",
-        gender: "Male",
-        age: 56,
-        lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
-        observation: "High fever and cough at normal hemoglobin levels. ",
-        prescription: `Paracetmol - 2 times a day
-                        Dizopam - Day and Night before mealw
-                        Wikoryl`,
+        _id: "63d014458cf30f2fa2a0a611",
+        start_datetime: new Date(),
+        title: "Normal Doctor Appointment",
+        observation: "High fever and cough at normal hemoglobin levels.",
+        treatment: " ",
+        patient_id: {
+            _id: "63d0081c455e7b28062fff1e",
+            photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
+            name: "Tom Cata",
+            gender: "female",
+            age: 34,
+            last_checked: {
+                appointment_id: "63d53fc0d4c27cce07753f8b",
+                doctor_name: "Chong Zhan Hang",
+                date: new Date(),
+                observation: "High blood sugar level",
+                treatment: "Complete blood test and take insulin injection",
+                prescription: `Paracetmol - 2 times a day
+                                Dizopam - Day and Night before mealw
+                                Wikoryl`,
+            },
+        },
     },
 ];
+
 
 export default function DoctorAppointPage(){
     const navigate = useNavigate();
@@ -196,7 +132,6 @@ export default function DoctorAppointPage(){
     const [popOutContent, setPopOutContent] = useState({});
 
     return(
-        
         <div className='grid ml-16 grid-cols-3'  >
 
             { isShowPopOut ? <PopUpContent /> : <></> }
@@ -231,11 +166,17 @@ export default function DoctorAppointPage(){
    
                     <div className='flex flex-row p-5 ' >
                         <div className='flex flex-col justify-center justify-items-center'>
-                            <div className="mask mask-circle h-2/4 self-center shrink-0 mb-5 mx-5">
-                                <img src={popOutContent.profilePic} className='object-fill' />
+                            <div className="mask mask-circle h-20 self-center shrink-0 mb-5 mx-5">
+                    
+                                <div className="avatar">
+                                    <div className="w-24">
+                                        <img src={popOutContent.patient_id.photo} />
+                                    </div>
+                                </div>
                             </div>
-                            <h1 className='text-center text-xl font-semibold'>{popOutContent.name}</h1>
-                            <h2 className='text-center text-base font-light text-gray-500'>{popOutContent.gender} - {popOutContent.age} Years old</h2>
+                            
+                            <h1 className='text-center text-xl font-semibold'>{popOutContent.patient_id.name}</h1>
+                            <h2 className='text-center text-base font-light text-gray-500'>{popOutContent.patient_id.gender} - {popOutContent.patient_id.age} Years old</h2>
                         </div>
 
                         <div className='bg-white m-5 p-5 border-2 border-sky-400 rounded-3xl'>
@@ -245,7 +186,7 @@ export default function DoctorAppointPage(){
 
                     <div className='flex flex-row justify-center bg-blue-300/80 py-3'>
                         <h1 className='inline mr-10 text-xl font-bold'>Date : {popOutContent.date}</h1>
-                        <h1 className='inline text-xl font-bold'>Time : {popOutContent.time}</h1>
+                        <h1 className='inline text-xl font-bold'>Time : {popOutContent.time_slot.start_time.toString().padStart(2, '0')}:00</h1>
                     </div>
 
                     <h1 className='text-center text-semibold text-xl mt-5 inline'> Are you sure you want to  
