@@ -36,6 +36,7 @@ return(
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/signup" element={<SignUpPage/>}/>
             <Route path="/LandingPage" element={<LandingPage/>}/>
+            <Route path="/Logout" element={<Navigate to="/LandingPage"/>}/>
           </Routes>
         </>
       )}
