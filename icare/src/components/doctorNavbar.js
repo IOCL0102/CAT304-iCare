@@ -24,7 +24,7 @@ export default function DocNavbar(){
             <NavbarIcon icon={<CalendarMonthIcon />} text="Appointments"/>
             <NavbarIcon icon={<PermContactCalendarIcon />} text="Patients"/>
             <NavbarIcon icon={<NotificationsIcon />} text="Notifications"/>
-            <button onClick={handleLogout}><NavbarIcon icon={<LogoutIcon />} text="Logout"/></button>
+            <button onClick={handleLogout}><NavbarIcon icon={<LogoutIcon />} text="Logout" linkRef="/LandingPage"/></button>
             {/* need to do the same for PatientNavbar (change to button)  */}
         </div>
     );

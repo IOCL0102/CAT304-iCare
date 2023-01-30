@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
 import LoginDashboard from './pages/LoginDashboard'
 import Appointment from './pages/Appointment';
@@ -29,13 +29,13 @@ return(
   <div>
     <Router>     
       {/* If user haven't login/signup */}
-      {!user && (
+      {!user &&(
         <>
-          {/* The following should change to landing page by zhan hang */}
           <Routes>
-            <Route path="/" element={<LoginPage/>}/>
+            <Route path="/" element={<Navigate to="/LandingPage"/>}/>
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/signup" element={<SignUpPage/>}/>
+            <Route path="/LandingPage" element={<LandingPage/>}/>
           </Routes>
         </>
       )}
@@ -44,12 +44,14 @@ return(
         <>
           <DocNavbar/>
           <Routes>
+            <Route path="/LandingPage" element={<Navigate to="/Dashboard"/>}/>
+            <Route path="/login" element={<Navigate to="/Dashboard"/>}/>
+            <Route path="/signup" element={<Navigate to="/Dashboard"/>}/>
             <Route path="/viewpatientList" element={<ViewPatientListPage/>}/>
             <Route path="/addnewpatientList" element={<AddNewPatientPage/>}/>
             <Route path="/doctorprofileform" element={<DoctorUserProfileForm/>}/>
             <Route path="/patientprofilemedicalrecord" element={<PatientProfileMedicalRecord/>}/>
             <Route path="/doctorprofileview" element={<DoctorProfileViewPage/>}/>
-
             <Route path="/Dashboard" element={<DoctorDashboardPage />} />
             <Route path="/Appointments" element={<DoctorAppointPage />} />
             <Route path="/Patients" element={<TreatmentRec />} />
@@ -58,10 +60,11 @@ return(
         </>
       )}
       {/* IF user login is a patient */}
-      {/* Should insert more patient route here inside the Routes */}
       {user && user.type==="patient" &&(
-        // Add patient nav bar here
         <Routes>
+          <Route path="/LandingPage" element={<Navigate to="/LoginDashboard"/>}/>
+          <Route path="/login" element={<Navigate to="/LoginDashboard"/>}/>
+          <Route path="/signup" element={<Navigate to="/LoginDashboard"/>}/>
           <Route path="/LoginDashboard" element={<LoginDashboard />} />
           <Route path="/Appointment/Map" element={<LocationMap />} />
           <Route path="/Appointment/Details" element={<Appointment />} />

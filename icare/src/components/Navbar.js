@@ -9,8 +9,16 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import MedicationIcon from '@mui/icons-material/Medication';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import { useLogout } from '../hooks/useLogout';
 
 export default function Navbar(){
+    // handling logout when the logout icon is clicked
+    const { logout } = useLogout()
+
+    const handleLogout = () =>{
+        logout()
+    }
+
     return(
         <div className='fixed top-0 left-0 h-screen w-16 
                         m-0 flex flex-col text-white bg-primary
@@ -20,7 +28,7 @@ export default function Navbar(){
             {<NavbarIcon icon={<MedicationIcon />} text="Treatment" linkRef="/Treatment"/>}
             {<NavbarIcon icon={<NotificationsIcon />} text="Notifications" linkRef="/PatientNotification"/>}
             {<NavbarIcon icon={<AssignmentIndIcon/>} text="Profile" linkRef="/UserProfile"/>}
-            {<NavbarIcon icon={<LogoutIcon />} text="Logout" linkRef="/LandingPage"/>}
+            {<button onClick={handleLogout}><NavbarIcon icon={<LogoutIcon />} text="Logout" linkRef="/LandingPage"/></button>}
 
 
             {/* <NavbarIcon icon={<HomeIcon />} text="Home"/>
