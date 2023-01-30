@@ -10,18 +10,18 @@ import NotiUserBar from '../components/NotificationProfile';
 var appointmentRequestTable = [ 
     {
         _id: 1,
-        date: "1 Sept 2022",
+        date: "3 Feb 2022",
         time_slot:{
-            start_time: 4
+            start_time: 18
         },
         patient_id:{
-            name: "Simon Alix",
-            gender: "Male",
+            name: "Aisyah",
+            gender: "Female",
             age: "35",
             photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
             last_checked:{
-                doctor_name: "Everly",
-                date: new Date(),
+                doctor_name: "Jessica Lim",
+                date: "1 Sept 2022",
                 observation: "High fever and cough at normal hemoglobin levels. ",
                 prescription: []
             }
@@ -32,24 +32,24 @@ var appointmentRequestTable = [
     },
     {
         _id: 2,
-        date: "1 Sept 2022",
+        date: "10 Feb 2022",
         time_slot:{
-            start_time: 4
+            start_time: 15
         },
         patient_id:{
-            name: "Simon Alix",
+            name: "Anjor Wat",
             gender: "Male",
-            age: "35",
+            age: "54",
             photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
             last_checked:{
-                doctor_name: "Everly",
-                date: new Date(),
-                observation: "High fever and cough at normal hemoglobin levels. ",
+                doctor_name: "Khoo Kim Fai",
+                date: "1 Jan 2023",
+                observation: "Reddish skin",
                 prescription: []
             }
         },
 
-        description: "Daily check up because I feel like ",
+        description: "Follow up my health condition",
         //lastChecked: "Dr Everly on 21 April 2021 Prescription #2J983KT0",
     },
 ];
@@ -57,19 +57,19 @@ var appointmentRequestTable = [
 const patientLists = [
     {
         _id: "63d014458cf30f2fa2a0a6b7",
-        start_datetime: new Date(),
-        title: "Normal Doctor Appointment",
+        start_datetime: new Date(2023, 0, 31, 14, 0, 0),
+        title: "Daily body check",
         observation: "High fever and cough at normal hemoglobin levels.",
         treatment: " ",
         patient_id: {
             _id: "63d0081c455e7b28062fff1e",
             photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
-            name: "Tom Cata",
-            gender: "female",
+            name: "Simon Alix",
+            gender: "male",
             age: 34,
             last_checked: {
                 appointment_id: "63d53fc0d4c27cce07753f8b",
-                doctor_name: "Chong Zhan Hang",
+                doctor_name: "Lim Feng Mei",
                 date: new Date(),
                 observation: "High blood sugar level",
                 treatment: "Complete blood test and take insulin injection",
@@ -81,47 +81,23 @@ const patientLists = [
     },
     {
         _id: "63d014458cf30f2fa2a0a6b2",
-        start_datetime: new Date(),
-        title: "Normal Doctor Appointment",
+        start_datetime: new Date(2023, 0, 31, 16, 0, 0),
+        title: "Complete full body check up",
         observation: "High fever and cough at normal hemoglobin levels.",
         treatment: " ",
         patient_id: {
             _id: "63d0081c455e7b28062fff1e",
             photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
-            name: "Tom Cat",
-            gender: "male",
+            name: "Ng Mei Teng",
+            gender: "Female",
             age: 34,
             last_checked: {
                 appointment_id: "63d53fc0d4c27cce07753f8b",
-                doctor_name: "Chong Zhan Hang",
+                doctor_name: "Chong Jia Lee",
                 date: new Date(),
-                observation: "High blood sugar level",
-                treatment: "Complete blood test and take insulin injection",
+                observation: "High blood pressure",
+                treatment: "Complete full body check up",
                 prescription: [],
-            },
-        },
-    },
-    {
-        _id: "63d014458cf30f2fa2a0a611",
-        start_datetime: new Date(),
-        title: "Normal Doctor Appointment",
-        observation: "High fever and cough at normal hemoglobin levels.",
-        treatment: " ",
-        patient_id: {
-            _id: "63d0081c455e7b28062fff1e",
-            photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
-            name: "Tom Cata",
-            gender: "female",
-            age: 34,
-            last_checked: {
-                appointment_id: "63d53fc0d4c27cce07753f8b",
-                doctor_name: "Chong Zhan Hang",
-                date: new Date(),
-                observation: "High blood sugar level",
-                treatment: "Complete blood test and take insulin injection",
-                prescription: `Paracetmol - 2 times a day
-                                Dizopam - Day and Night before mealw
-                                Wikoryl`,
             },
         },
     },
@@ -132,6 +108,8 @@ export default function DoctorAppointPage(){
     const navigate = useNavigate();
     const [isShowPopOut, setIsShowPopOut] = useState(false);
     const [popOutContent, setPopOutContent] = useState({});
+    const [appointmentRequests, setAppointmentReq] = useState(appointmentRequestTable);
+    console.log(appointmentRequests)
 
     return(
         <div className='grid ml-16 grid-cols-3'  >
@@ -154,7 +132,7 @@ export default function DoctorAppointPage(){
 
             <div className='col-span-1'>
                 <div className='rounded-3xl bg-white m-5 ml-2 px-5 pt-2 pb-3 drop-shadow-xl '>
-                    <AppointmentReq appointmentRequestTable={appointmentRequestTable} setPopUpFunc={setIsShowPopOut} setPopUpContent={setPopOutContent} />
+                    <AppointmentReq appointmentRequests={appointmentRequests} setPopUpFunc={setIsShowPopOut} setPopUpContent={setPopOutContent}/>
                 </div>
             </div>
 
@@ -195,8 +173,8 @@ export default function DoctorAppointPage(){
                     <h1 className={popOutContent.btnClicked=="accept"? "text-green-600 inline font-bold" : "text-red-500 inline font-bold"}> {popOutContent.btnClicked.toUpperCase()}</h1> the appointment request?</h1>
 
                     <div className='flex flex-row justify-center'>
-                        <button className="btn bg-green-500 cursor-pointer m-5 mr-20
-                        hover:scale-105 hover:bg-green-600 " onClick={()=>{setIsShowPopOut(true)}}>Yes</button>
+                    <button className="btn bg-green-500 cursor-pointer m-5 mr-20
+                        hover:scale-105 hover:bg-green-600 " onClick={()=>{alert("request has " + popOutContent.btnClicked + "ed");setIsShowPopOut(false);setAppointmentReq(appointmentRequests.filter(request => request._id != popOutContent._id));}}>Yes</button>
                         <button className="btn bg-red-500 cursor-pointer m-5 mr-20
                         hover:scale-105 hover:bg-red-600" onClick={()=>{setIsShowPopOut(false)}}>No</button>
                     </div>

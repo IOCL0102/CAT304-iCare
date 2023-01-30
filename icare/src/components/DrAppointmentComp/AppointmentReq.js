@@ -2,10 +2,7 @@ import { useState } from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import ClearIcon from '@mui/icons-material/Clear';
 
-export default function AppointmentReq({appointmentRequestTable, setPopUpFunc, setPopUpContent}){
-
-    const [appointmentRequests, setAppointmentReq] = useState(appointmentRequestTable);
-    
+export default function AppointmentReq({appointmentRequests, setPopUpFunc, setPopUpContent}){
     return(
         <div className="flex flex-col ">
             <h1 className="font-semibold text-2xl text-center my-5 ">Appointment Request</h1>
