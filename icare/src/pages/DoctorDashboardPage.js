@@ -2,6 +2,7 @@ import DoctorActivityGraph from '../components/DrDashboardGraph/DoctorActivityGr
 import PatientVisitByGender from '../components/DrDashboardGraph/PatientVisitGraph';
 import AvgPatientVisitGraph from '../components/DrDashboardGraph/AvgPatientVisitGraph';
 import Calendar from '../components/Calender';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 // can import {user} from useAuthContext to check if user is already login
 // if want to have doctor profile picture
@@ -14,15 +15,12 @@ const doctorInfo = {
     name: "ALi baba",
 };
 
-// appointment table
-const appointments = [
-    {
-        start_datetime: new Date("Sun Jan 29 2023 18:30:49 GMT+0800 (Malaysia Time)")
-    },
-    {
-        start_datetime: new Date("Sun Jan 22 2023 18:30:49 GMT+0800 (Malaysia Time)")
-    },
-];
+// GET All appointments
+const highlightDaysTable = [
+    {start_datetime: new Date("2023-02-15")},
+    {start_datetime: new Date("2023-02-28")},
+    {start_datetime: new Date("2023-01-30")}
+]
 
 // request table
 const upComingSchedulesTable = [
@@ -51,15 +49,15 @@ const doctorPatientStatistics = {
 
 
 export default function DoctorDashboardPage(){
-
+    var tempHighightDays = []
+    highlightDaysTable.map((obj)=>{
+        tempHighightDays.push(obj.start_datetime);
+    })
+    const navigate = useNavigate()
     const [upComingSchedules, setSchedules] = useState(upComingSchedulesTable);
     const [statisticData, setStatisticData] = useState(doctorPatientStatistics);
-    const [highlightedDays, setHighlightedDays] = useState([
-        new Date("2023-01-14"),
-        new Date("2023-02-28"),
-        new Date("2023-01-30")
-    ]);
-    const {currentSelectionDate, Calender} = Calendar({highlightedDays});
+    const [highlightedDays, setHighlightedDays] = useState(tempHighightDays);
+    const {_, Calender} = Calendar({highlightedDays});
 
     return(
         <div className="grid grid-rows-7 grid-cols-3 ml-16">
@@ -127,7 +125,7 @@ export default function DoctorDashboardPage(){
                 <div className='flex flex-row m-5 p-2 gap-5'>
                     <h2 className='text-xl font-semibold'>Upcoming</h2> 
                     <div className='grow text-right pr-5'>
-                        <u className='text-base underline-offset-1 hover:cursor-pointer hover:text-blue-500'>view all</u>
+                        <u className='text-base underline-offset-1 hover:cursor-pointer hover:text-blue-500' onClick={()=>{navigate('/Appointments')}}>view all</u>
                     </div>
                 </div>
 
