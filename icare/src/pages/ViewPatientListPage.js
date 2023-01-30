@@ -4,93 +4,155 @@ import NotiUserBar from '../components/NotificationProfile';
 import { useState,useEffect } from 'react';
 import ReactPaginate from "react-paginate";
 import {useNavigate} from 'react-router-dom';
+import patientprofileMedicalRecord from './PatientProfileMedicalRecord';
+//import { useAuthContext } from '../hooks/useAuthContext';
 
 export default function ViewPatientListPage (){
+    
+    /*const [patient, setPatient] = useState(null);
+    const [error, setError] = useState(null);
+    const [isLoading, setIsLoading] = useState(null)
+    const { user } = useAuthContext();
+
+    const fetchPatient = async () => {
+        // starting the fetch request
+        setIsLoading(true)
+        setError(null)
+
+        const response = await fetch('/api/patients/', {
+            headers: {'Authorization': `Bearer ${user.token}`},
+        });
+        const json = await response.json();
+
+        if (!response.ok) {
+            setIsLoading(false)
+            setError(json.error)
+        }else{
+            // setPatient({...patient, json});
+            setPatient(json)
+
+            setIsLoading(false)
+        }
+        
+    };
+
+    useEffect(() => {
+        if(user){
+            fetchPatient();
+        } 
+    }, []);
+
+    if (isLoading) {
+        return (
+            <div>
+
+                <p> Loading .. </p>
+            /*</div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div>
+                <p>Error: {error.message}</p>
+            </div>
+        )
+    }
+
+    if (!patient){
+        return (
+            <div>
+                <p> Patient details unable to fetched </p>
+            </div>
+        )
+    }
+    */
+    
     const patientInfoTable =[
        {
         patientID:1,
-        patientName: "Simfrferfon Alix",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Tom Cat",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:2,
-        patientName: "aa Alix",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Muhamed Haji",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:3,
-        patientName: "Simon Alix",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Hii Wok Pu",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:4,
-        patientName: "Simon Alix",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Kundan Lal Murugeson a/l Shankar Sekhar",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:5,
-        patientName: "Abu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Bella Koch",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:6,
-        patientName: "Abdsdsu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Bryant",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:7,
-        patientName: "Abdsdsu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Armando Taylor",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:8,
-        patientName: "Abdsdsu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Mona Lee Yew Ming",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:9,
-        patientName: "Abdsdsu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Jean Lee",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:10,
-        patientName: "Abdsdsu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Zhong Li",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:11,
-        patientName: "Abdsdsu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Jeremy Wong Xiao Li",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:12,
-        patientName: "Abdsdsu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Simon Lee Kok Sing",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:13,
-        patientName: "Abdsdsu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "David Joe",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:14,
-        patientName: "Abdsdsu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Bella Wong Li Pui",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:15,
-        patientName: "Abdsdsu",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Ahmad Ali Muhammad",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:16,
-        patientName: "zoe",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Zoe Loh",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
        {
         patientID:17,
-        patientName: "ryan",
-        patientProfilePic:"https://placeimg.com/160/160/any",
+        name: "Ryan Lee",
+        photo:"https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
        },
     ];
 
@@ -98,7 +160,7 @@ export default function ViewPatientListPage (){
     const [searchPatient, setSearchPatient] = useState("");
 
     useEffect(()=>{
-        setpatientCardInfo(patientInfoTable.filter(data=>data.patientName.toLowerCase().includes(searchPatient.toLowerCase())))
+        setpatientCardInfo(patientInfoTable.filter(data=>data.name.toLowerCase().includes(searchPatient.toLowerCase())))
     }, [searchPatient]);
 
     const [pageNumber, setPageNumber] = useState(0);
@@ -108,8 +170,8 @@ export default function ViewPatientListPage (){
     const displayUsers = patientCardInfo.slice(pagesVisited, pagesVisited + usersPerPage).map((patientCardInfo) => {
         return (
             <div className='mr-10 ml-20 flex-col'>           
-                <button type="button" class="w-56 h-48 p-8 ml-50 justify-items-center text-sm font-medium text-black bg-secondary rounded-lg border border-secondary hover:bg-secondary">
-                <img src={patientCardInfo.patientProfilePic} alt="" class="realtive ml-8 w-24 h-24 rounded-lg"/>{patientCardInfo.patientName}</button>
+                <button type="button" onClick={()=>{navigate("/patientprofilemedicalrecord")} } class="w-56 h-48 p-8 ml-50 justify-items-center text-sm font-medium text-black bg-secondary rounded-lg border border-secondary hover:bg-secondary">
+                <img src={patientCardInfo.photo} class="realtive ml-8 w-24 h-24 rounded-lg"/>{patientCardInfo.name}</button> 
             </div>
         );
       });
@@ -120,7 +182,6 @@ export default function ViewPatientListPage (){
       setPageNumber(selected);
     };
 
-    
     let navigate = useNavigate();
     return (
         <div>
@@ -162,5 +223,3 @@ export default function ViewPatientListPage (){
         
     )
 }
-
-
