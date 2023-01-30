@@ -3,6 +3,8 @@ import { PatientDetailSummary } from '../components/DrAppointmentComp/PatientLis
 import AppointmentReq from '../components/DrAppointmentComp/AppointmentReq';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NotiUserBar from '../components/NotificationProfile';
+
 
 // GET ALL Requests
 var appointmentRequestTable = [ 
@@ -140,8 +142,8 @@ export default function DoctorAppointPage(){
                 <button className='btn btn-primary' onClick={()=>{navigate('/Appointments/EditAppointments')}}> Edit appointment availability</button>
             </div>
 
-            <div className='col-span-1 bg-green-500'>
-                <h1>notification icon and profile pic</h1>
+            <div className='col-span-1 mt-5'>
+                <NotiUserBar />
             </div>
 
             <div className='col-span-2'>
