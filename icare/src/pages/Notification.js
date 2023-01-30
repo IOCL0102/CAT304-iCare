@@ -58,14 +58,4 @@ const notiItems = [
         notificationTitle: "Welcome to iCare!",
         notificationBody: "You have successfully created an account"
     },
-    {
-        id: 2, 
-        notificationTitle: "Time to take your medicines!",
-        notificationBody: "Your paracetamol is due at 10am or before lunch"
-    },
-    {
-        id: 3, 
-        notificationTitle: "Appointment Scheduled!",
-        notificationBody: "You have successfully scheduled an appointment with Dr Kim!"
-    },
 ]
