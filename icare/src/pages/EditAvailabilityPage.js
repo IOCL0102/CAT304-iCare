@@ -3,48 +3,53 @@ import { useEffect, useState } from "react";
 import Calendar from "../components/Calender";
 import { format } from 'date-fns'
 
-const todayAvailabilities = [
-    { 
-        start_time : 6,
-        end_time : 9
-    },
-    { 
-        start_time : 10,
-        end_time : 12
-    },
-    { 
-        start_time : 18,
-        end_time : 19
-    },
-    { 
-        start_time : 15,
-        end_time : 17
-    },
 
-];
+// GET Profile Details
+const todayAvailabilities = {
+    _id: "63d006d51017ea2869ebca26",
+    type: "doctor",
+    photo: "https://www.kindpng.com/picc/m/421-4212275_transparent-default-avatar-png-avatar-img-png-download.png",
+    name: "Chong Zhan Hang",
+    working_hours: {
+        start_time: 8,
+        end_time: 20,
+        _id: "63d4ad58aa57289c9ee7668f",
+    },
+    availability: [
+        {
+            start_time: 10,
+            end_time: 14,
+            _id: "63d4ad58aa57289c9ee76693",
+        },
+        {
+            start_time: 15,
+            end_time: 20,
+            _id: "63d4ad58aa57289c9ee76694",
+        }
+    ],
+}
 
+
+// GET All appointments
 const highlightDaysTable = [
-    new Date("2023-01-14"),
-    new Date("2023-02-28"),
-    new Date("2023-01-30")
+    {start_datetime: new Date("2023-01-15")},
+    {start_datetime: new Date("2023-02-28")},
+    {start_datetime: new Date("2023-01-30")}
 ]
-
-// todayAvailabilities.push(...todayAvailabilities);
 
 
 export default function EditAvailabilityPage(){
+    var tempHighightDays = []
+    highlightDaysTable.map((obj)=>{
+        tempHighightDays.push(obj.start_datetime);
+    })
     const navigate = useNavigate();
     const [selectedFrom, setSelectedFrom] = useState('From');
     const [selectedTo, setSelectedTo] = useState("To");
-    const [currentDaySchedules, setCurrentDaySchedules] = useState(todayAvailabilities.sort((a, b) => a.start_time - b.start_time));
+    const [currentDaySchedules, setCurrentDaySchedules] = useState(todayAvailabilities.availability.sort((a, b) => a.start_time - b.start_time));
 
-    const [highlightedDays, setHighlightedDays] = useState(highlightDaysTable);
+    const [highlightedDays, setHighlightedDays] = useState(tempHighightDays);
     const {Calender, currentSelectionDate} = Calendar({highlightedDays});
-  
-
-    useEffect(()=>{
-        // call API to get the schedule time for currentSelectionDate       - getTodaySchedulesTime(currentSelectionDate);
-    }, [currentSelectionDate]);
 
     return(
         <div className="ml-24 flex flex-col pt-5">
