@@ -55,7 +55,6 @@ return(
             <Route path="/doctorprofileview" element={<DoctorProfileViewPage/>}/>
             <Route path="/Dashboard" element={<DoctorDashboardPage />} />
             <Route path="/Appointments" element={<DoctorAppointPage />} />
-            <Route path="/Patients" element={<TreatmentRec />} />
             <Route path="/Appointments/EditAppointments" element={<EditAvailabilityPage />} />
           </Routes>
         </>

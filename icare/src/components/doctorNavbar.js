@@ -22,7 +22,7 @@ export default function DocNavbar(){
                         shadow-lg '>
             <NavbarIcon icon={<DashboardIcon />} text="Dashboard"/>
             <NavbarIcon icon={<CalendarMonthIcon />} text="Appointments"/>
-            <NavbarIcon icon={<PermContactCalendarIcon />} text="Patients"/>
+            <NavbarIcon icon={<PermContactCalendarIcon />} text="viewpatientList"/>
             <NavbarIcon icon={<NotificationsIcon />} text="Notifications"/>
             <button onClick={handleLogout}><NavbarIcon icon={<LogoutIcon />} text="Logout" linkRef="/LandingPage"/></button>
             {/* need to do the same for PatientNavbar (change to button)  */}
