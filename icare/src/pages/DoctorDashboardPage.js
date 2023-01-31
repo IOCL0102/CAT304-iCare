@@ -20,7 +20,6 @@ const highlightDaysTable = [
     {start_datetime: new Date("2023-01-22")},
     {start_datetime: new Date("2023-01-17")},
     {start_datetime: new Date("2023-02-03")},
-    {start_datetime: new Date("2023-02-10")},
     {start_datetime: new Date("2023-01-31")}
 ]
 
