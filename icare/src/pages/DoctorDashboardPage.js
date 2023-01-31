@@ -52,12 +52,12 @@ const upComingSchedulesTable = [
 ]
 
 const doctorPatientStatistics = {
-        visitForToday : 2,
-        totalPatient : 153,
-        newPatient : 26,
-        scheduleAvgByQuarter : [1,10,3,10,5,8,2],
-        maleVisitWeekly: [1,10,3,10,5,8,2],
-        femaleVisitWeekly: [2,3,7,2,8,11,33],
+    visitForToday : 2,
+    totalPatient : 153,
+    newPatient : 26,
+    scheduleAvgByQuarter : [50,62,86,48,62,22,58],
+    maleVisitWeekly: [1,10,3,10,5,8,2],
+    femaleVisitWeekly: [2,3,7,2,8,11,33],
 }
 
 

@@ -43,7 +43,7 @@ export default function DoctorActivityGraph({scheduleAvgByQuarter}){
                 min: 0,
                 ticks: {
                     stepSize: 2,
-                    callback: (value) => value + 'K'
+                    callback: (value) => value 
                 },
                 grid: {
                     borderDash: [10]
