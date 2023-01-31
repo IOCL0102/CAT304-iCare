@@ -9,7 +9,7 @@ import { useAuthContext } from '../hooks/useAuthContext';
 import NotiUserBar from '../components/NotificationProfile';
 
 const doctorInfo = {
-    name: "ALi baba",
+    name: "Kim Jung Lee",
 };
 
 /// GET All appointments
@@ -173,7 +173,7 @@ export default function DoctorDashboardPage(){
                 <div className="col-start-1 col-end-3 row-span-1">
                     <div className="mt-8 ml-5">
                     <h2 className="font-base text-4xl inline"> Welcome back </h2>
-                    <h1 className="text-primary font-bold text-6xl inline"> Dr {doctor.name.split(" ")[0]} !</h1>
+                    <h1 className="text-primary font-bold text-6xl inline"> Dr {doctorInfo.name.split(" ")[0]} !</h1>
                     </div>
                 </div>
             {/*============================ NOTIFICATION ============================ */}
